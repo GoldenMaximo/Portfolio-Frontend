@@ -1,27 +1,27 @@
-import styles from './styles.module.css';
+// import styles from './styles.module.css';
 import PropTypes from 'prop-types';
+import * as S from './styles';
 
 
 const Nav = ({ home }) => {
     return (
-        <div className={styles.container}>
-            <div className={styles.corner}>
+        <S.Container>
+            <S.SubContainerLeft>
                 GM
-            </div>
-            <div className={styles.middle}>
+            </S.SubContainerLeft>
+            <S.SubContainerMiddle home>
                 <a>Projects</a>
                 <a>About</a>
-            </div>
-            <div className={`${styles.corner} ${styles.rightCorner}`}>
-                {
-                    !home ? (
-                        <img src="/icons/magnifying-glass-white.png" />
-                    ) : (
-                        <img src="/icons/magnifying-glass-black.png" />
-                    )
-                }
-            </div>
-        </div>
+            </S.SubContainerMiddle>
+            <S.SubContainerRight home>
+                <a>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path fill="white" d="M15.9 14.3H15l-.3-.3c1-1.1 1.6-2.7 1.6-4.3 0-3.7-3-6.7-6.7-6.7S3 6 3 9.7s3 6.7 6.7 6.7c1.6 0 3.2-.6 4.3-1.6l.3.3v.8l5.1 5.1 1.5-1.5-5-5.2zm-6.2 0c-2.6 0-4.6-2.1-4.6-4.6s2.1-4.6 4.6-4.6 4.6 2.1 4.6 4.6-2 4.6-4.6 4.6z">
+                        </path>
+                    </svg>
+                </a>
+            </S.SubContainerRight>
+        </S.Container>
     );
 };
 
