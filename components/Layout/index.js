@@ -2,7 +2,7 @@ import Head from 'next/head';
 import styles from './styles.module.css';
 import PropTypes from 'prop-types';
 
-const Layout = ({ children, title }) => {
+export const Layout = ({ children, title }) => {
     return (
         <>
             <Head>
@@ -20,5 +20,3 @@ Layout.propTypes = {
     children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.element), PropTypes.element]),
     title: PropTypes.string.isRequired
 };
-
-export default Layout;

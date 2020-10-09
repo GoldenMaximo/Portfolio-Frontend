@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import * as S from './styles';
 
 
-const Nav = ({ home }) => {
+export const Nav = ({ home }) => {
     return (
         <S.Container>
             <S.SubContainerLeft>
@@ -28,5 +28,3 @@ const Nav = ({ home }) => {
 Nav.propTypes = {
     home: PropTypes.bool,
 };
-
-export default Nav;
