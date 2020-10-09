@@ -17,6 +17,8 @@ export const Featured = ({ projects }) => {
                             </S.ProjectTitle>
                         </S.ProjectThumb>
                     )) : (
+                        // TODO: toast if it doesn't load, server has issues or whatever
+                        // TODO: Add loading gif - needs to be big and exquisite
                         <p>Loading</p>
                     )
                 }

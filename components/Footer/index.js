@@ -18,7 +18,7 @@ export const Footer = () => {
     return (
         <Fragment>
             <ToastContainer />
-            <ReactTooltip type="light" />
+            <ReactTooltip uuid="mytt" type="light" />
 
             <S.container>
                 <S.subContainerLeft>
