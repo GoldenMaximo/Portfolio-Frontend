@@ -63,6 +63,18 @@ export const ProjectThumb = styled.div`
 export const StyledImage = styled.img`
     width: 95%;
     height: 75%;
+    padding-left: ${props => props.mobileImg ? '35%' : '0'};
+    padding-right: ${props => props.mobileImg ? '35%' : '0'};
     margin-top: 5%;
-    box-shadow: 0 0px 0px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+`;
+
+export const AllProjects = styled.div`
+    display: flex;
+    flex: 1;
+    align-items: flex-end;
+
+    h1 {
+        padding: 2rem;
+        font-style: italic;
+    }
 `;

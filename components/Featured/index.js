@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import React from 'react';
 import * as S from './styles';
 
 export const Featured = ({ projects }) => {
@@ -9,9 +10,9 @@ export const Featured = ({ projects }) => {
             </S.Title>
             <S.ProjectsContainer>
                 {projects ?
-                    projects.map(e => (
+                    projects.map((e) => (
                         <S.ProjectThumb key={e._id}>
-                            <S.StyledImage src={e.thumbUrl} />
+                            <S.StyledImage src={e.thumbUrl} mobileImg={e.isMobile}/>
                             <S.ProjectTitle>
                                 {e.title}
                             </S.ProjectTitle>
@@ -23,12 +24,19 @@ export const Featured = ({ projects }) => {
                     )
                 }
             </S.ProjectsContainer>
+            <S.AllProjects>
+                <h1>ALL PROJECTS →</h1>
+            </S.AllProjects>
         </S.StyledSection>
     );
 };
 
 Featured.propTypes = {
-    projects: PropTypes.array,
+    projects: PropTypes.arrayOf(PropTypes.shape({
+        _id: PropTypes.string,
+        thumbUrl: PropTypes.string,
+        isMobile: PropTypes.bool
+    })),
 };
 
 // This gets called on every request

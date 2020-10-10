@@ -23,7 +23,8 @@ export async function getStaticProps() {
                     projects {
                         _id,
                         title,
-                        thumbUrl
+                        thumbUrl,
+                        isMobile
                     }
                 }
             }
