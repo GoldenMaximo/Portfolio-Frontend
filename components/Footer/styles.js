@@ -8,6 +8,10 @@ export const container = styled.div`
     height: fit-content;
     width: 100%;
     background-color: #1c1f20;
+
+    @media(max-width: 768px) {
+        flex-direction: column;
+    }
 `;
 
 // Clickable (icon containers)
@@ -65,6 +69,15 @@ export const subContainerMiddle = styled.div`
 
     div {
         margin: auto;
+
+        @media(max-width: 768px) {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+        }
     }
 
     svg {
@@ -76,6 +89,10 @@ export const subContainerMiddle = styled.div`
         &:hover {
             filter: drop-shadow(0 10px 9px rgba(0,0,0,1));
         }
+    }
+
+    @media(max-width: 768px) {
+        width: 100%;
     }
 `;
 
@@ -93,6 +110,10 @@ export const subContainerRight = styled.div`
     svg {
         height: 5rem;
         width: 5rem;
+    }
+
+    @media(max-width: 768px) {
+        width: 100%;
     }
 `;
 
@@ -128,9 +149,26 @@ export const subContainerLeft = styled.div`
             display: none;
         }
 
+        text-align: center;
+
         ${clickable} {
-            justify-content: flex-start;
+            display: inline-block;
         }
+
+        ${highLightIcon} {
+            display: inline-block;
+        }
+
+        svg {
+            margin-right: 0.5rem;
+            margin-left: 0.5rem;
+            width: 4rem;
+            height: 4rem;
+        }
+    }
+
+    @media(max-width: 768px) {
+        width: 100%;
     }
 `;
 

@@ -76,5 +76,7 @@ export const AllProjects = styled.div`
     h1 {
         padding: 2rem;
         font-style: italic;
+        text-decoration: underline;
+        text-underline-position: under;
     }
 `;
