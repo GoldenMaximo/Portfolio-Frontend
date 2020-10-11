@@ -5,6 +5,9 @@ import * as S from './styles';
 export const Featured = ({ projects }) => {
     return (
         <S.StyledSection>
+            <S.Background>
+                <S.BackgroundFilter />
+            </S.Background>
             <S.Title>
                 <h1>F E A T U R E D</h1>
             </S.Title>
@@ -25,7 +28,9 @@ export const Featured = ({ projects }) => {
                 }
             </S.ProjectsContainer>
             <S.AllProjects>
-                <h1>ALL PROJECTS →</h1>
+                <a target="_blank" rel="noopener noreferrer" href="https://graphql.org/">
+                    <h1>ALL PROJECTS →</h1>
+                </a>
             </S.AllProjects>
         </S.StyledSection>
     );
