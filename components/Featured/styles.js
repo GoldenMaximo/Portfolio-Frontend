@@ -68,6 +68,10 @@ export const Title = styled.div`
         margin: 0;
         color: #e8e6e3;
     }
+
+    &:hover {
+        cursor: default;
+    }
 `;
 
 export const ProjectsContainer = styled.div`

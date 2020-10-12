@@ -24,13 +24,13 @@ export const Footer = () => {
                 <S.subContainerLeft>
                     <h3>Contact Info</h3>
                     <S.clickable>
-                        <S.highLightIcon iconColor="#25D366">
+                        <S.highLightIcon dropShadow iconColor="#25D366">
                             <a target="_blank" rel="noopener noreferrer" href="https://wa.me/5511985383817">
                                 <FaWhatsappSquare width="1.4em" />
                                 <p>+55 (11) 98538-3817</p>
                             </a>
                         </S.highLightIcon>
-                        <S.highLightIcon iconColor="#2593d3">
+                        <S.highLightIcon dropShadow iconColor="#2593d3">
                             <a target="_blank" rel="noopener noreferrer" href="https://goldenmaximo.github.io/curriculum-vitae/">
                                 <FaAddressCard />
                                 <p>Curriculum Vitae</p>
@@ -38,7 +38,7 @@ export const Footer = () => {
                         </S.highLightIcon>
                     </S.clickable>
                     <S.clickable>
-                        <S.highLightIcon iconColor="#D14836">
+                        <S.highLightIcon dropShadow iconColor="#D14836">
                             <a data-tip="Click to Copy" onClick={copyToClipBoard}>
                                 <FaEnvelopeSquare width="1.4em" />
                                 <p>gfmaximo97@gmail.com</p>

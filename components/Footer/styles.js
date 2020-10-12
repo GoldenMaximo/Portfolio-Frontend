@@ -119,8 +119,10 @@ export const subContainerRight = styled.div`
 
 export const highLightIcon = styled.div`
     &:hover {
-        color: ${props => props.iconColor ? props.iconColor : '#e8e6e3'};
-        filter: ${props => props.dropShadow ? 'drop-shadow(0 10px 9px rgba(0,0,0,1))' : ''};
+        svg {
+            color: ${props => props.iconColor ? props.iconColor : '#e8e6e3'};
+            filter: ${props => props.dropShadow ? 'drop-shadow(0 2px 15px rgba(0,0,0,1))' : ''};
+        }
     }
 `;
 
