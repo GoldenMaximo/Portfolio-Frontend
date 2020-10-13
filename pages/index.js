@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Intro, Layout, Nav, Featured, Footer } from '../components';
 import GraphQL from '../services/graphql';
 
@@ -35,5 +36,14 @@ export async function getStaticProps() {
 
     return { props: { projects: data.projects.projects } };
 }
+
+Home.propTypes = {
+    projects: PropTypes.arrayOf(PropTypes.shape({
+        _id: PropTypes.string,
+        title: PropTypes.string,
+        thumbUrl: PropTypes.string,
+        isMobile: PropTypes.bool
+    })),
+};
 
 export default Home;

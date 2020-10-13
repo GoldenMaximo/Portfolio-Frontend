@@ -9,13 +9,10 @@ const GraphQL = async query => {
         });
 
         const resData = await res.json();
-        console.log('ayo resData', resData);
 
         if (resData.errors) {
             throw new Error('There seems to be a problem with some of the services. Reload the page or check back in a while.');
         }
-
-        console.log(resData.data.projects.projects);
 
         return resData.data;
 

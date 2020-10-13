@@ -155,7 +155,7 @@ export const AllProjects = styled.div`
     flex: 1;
     align-items: center;
 
-    h1 {
+    h3 {
         display: contents;
         padding: 2rem;
         font-style: italic;
@@ -166,5 +166,9 @@ export const AllProjects = styled.div`
 
     a:hover {
         text-shadow: 0 0 20px white;
+    }
+
+    @media(max-width: 768px) {
+        padding: 3rem;
     }
 `;

@@ -1,16 +1,61 @@
 import PropTypes from 'prop-types';
-import { useRef, useEffect, useState, createRef } from 'react';
+import { createRef, useEffect, useState, useRef } from 'react';
 import gsap from 'gsap';
-import React from 'react';
 import * as S from './styles';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export const Featured = ({ projects }) => {
-    // const elemRefs = useRef(null);
+    const [elRefs, setElRefs] = useState([]);
+    const projectsContainer = useRef(null);
+    const title = useRef(null);
 
-    const anim = (params, i) => {
-        console.log('here yo: ', params);
-        const e = params.currentTarget;
-        gsap.to(e, {
+    useEffect(() => {
+        if (elRefs.length) {
+            gsap.from(title.current, {
+                duration: 0.5,
+                opacity: 0,
+                x: 0,
+                y: -100,
+                scrollTrigger: {
+                    trigger: projectsContainer.current,
+                    start: 'top center',
+                    toggleActions: 'play none none reverse'
+                }
+            });
+            gsap.fromTo(elRefs.map(e => e.current), {
+                duration: 0.5,
+                opacity: 0,
+                x: 0,
+                y: -100
+            }, {
+                duration: 0.5,
+                opacity: 1,
+                x: 0,
+                y: 0,
+                stagger: {
+                    amount: 0.5
+                },
+                delay: 0.5,
+                scrollTrigger: {
+                    trigger: projectsContainer.current,
+                    start: 'top center',
+                    toggleActions: 'play none none reverse'
+                }
+            });
+        }
+    }, [elRefs.length]);
+
+    useEffect(() => {
+        // add or remove refs
+        setElRefs(elRefs => (
+            Array(projects.length).fill().map((_, i) => elRefs[i] || createRef())
+        ));
+    }, [projects.length]);
+
+    const anim = ({ currentTarget }) => {
+        gsap.to(currentTarget, {
             duration: 0.5,
             opacity: 0,
             x: 0,
@@ -18,32 +63,22 @@ export const Featured = ({ projects }) => {
         });
 
         setTimeout(() => {
-            e.remove();
+            currentTarget.remove();
         }, 600);
     };
-
-    const arrLength = projects.length;
-    const [elRefs, setElRefs] = React.useState([]);
-
-    React.useEffect(() => {
-        // add or remove refs
-        setElRefs(elRefs => (
-            Array(arrLength).fill().map((_, i) => elRefs[i] || createRef())
-        ));
-    }, [arrLength]);
 
     return (
         <S.StyledSection>
             <S.Background>
                 <S.BackgroundFilter />
             </S.Background>
-            <S.Title>
+            <S.Title ref={title}>
                 <h1>F E A T U R E D</h1>
             </S.Title>
-            <S.ProjectsContainer >
+            <S.ProjectsContainer ref={projectsContainer} >
                 {projects ?
                     projects.map((e, i) => (
-                        <S.ProjectThumb onClick={(e) => anim(e, i)} key={e._id} ref={elRefs[i]}>
+                        <S.ProjectThumb onClick={anim} key={e._id} ref={elRefs[i]}>
                             <S.StyledImage src={e.thumbUrl} mobileImg={e.isMobile}/>
                             <S.ProjectTitle>
                                 {e.title}
@@ -58,7 +93,7 @@ export const Featured = ({ projects }) => {
             </S.ProjectsContainer>
             <S.AllProjects>
                 <a target="_blank" rel="noopener noreferrer" href="https://graphql.org/">
-                    <h1>ALL PROJECTS →</h1>
+                    <h3>ALL PROJECTS →</h3>
                 </a>
             </S.AllProjects>
         </S.StyledSection>
