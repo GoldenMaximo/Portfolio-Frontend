@@ -1,7 +1,6 @@
 import { createRef, useEffect } from 'react';
 import gsap from 'gsap';
 import * as S from './styles';
-import Link from 'next/link';
 
 
 export const Intro = () => {
@@ -22,6 +21,14 @@ export const Intro = () => {
         });
     };
 
+    const scrollDown = () => {
+        window.scrollTo({
+            top: (window.outerHeight >= 1050 ? (window.outerHeight - 100) : window.outerHeight),
+            left: 0,
+            behavior: 'smooth'
+        });
+    };
+
     useEffect(() => {
         gsap.from(title.current, {
             delay: 0.2,
@@ -37,9 +44,7 @@ export const Intro = () => {
     return (
         <S.StyledSection>
             <p ref={title}>GUSTAVO MÁXIMO</p>
-            <Link href="/projects">
-                <a ref={button} onClick={btnAnim}>Projects</a>
-            </Link>
+            <a ref={button} onClick={scrollDown}>Projects</a>
         </S.StyledSection>
     );
 };
