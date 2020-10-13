@@ -54,11 +54,40 @@ export const SubContainerMiddle = styled.div`
         display: block;
         height: 1px;
         transition: all 0.25s ease;
+        margin-right: 0%;
+        animation: slideAfter 5s ease-out infinite 3s;
     }
 
     a:hover:after {
-        opacity: 1;
+        opacity: 1 !important;
         margin-top: 0.3rem;
+        margin-right: 0% !important;
+        margin-left: 0% !important;
+    }
+
+    @keyframes slideAfter {
+        0% {
+            opacity: 1;
+            margin-right: 100%;
+            margin-left: 50%;
+        }
+        25% {
+            margin-right: 50%;
+            margin-left: 50%;
+        }
+        50% {
+            margin-right: 0%;
+            margin-left: 0%;
+        }
+        75% {
+            margin-right: 0%
+            margin-left: 50%;
+        }
+        100% {
+            opacity: 0;
+            margin-right: 0%
+            margin-left: 100%;
+        }
     }
 `;
 
