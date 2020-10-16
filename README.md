@@ -32,3 +32,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 <!-- Resources: -->
 https://stackoverflow.com/questions/61037728/next-js-getstaticprops-and-getstaticpaths-with-dynamic-routes-to-generate-stati
 https://www.youtube.com/watch?v=vY_rnKBANnY
+https://github.com/vercel/next.js/issues/8617
