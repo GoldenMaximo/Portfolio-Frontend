@@ -22,7 +22,7 @@ export const BackgroundFilter = styled.div`
     bottom: -50%;
     width: 200%;
     height: 200vh;
-    background: transparent url('http://assets.iceable.com/img/noise-transparent.png') repeat 0 0;
+    background: transparent url('/images/bg/noise-transparent.png') repeat 0 0;
     background-repeat: repeat;
     animation: bg-animation .2s infinite;
     opacity: .9;
