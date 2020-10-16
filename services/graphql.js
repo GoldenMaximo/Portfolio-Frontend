@@ -1,6 +1,6 @@
 const GraphQL = async query => {
     try {
-        const res = await fetch('http://localhost:8080/graphql', {
+        const res = await fetch('https://gmaximo-portfolio-backend.herokuapp.com/graphql', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
