@@ -1,8 +1,13 @@
+import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Intro, Layout, Nav, Featured, Footer } from '../components';
 import GraphQL from '../services/graphql';
 
 const Home = ({ projects }) => {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     return (
         <>
             <Nav light />

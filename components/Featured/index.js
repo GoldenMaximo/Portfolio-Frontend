@@ -3,7 +3,7 @@ import { createRef, useEffect, useState, useRef } from 'react';
 import gsap from 'gsap';
 import * as S from './styles';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
-import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -11,6 +11,7 @@ export const Featured = ({ projects }) => {
     const [elRefs, setElRefs] = useState([]);
     const projectsContainer = useRef(null);
     const title = useRef(null);
+    const router = useRouter();
 
     useEffect(() => {
         if (elRefs.length) {
@@ -55,8 +56,8 @@ export const Featured = ({ projects }) => {
         ));
     }, [projects.length]);
 
-    const anim = ({ currentTarget }) => {
-        gsap.to(currentTarget, {
+    const projectCardClickHandler = (event, slug) => {
+        gsap.to(event.currentTarget, {
             duration: 0.5,
             opacity: 0,
             x: 0,
@@ -64,8 +65,8 @@ export const Featured = ({ projects }) => {
         });
 
         setTimeout(() => {
-            currentTarget.remove();
-        }, 600);
+            router.push(`/projects/${slug}`);
+        }, 500);
     };
 
     return (
@@ -79,14 +80,12 @@ export const Featured = ({ projects }) => {
             <S.ProjectsContainer ref={projectsContainer} >
                 {projects ?
                     projects.map((e, i) => (
-                        <Link key={e.slug} href={`/projects/${e.slug}`}>
-                            <S.ProjectThumb onClick={anim} key={e._id} ref={elRefs[i]}>
-                                <S.StyledImage src={e.thumbUrl} mobileImg={e.isMobile}/>
-                                <S.ProjectTitle>
-                                    {e.title}
-                                </S.ProjectTitle>
-                            </S.ProjectThumb>
-                        </Link>
+                        <S.ProjectThumb onClick={event => projectCardClickHandler(event, e.slug)} key={e.slug} ref={elRefs[i]}>
+                            <S.StyledImage src={e.thumbUrl} mobileImg={e.isMobile}/>
+                            <S.ProjectTitle>
+                                {e.title}
+                            </S.ProjectTitle>
+                        </S.ProjectThumb>
                     )) : (
                         // TODO: toast if it doesn't load, server has issues or whatever
                         // TODO: Add loading gif - needs to be big and exquisite
