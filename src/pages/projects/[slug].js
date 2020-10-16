@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { Fragment, useEffect } from 'react';
 import { Layout, Nav, Footer } from '../../../components';
 import GraphQL from '../../../services/graphql';
 import * as S from './styles';
@@ -51,9 +51,9 @@ export default function Project({ project }) {
                                     {
                                         project.techStack.map((tech, i) => {
                                             return (
-                                                <>
-                                                    <a href='/' key={i}> {tech} </a>{i !== project.techStack.length-1 ? <span> / </span> : null}
-                                                </>
+                                                <Fragment key={i}>
+                                                    <a href='/'> {tech} </a>{i !== project.techStack.length-1 ? <span> / </span> : null}
+                                                </Fragment>
                                             );
                                         })
                                     }
