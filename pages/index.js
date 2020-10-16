@@ -5,7 +5,7 @@ import GraphQL from '../services/graphql';
 const Home = ({ projects }) => {
     return (
         <>
-            <Nav />
+            <Nav light />
             <Layout title={'Gustavo Máximo\'s Projects'}>
                 <Intro />
                 <Featured projects={projects}/>
@@ -23,6 +23,7 @@ export async function getStaticProps() {
                     totalProjects,
                     projects {
                         _id,
+                        slug,
                         title,
                         thumbUrl,
                         isMobile

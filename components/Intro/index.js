@@ -23,7 +23,7 @@ export const Intro = () => {
 
     const scrollDown = () => {
         window.scrollTo({
-            top: (window.outerHeight >= 1050 ? (window.outerHeight - 100) : window.outerHeight),
+            top: (window.outerHeight >= 1050 ? (window.outerHeight - (window.outerHeight / 12)) : window.outerHeight),
             left: 0,
             behavior: 'smooth'
         });

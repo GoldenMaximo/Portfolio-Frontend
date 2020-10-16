@@ -39,5 +39,6 @@ export const StyledSection = styled.div`
         border: 1px solid #1b1b1b;
         background-color: #1b1b1b;
         color: #ffffff;
+        cursor: pointer;
     }
 `;

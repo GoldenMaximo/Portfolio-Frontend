@@ -1,17 +1,5 @@
 import styled from 'styled-components';
 
-// const Icon = styled.svg`
-//   flex: none;
-//   transition: fill 0.25s;
-//   width: 48px;
-//   height: 48px;
-
-//   ${Link}:hover & {
-//     fill: rebeccapurple;
-//   }
-// `;
-
-
 export const Container = styled.div`
     height: 3rem;
     width: 100%;
@@ -36,7 +24,7 @@ export const SubContainerMiddle = styled.div`
     justify-content: center;
 
     a {
-        color: ${props => props.linkColor ? props.linkColor : 'white'};
+        color: ${props => props.light ? 'white' : 'black'};
         text-decoration: none;
         transition: all 0.25s ease;
         padding: 0.6rem;
@@ -49,7 +37,7 @@ export const SubContainerMiddle = styled.div`
 
     a:after {
         opacity: 0;
-        background-color: #ffffff;
+        background-color: ${props => props.light ? 'white' : 'black'};
         content: " ";
         display: block;
         height: 1px;
@@ -95,8 +83,9 @@ export const SubContainerRight = styled.div`
     height: 100%;
     width: 25%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
     align-items: center;
+    color: ${props => props.light ? 'white' : 'black'};
 
     a {
         margin-right: 3.5rem;
@@ -110,7 +99,7 @@ export const SubContainerRight = styled.div`
 
     a:after {
         opacity: 0;
-        background-color: #ffffff;
+        background-color: ${props => props.light ? 'white' : 'black'};
         content: " ";
         display: block;
         height: 1px;
@@ -123,5 +112,6 @@ export const SubContainerRight = styled.div`
 
     svg {
         height: 1.5rem;
+        width: 1.5rem;
     }
 `;

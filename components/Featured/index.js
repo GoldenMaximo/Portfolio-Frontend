@@ -3,6 +3,7 @@ import { createRef, useEffect, useState, useRef } from 'react';
 import gsap from 'gsap';
 import * as S from './styles';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import Link from 'next/link';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -78,12 +79,14 @@ export const Featured = ({ projects }) => {
             <S.ProjectsContainer ref={projectsContainer} >
                 {projects ?
                     projects.map((e, i) => (
-                        <S.ProjectThumb onClick={anim} key={e._id} ref={elRefs[i]}>
-                            <S.StyledImage src={e.thumbUrl} mobileImg={e.isMobile}/>
-                            <S.ProjectTitle>
-                                {e.title}
-                            </S.ProjectTitle>
-                        </S.ProjectThumb>
+                        <Link key={e.slug} href={`/projects/${e.slug}`}>
+                            <S.ProjectThumb onClick={anim} key={e._id} ref={elRefs[i]}>
+                                <S.StyledImage src={e.thumbUrl} mobileImg={e.isMobile}/>
+                                <S.ProjectTitle>
+                                    {e.title}
+                                </S.ProjectTitle>
+                            </S.ProjectThumb>
+                        </Link>
                     )) : (
                         // TODO: toast if it doesn't load, server has issues or whatever
                         // TODO: Add loading gif - needs to be big and exquisite
