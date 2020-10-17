@@ -154,6 +154,7 @@ export const AllProjects = styled.div`
     display: flex;
     flex: 1;
     align-items: center;
+    padding: 3rem;
 
     h3 {
         display: contents;

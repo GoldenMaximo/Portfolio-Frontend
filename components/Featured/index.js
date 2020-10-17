@@ -9,9 +9,14 @@ gsap.registerPlugin(ScrollTrigger);
 
 export const Featured = ({ projects }) => {
     const [elRefs, setElRefs] = useState([]);
+    const [windowWidth, setWindowWidth] = useState(0);
     const projectsContainer = useRef(null);
     const title = useRef(null);
     const router = useRouter();
+
+    useEffect(() => {
+        setWindowWidth(window.innerWidth);
+    }, []);
 
     useEffect(() => {
         if (elRefs.length) {
@@ -79,14 +84,20 @@ export const Featured = ({ projects }) => {
             </S.Title>
             <S.ProjectsContainer ref={projectsContainer} >
                 {projects ?
-                    projects.map((e, i) => (
-                        <S.ProjectThumb onClick={event => projectCardClickHandler(event, e.slug)} key={e.slug} ref={elRefs[i]}>
-                            <S.StyledImage src={e.thumbUrl} mobileImg={e.isMobile}/>
-                            <S.ProjectTitle>
-                                {e.title}
-                            </S.ProjectTitle>
-                        </S.ProjectThumb>
-                    )) : (
+                    projects.map((e, i) => {
+                        // Basically 1366x768 and similar resolutions, limiting the number of featured projects to maximum 6
+                        if (windowWidth > 915 && windowWidth < 1920 && i > 5) {
+                            return;
+                        }
+                        return (
+                            <S.ProjectThumb onClick={event => projectCardClickHandler(event, e.slug)} key={e.slug} ref={elRefs[i]}>
+                                <S.StyledImage src={e.thumbUrl} mobileImg={e.isMobile}/>
+                                <S.ProjectTitle>
+                                    {e.title}
+                                </S.ProjectTitle>
+                            </S.ProjectThumb>
+                        );
+                    }) : (
                         // TODO: toast if it doesn't load, server has issues or whatever
                         // TODO: Add loading gif - needs to be big and exquisite
                         <p>Loading</p>

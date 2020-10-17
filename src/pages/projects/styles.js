@@ -35,18 +35,32 @@ export const ProjectContainer = styled.div`
 `;
 
 export const Details = styled.div`
-    padding: 3rem;
     width: 50%;
     display: flex;
     flex-direction: column;
+    padding-left: 2rem;
 
     div {
         display: flex;
         align-items: center;
+        flex-wrap: wrap;
+        width: 100%;
     }
 
     svg {
-        margin-right: 1rem;
+        margin-right: 4%;
+        width: 6%;
+    }
+
+    p {
+        width: 90%;
+        word-break: break-word;
+    }
+
+    @media(max-width: 768px) {
+        width: 100%;
+        padding: 2rem;
+        padding-bottom: 3rem;
     }
 `;
 
@@ -55,10 +69,12 @@ export const Description = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start !important;
+    text-align: justify;
 `;
 
 export const ProjectImages = styled.div`
     width: 50%;
+    height: 100%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;

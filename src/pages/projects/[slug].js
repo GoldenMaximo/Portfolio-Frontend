@@ -4,7 +4,8 @@ import GraphQL from '../../../services/graphql';
 import * as S from './styles';
 import PropTypes from 'prop-types';
 import { MdLaunch } from 'react-icons/md';
-import { FaTags, FaGithub } from 'react-icons/fa';
+import { FaTags } from 'react-icons/fa';
+import { SiGithub } from 'react-icons/si';
 
 export default function Project({ project }) {
     useEffect(() => {
@@ -40,7 +41,7 @@ export default function Project({ project }) {
                                 <MdLaunch /><p>Deployed at: <a href={project.deployedAt}>{project.deployedAt}</a> (might take a few seconds for the server to cold start)</p>
                             </div>
                             <div>
-                                <FaGithub /><p>Github URL{project.githubUrls.length > 1 ? 's:' : ':'} {
+                                <SiGithub /><p>Github URL{project.githubUrls.length > 1 ? 's:' : ':'} {
                                     project.githubUrls.map((url, i) => {
                                         return <a key={i} href={url}>{url}</a>;
                                     })
