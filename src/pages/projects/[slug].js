@@ -1,4 +1,4 @@
-import { Fragment, useEffect } from 'react';
+import { Fragment, useEffect, useRef, createRef, useMemo } from 'react';
 import { Layout, Nav, Footer } from '../../../components';
 import GraphQL from '../../../services/graphql';
 import * as S from './styles';
@@ -6,48 +6,90 @@ import PropTypes from 'prop-types';
 import { MdLaunch } from 'react-icons/md';
 import { FaTags } from 'react-icons/fa';
 import { SiGithub } from 'react-icons/si';
+import gsap from 'gsap';
 
 export default function Project({ project }) {
+    const titleRef = useRef(null);
+    const projectImagesRef = useRef(null);
+    const imagesRefs = useMemo(() => Array(project.imageUrls.length).fill().map(() => createRef()), [project]);
+    const detailsRefs = useMemo(() => Array(4).fill().map(() => createRef()), [project]);
+
     useEffect(() => {
         window.scrollTo(0, 0);
-    }, []);
+    }, [project]);
+
+    // GreenSock animations
+    useEffect(() => {
+        gsap.from(titleRef.current, {
+            delay: 0.250,
+            duration: 0.5,
+            opacity: 0,
+            x: 0,
+            y: -100
+        });
+        gsap.fromTo(imagesRefs.map(e => e.current), {
+            duration: 0.5,
+            opacity: 0,
+            x: 0,
+            y: -100,
+        }, {
+            delay: 0.5,
+            duration: 0.5,
+            opacity: 1,
+            x: 0,
+            y: 0,
+            stagger: {
+                amount: 0.5
+            }
+        });
+        gsap.from(detailsRefs.map(e => e.current), {
+            delay: 1.2,
+            duration: 0.5,
+            opacity: 0,
+            x: 0,
+            y: -100,
+            stagger: {
+                amount: 0.5
+            }
+        });
+    }, [imagesRefs.length]);
 
     return (
         <>
             <Nav />
             <Layout title={project.title}>
                 <S.StyledSection>
-                    <S.Title>{project.title.toUpperCase()}</S.Title>
+                    <S.Title ref={titleRef}>{project.title.toUpperCase()}</S.Title>
                     <S.ProjectContainer>
-                        <S.ProjectImages>
+                        <S.ProjectImages ref={projectImagesRef}>
                             {
                                 project.imageUrls.map((url, i) => {
                                     if (!i) {
                                         return (
-                                            <S.MainImage src={url} key={i}/>
+                                            <S.MainImage src={url} key={i} ref={imagesRefs[i]} />
                                         );
                                     }
                                     return (
-                                        <S.BottomImages src={url} key={i}/>
+                                        <S.BottomImages src={url} key={i} ref={imagesRefs[i]} />
                                     );
                                 })
                             }
                         </S.ProjectImages>
                         <S.Details>
-                            <S.Description>
+                            <S.Description ref={detailsRefs[0]}>
                                 <p>{project.description}</p>
                             </S.Description>
-                            <div>
+                            <div ref={detailsRefs[1]}>
                                 <MdLaunch /><p>Deployed at: <a href={project.deployedAt}>{project.deployedAt}</a> (might take a few seconds for the server to cold start)</p>
                             </div>
-                            <div>
+                            <div ref={detailsRefs[2]}>
                                 <SiGithub /><p>Github URL{project.githubUrls.length > 1 ? 's:' : ':'} {
                                     project.githubUrls.map((url, i) => {
                                         return <a key={i} href={url}>{url}</a>;
                                     })
                                 }</p>
                             </div>
-                            <div>
+                            <div ref={detailsRefs[3]}>
                                 <FaTags /><p>tags: [
                                     {
                                         project.techStack.map((tech, i) => {

@@ -8,7 +8,7 @@ import { useRouter } from 'next/router';
 gsap.registerPlugin(ScrollTrigger);
 
 export const Featured = ({ projects }) => {
-    const [elRefs, setElRefs] = useState([]);
+    const [elemRefs, setElemRefs] = useState([]);
     const [windowWidth, setWindowWidth] = useState(0);
     const projectsContainer = useRef(null);
     const title = useRef(null);
@@ -19,7 +19,7 @@ export const Featured = ({ projects }) => {
     }, []);
 
     useEffect(() => {
-        if (elRefs.length) {
+        if (elemRefs.length) {
             gsap.from(title.current, {
                 duration: 0.5,
                 opacity: 0,
@@ -31,7 +31,7 @@ export const Featured = ({ projects }) => {
                     toggleActions: 'play none none reverse'
                 }
             });
-            gsap.fromTo(elRefs.map(e => e.current), {
+            gsap.fromTo(elemRefs.map(e => e.current), {
                 duration: 0.5,
                 opacity: 0,
                 x: 0,
@@ -52,12 +52,12 @@ export const Featured = ({ projects }) => {
                 }
             });
         }
-    }, [elRefs.length]);
+    }, [elemRefs.length]);
 
     useEffect(() => {
         // add or remove refs
-        setElRefs(elRefs => (
-            Array(projects.length).fill().map((_, i) => elRefs[i] || createRef())
+        setElemRefs(elemRefs => (
+            Array(projects.length).fill().map((_, i) => elemRefs[i] || createRef())
         ));
     }, [projects.length]);
 
@@ -90,7 +90,7 @@ export const Featured = ({ projects }) => {
                             return;
                         }
                         return (
-                            <S.ProjectThumb onClick={event => projectCardClickHandler(event, e.slug)} key={e.slug} ref={elRefs[i]}>
+                            <S.ProjectThumb onClick={event => projectCardClickHandler(event, e.slug)} key={e.slug} ref={elemRefs[i]}>
                                 <S.StyledImage src={e.thumbUrl} mobileImg={e.isMobile}/>
                                 <S.ProjectTitle>
                                     {e.title}
