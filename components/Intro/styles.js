@@ -14,10 +14,7 @@ export const StyledSection = styled.div`
     }
 
     a {
-        -webkit-border-radius: 0;
-        -moz-border-radius: 0;
-        -ms-border-radius: 0;
-        -o-border-radius: 0;
+        -webkit-user-select: none;
         border-radius: 0;
         font-size: 0.875rem;
         background-color: transparent;
