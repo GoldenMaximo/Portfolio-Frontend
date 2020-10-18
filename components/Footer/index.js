@@ -3,8 +3,11 @@ import * as S from './styles';
 import { FaWhatsappSquare, FaEnvelopeSquare, FaGithubSquare, FaLinkedin, FaAddressCard } from 'react-icons/fa';
 import { SiReact, SiNodeDotJs, SiGraphql, SiNextDotJs, SiMongodb } from 'react-icons/si';
 import { toast, ToastContainer } from 'react-toastify';
-import ReactTooltip from 'react-tooltip';
+import dynamic from 'next/dynamic';
 
+// Since it's not something imediately needed on page load,
+//  loading it after ALL components were loaded shaves off 50kb on the initial loading.
+const DynamicTooltip = dynamic(() => import('react-tooltip'));
 
 const currentYear = new Date().getUTCFullYear();
 // heh John Oliver
@@ -18,7 +21,7 @@ export const Footer = () => {
     return (
         <Fragment>
             <ToastContainer />
-            <ReactTooltip uuid="mytt" type="light" />
+            <DynamicTooltip uuid="tooltip" type="light" />
 
             <S.container>
                 <S.subContainerLeft>

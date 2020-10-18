@@ -8,10 +8,16 @@ import { FaTags } from 'react-icons/fa';
 import { SiGithub } from 'react-icons/si';
 import gsap from 'gsap';
 
+import dynamic from 'next/dynamic';
+
+// Since it's not something imediately needed on page load,
+//  loading it after ALL components were loaded shaves off 50kb on the initial loading.
+const DynamicTooltip = dynamic(() => import('react-tooltip'));
+
 export default function Project({ project }) {
     const titleRef = useRef(null);
     const projectImagesRef = useRef(null);
-    const imagesRefs = useMemo(() => Array(project.imageUrls.length).fill().map(() => createRef()), [project]);
+    const imagesRefs = useMemo(() => Array(project.images.length).fill().map(() => createRef()), [project]);
     const detailsRefs = useMemo(() => Array(4).fill().map(() => createRef()), [project]);
 
     useEffect(() => {
@@ -57,40 +63,50 @@ export default function Project({ project }) {
     return (
         <>
             <Nav />
+            <DynamicTooltip uuid="tooltip" type="light" />
             <Layout title={project.title}>
                 <S.StyledSection>
                     <S.Title ref={titleRef}>{project.title.toUpperCase()}</S.Title>
                     <S.ProjectContainer>
                         <S.ProjectImages ref={projectImagesRef}>
                             {
-                                project.imageUrls.map((url, i) => {
+                                project.images.map((imageObj, i) => {
                                     if (!i) {
                                         return (
-                                            <S.MainImage src={url} key={i} ref={imagesRefs[i]} />
+                                            // TODO: refactor backend to include filename key,
+                                            //  imageUrls instead of being an array of strings, should be an array of objects
+                                            <S.MainImage data-tip={imageObj.imageName} src={imageObj.imageUrl} key={i} ref={imagesRefs[i]} />
                                         );
                                     }
                                     return (
-                                        <S.BottomImages src={url} key={i} ref={imagesRefs[i]} />
+                                        <S.BottomImages data-tip={imageObj.imageName} src={imageObj.imageUrl} key={i} ref={imagesRefs[i]} />
                                     );
                                 })
                             }
                         </S.ProjectImages>
                         <S.Details>
+
                             <S.Description ref={detailsRefs[0]}>
                                 <p>{project.description}</p>
                             </S.Description>
+
                             <div ref={detailsRefs[1]}>
-                                <MdLaunch /><p>Deployed at: <a href={project.deployedAt}>{project.deployedAt}</a> (might take a few seconds for the server to cold start)</p>
+                                <MdLaunch />
+                                <p>Deployed at: <a href={project.deployedAt}>{project.deployedAt}</a> (might take a few seconds for the server to cold start)</p>
                             </div>
+
                             <div ref={detailsRefs[2]}>
-                                <SiGithub /><p>Github URL{project.githubUrls.length > 1 ? 's:' : ':'} {
+                                <SiGithub />
+                                <p>Github URL{project.githubUrls.length > 1 ? 's:' : ':'} {
                                     project.githubUrls.map((url, i) => {
                                         return <a key={i} href={url}>{url}</a>;
                                     })
                                 }</p>
                             </div>
+
                             <div ref={detailsRefs[3]}>
-                                <FaTags /><p>tags: [
+                                <FaTags />
+                                <p>tags: [
                                     {
                                         project.techStack.map((tech, i) => {
                                             return (
@@ -100,8 +116,9 @@ export default function Project({ project }) {
                                             );
                                         })
                                     }
-                             ]</p>
+                                ]</p>
                             </div>
+
                         </S.Details>
                     </S.ProjectContainer>
                 </S.StyledSection>
@@ -142,7 +159,10 @@ export async function getStaticProps({ params }) {
                     _id,
                     slug,
                     techStack,
-                    imageUrls,
+                    images {
+                        imageUrl,
+                        imageName
+                    },
                     githubUrls,
                     title,
                     description,
@@ -169,7 +189,10 @@ Project.propTypes = {
         title: PropTypes.string,
         description: PropTypes.string,
         techStack: PropTypes.arrayOf(PropTypes.string),
-        imageUrls: PropTypes.arrayOf(PropTypes.string),
+        images: PropTypes.arrayOf(PropTypes.shape({
+            imageName: PropTypes.string,
+            imageUrl: PropTypes.string
+        })),
         githubUrls: PropTypes.arrayOf(PropTypes.string),
         isMobile: PropTypes.bool,
         deployedAt: PropTypes.string,
