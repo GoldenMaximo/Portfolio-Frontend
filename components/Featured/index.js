@@ -71,6 +71,7 @@ export const Featured = React.forwardRef(({ projects }, projectsContainerRef) =>
         document.body.classList.add('fadeOut');
 
         setTimeout(() => {
+            document.body.classList.remove('fadeOut');
             router.push(`/projects/${slug}`);
         }, 500);
     };
