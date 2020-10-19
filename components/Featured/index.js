@@ -1,3 +1,4 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import { createRef, useEffect, useState, useRef } from 'react';
 import gsap from 'gsap';
@@ -7,10 +8,9 @@ import { useRouter } from 'next/router';
 
 gsap.registerPlugin(ScrollTrigger);
 
-export const Featured = ({ projects }) => {
+export const Featured = React.forwardRef(({ projects }, projectsContainerRef) => {
     const [elemRefs, setElemRefs] = useState([]);
     const [windowWidth, setWindowWidth] = useState(0);
-    const projectsContainer = useRef(null);
     const title = useRef(null);
     const router = useRouter();
 
@@ -26,7 +26,7 @@ export const Featured = ({ projects }) => {
                 x: 0,
                 y: -100,
                 scrollTrigger: {
-                    trigger: projectsContainer.current,
+                    trigger: projectsContainerRef.current,
                     start: 'top center',
                     toggleActions: 'play none none reverse'
                 }
@@ -46,7 +46,7 @@ export const Featured = ({ projects }) => {
                 },
                 delay: 0.5,
                 scrollTrigger: {
-                    trigger: projectsContainer.current,
+                    trigger: projectsContainerRef.current,
                     start: 'top center',
                     toggleActions: 'play none none reverse'
                 }
@@ -55,7 +55,6 @@ export const Featured = ({ projects }) => {
     }, [elemRefs.length]);
 
     useEffect(() => {
-        // add or remove refs
         setElemRefs(elemRefs => (
             Array(projects.length).fill().map((_, i) => elemRefs[i] || createRef())
         ));
@@ -68,6 +67,8 @@ export const Featured = ({ projects }) => {
             x: 0,
             y: -100
         });
+
+        document.body.classList.add('fadeOut');
 
         setTimeout(() => {
             router.push(`/projects/${slug}`);
@@ -82,26 +83,22 @@ export const Featured = ({ projects }) => {
             <S.Title ref={title}>
                 <h1>F E A T U R E D</h1>
             </S.Title>
-            <S.ProjectsContainer ref={projectsContainer} >
-                {projects ?
-                    projects.map((e, i) => {
+            <S.ProjectsContainer ref={projectsContainerRef} >
+                {
+                    projects.map((project, i) => {
                         // Basically 1366x768 and similar resolutions, limiting the number of featured projects to maximum 6
                         if (windowWidth > 915 && windowWidth < 1920 && i > 5) {
                             return;
                         }
                         return (
-                            <S.ProjectThumb onClick={event => projectCardClickHandler(event, e.slug)} key={e.slug} ref={elemRefs[i]}>
-                                <S.StyledImage src={e.thumbUrl} mobileImg={e.isMobile}/>
+                            <S.ProjectThumb onClick={event => projectCardClickHandler(event, project.slug)} key={project.slug} ref={elemRefs[i]}>
+                                <S.StyledImage src={project.thumbUrl} mobileImg={project.isMobile}/>
                                 <S.ProjectTitle>
-                                    {e.title}
+                                    {project.title}
                                 </S.ProjectTitle>
                             </S.ProjectThumb>
                         );
-                    }) : (
-                        // TODO: toast if it doesn't load, server has issues or whatever
-                        // TODO: Add loading gif - needs to be big and exquisite
-                        <p>Loading</p>
-                    )
+                    })
                 }
             </S.ProjectsContainer>
             <S.AllProjects>
@@ -111,7 +108,9 @@ export const Featured = ({ projects }) => {
             </S.AllProjects>
         </S.StyledSection>
     );
-};
+});
+
+Featured.displayName = 'Featured';
 
 Featured.propTypes = {
     projects: PropTypes.arrayOf(PropTypes.shape({

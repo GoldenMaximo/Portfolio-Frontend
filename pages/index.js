@@ -1,19 +1,26 @@
-import { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useRef } from 'react';
 import { Intro, Layout, Nav, Featured, Footer } from '../components';
 import GraphQL from '../services/graphql';
 
 const Home = ({ projects }) => {
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, []);
+    const featuredRef = useRef(null);
+
+    const scrollDown = () => {
+        const topOfElement = featuredRef.current.offsetTop - (window.outerHeight / 5);
+
+        window.scroll({
+            top: topOfElement,
+            behavior: 'smooth'
+        });
+    };
 
     return (
         <>
             <Nav light />
             <Layout title={'Gustavo Máximo\'s Projects'}>
-                <Intro />
-                <Featured projects={projects}/>
+                <Intro onClick={scrollDown} />
+                <Featured ref={featuredRef} projects={projects}/>
                 <Footer />
             </Layout>
         </>

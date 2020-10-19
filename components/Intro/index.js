@@ -1,9 +1,10 @@
 import { createRef, useEffect } from 'react';
 import gsap from 'gsap';
 import * as S from './styles';
+import PropTypes from 'prop-types';
 
 
-export const Intro = () => {
+export const Intro = ({ onClick }) => {
     const title = createRef();
     const button = createRef();
 
@@ -18,14 +19,6 @@ export const Intro = () => {
             css: {
                 backgroundImage: 'linear-gradient(0deg, rgb(159 69 9 / 0%), transparent)',
             }
-        });
-    };
-
-    const scrollDown = () => {
-        window.scrollTo({
-            top: (window.outerHeight >= 1050 ? (window.outerHeight - (window.outerHeight / 12)) : window.outerHeight),
-            left: 0,
-            behavior: 'smooth'
         });
     };
 
@@ -44,7 +37,11 @@ export const Intro = () => {
     return (
         <S.StyledSection>
             <p ref={title}>GUSTAVO MÁXIMO</p>
-            <a ref={button} onClick={scrollDown}>Projects</a>
+            <a ref={button} onClick={onClick}>Projects</a>
         </S.StyledSection>
     );
+};
+
+Intro.propTypes = {
+    onClick: PropTypes.func
 };
