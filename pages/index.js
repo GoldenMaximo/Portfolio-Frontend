@@ -1,10 +1,15 @@
 import PropTypes from 'prop-types';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { Intro, Layout, Nav, Featured, Footer } from '../components';
 import GraphQL from '../services/graphql';
 
 const Home = ({ projects }) => {
     const featuredRef = useRef(null);
+
+    useEffect(() => {
+        // fail-safe in case user navigates back from an open image swiper without closing it first
+        document.body.style.overflow = 'auto';
+    }, []);
 
     const scrollDown = () => {
         const topOfElement = featuredRef.current.offsetTop - (window.outerHeight / 5);

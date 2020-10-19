@@ -73,6 +73,15 @@ export default function Project({ project }) {
         initialSlide.current = i;
     };
 
+
+    useEffect(() => {
+        if (openSwiper) {
+            document.body.style.overflow = 'hidden';
+            return;
+        }
+        document.body.style.overflow = 'auto';
+    }, [openSwiper]);
+
     return (
         <>
             <Nav />
@@ -81,7 +90,6 @@ export default function Project({ project }) {
                 openSwiper && (
                     <ImageSwiper
                         project={project}
-                        isOpen={openSwiper}
                         onClose={() => setOpenSwiper(false)}
                         initialSlide={initialSlide}
                     />
