@@ -1,5 +1,5 @@
-import { Fragment, useEffect, useRef, createRef, useMemo } from 'react';
-import { Layout, Nav, Footer } from '../../../components';
+import { Fragment, useEffect, useRef, createRef, useMemo, useState } from 'react';
+import { Layout, Nav, Footer, ImageSwiper } from '../../../components';
 import GraphQL from '../../../services/graphql';
 import * as S from './styles';
 import PropTypes from 'prop-types';
@@ -15,13 +15,21 @@ import dynamic from 'next/dynamic';
 const DynamicTooltip = dynamic(() => import('react-tooltip'));
 
 export default function Project({ project }) {
+    const [openSwiper, setOpenSwiper] = useState(false);
     const titleRef = useRef(null);
+    const initialSlide = useRef(0);
     const projectImagesRef = useRef(null);
     const imagesRefs = useMemo(() => Array(project.images.length).fill().map(() => createRef()), [project]);
     const detailsRefs = useMemo(() => Array(4).fill().map(() => createRef()), [project]);
 
     useEffect(() => {
         window.scrollTo(0, 0);
+
+        // TODO: future feature: instead of going back on android - close swiper
+        // window.onpopstate = e => {
+        //     console.log('poppity pop: ', e);
+        //     e.preventDefault();
+        // };
     }, [project]);
 
     // GreenSock animations
@@ -60,10 +68,25 @@ export default function Project({ project }) {
         });
     }, [imagesRefs.length]);
 
+    const imageOnClickHandler = i => {
+        setOpenSwiper(true);
+        initialSlide.current = i;
+    };
+
     return (
         <>
             <Nav />
             <DynamicTooltip uuid="tooltip" type="light" />
+            {
+                openSwiper && (
+                    <ImageSwiper
+                        project={project}
+                        isOpen={openSwiper}
+                        onClose={() => setOpenSwiper(false)}
+                        initialSlide={initialSlide}
+                    />
+                )
+            }
             <Layout title={project.title}>
                 <S.StyledSection>
                     <S.Title ref={titleRef}>{project.title.toUpperCase()}</S.Title>
@@ -73,13 +96,23 @@ export default function Project({ project }) {
                                 project.images.map((imageObj, i) => {
                                     if (!i) {
                                         return (
-                                            // TODO: refactor backend to include filename key,
-                                            //  imageUrls instead of being an array of strings, should be an array of objects
-                                            <S.MainImage data-tip={imageObj.imageName} src={imageObj.imageUrl} key={i} ref={imagesRefs[i]} />
+                                            <S.MainImage
+                                                onClick={() => imageOnClickHandler(i)}
+                                                data-tip={imageObj.imageName}
+                                                src={imageObj.imageUrl}
+                                                key={i}
+                                                ref={imagesRefs[i]}
+                                            />
                                         );
                                     }
                                     return (
-                                        <S.BottomImages data-tip={imageObj.imageName} src={imageObj.imageUrl} key={i} ref={imagesRefs[i]} />
+                                        <S.BottomImages
+                                            onClick={() => imageOnClickHandler(i)}
+                                            data-tip={imageObj.imageName}
+                                            src={imageObj.imageUrl}
+                                            key={i}
+                                            ref={imagesRefs[i]}
+                                        />
                                     );
                                 })
                             }

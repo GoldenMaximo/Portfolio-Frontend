@@ -3,3 +3,4 @@ export { Layout } from './Layout';
 export { Nav } from './Nav';
 export { Featured } from './Featured';
 export { Footer } from './Footer';
+export { ImageSwiper } from './ImageSwiper';
