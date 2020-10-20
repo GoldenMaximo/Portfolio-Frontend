@@ -9,7 +9,7 @@ html, body {
 }
 
 .fadeOut {
-    animation: fadeOut 1s ease;
+    animation: fadeOut 1.2s ease;
 }
 
 a {
