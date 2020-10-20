@@ -117,11 +117,32 @@ export const subContainerRight = styled.div`
     }
 `;
 
+export const ResumeIcon = styled.div`
+    width: 1.75rem;
+    height: 1.75rem;
+    background-color: #e8e6e3;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1c1f20;
+    font-weight: bold;
+    margin-right: 0.5rem;
+    font-family: 'Nunito';
+`;
+
 export const highLightIcon = styled.div`
+    display: flex;
+
     &:hover {
         svg {
             color: ${props => props.iconColor ? props.iconColor : '#e8e6e3'};
             filter: ${props => props.dropShadow ? 'drop-shadow(0 2px 15px rgba(0,0,0,1))' : ''};
+        }
+
+        ${ResumeIcon} {
+            background-color: #FF9800;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 28px, rgba(0, 0, 0, 0.22) 0px 0px 10px;
         }
     }
 `;
@@ -142,7 +163,9 @@ export const subContainerLeft = styled.div`
     }
 
     ${clickable} {
+        height: 5rem;
         display: flex;
+        flex-wrap: wrap;
         justify-content: space-between;
     }
 
@@ -154,11 +177,15 @@ export const subContainerLeft = styled.div`
         text-align: center;
 
         ${clickable} {
-            display: inline-block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         ${highLightIcon} {
-            display: inline-block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         svg {
@@ -166,6 +193,14 @@ export const subContainerLeft = styled.div`
             margin-left: 0.5rem;
             width: 4rem;
             height: 4rem;
+        }
+
+        ${ResumeIcon} {
+            margin-right: 0.5rem;
+            margin-left: 0.5rem;
+            width: 3.5rem;
+            height: 3.5rem;
+            float: right;
         }
     }
 

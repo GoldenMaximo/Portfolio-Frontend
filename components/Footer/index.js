@@ -1,6 +1,6 @@
-import { Fragment } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import * as S from './styles';
-import { FaWhatsappSquare, FaEnvelopeSquare, FaGithubSquare, FaLinkedin, FaAddressCard } from 'react-icons/fa';
+import { FaWhatsappSquare, FaEnvelopeSquare, FaGithubSquare, FaLinkedin } from 'react-icons/fa';
 import { SiReact, SiNodeDotJs, SiGraphql, SiNextDotJs, SiMongodb } from 'react-icons/si';
 import { toast, ToastContainer } from 'react-toastify';
 import dynamic from 'next/dynamic';
@@ -13,8 +13,17 @@ const currentYear = new Date().getUTCFullYear();
 // heh John Oliver
 
 export const Footer = () => {
-    const mailClickHandler = () => {
+    const [isMobile, setIsMobile] = useState(false);
+
+
+    useEffect(() => {
         if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+            return setIsMobile(true);
+        }
+    }, []);
+
+    const mailClickHandler = () => {
+        if(isMobile) {
             window.location = `
             mailto:gfmaximo97@gmail.com?subject=Dev Position Oportunity / Business Inquiry&body=Hi, I'm X from X. I just saw your portfolio and would like to know if you're interested in X.
             `;
@@ -39,16 +48,16 @@ export const Footer = () => {
                                 <p>+55 (11) 98538-3817</p>
                             </a>
                         </S.highLightIcon>
-                        <S.highLightIcon dropShadow iconColor="#2593d3">
+                        <S.highLightIcon>
                             <a target="_blank" rel="noopener noreferrer" href="https://goldenmaximo.github.io/curriculum-vitae/">
-                                <FaAddressCard />
+                                <S.ResumeIcon>
+                                    <h1>CV</h1>
+                                </S.ResumeIcon>
                                 <p>Curriculum Vitae</p>
                             </a>
                         </S.highLightIcon>
-                    </S.clickable>
-                    <S.clickable>
                         <S.highLightIcon dropShadow iconColor="#D14836">
-                            <a data-tip="Click to Copy" onClick={mailClickHandler}>
+                            <a data-tip={isMobile ? '' : 'Click to Copy'} onClick={mailClickHandler}>
                                 <FaEnvelopeSquare width="1.4em" />
                                 <p>gfmaximo97@gmail.com</p>
                             </a>
