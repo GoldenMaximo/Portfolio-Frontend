@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 SwiperCore.use([Pagination]);
 
 export const ImageSwiper = ({ project, onClose, initialSlide }) => (
-    <S.ComponentContainer top={window.visualViewport.pageTop}>
+    <S.ComponentContainer top={window.scrollY}>
         <S.Backdrop onClick={onClose} />
         <S.SwiperContainer>
             <Swiper
