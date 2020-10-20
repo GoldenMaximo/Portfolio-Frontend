@@ -7,6 +7,11 @@ export const Layout = ({ children, title }) => {
         <>
             <Head>
                 <title>{title}</title>
+                <meta name="description" content="Porfolio in the making. Cool projects on the way." />
+                <meta property="og:title" content={title} />
+                <meta property="og:image" content="/ogimage.png" />
+                <meta property="og:type" content="profile:Gustavo Máximo" />
+                <meta property="og:locale" content="en_US" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <div className={styles.wrap}>
