@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import  styled from 'styled-components';
 
 export const Container = styled.div`
     height: 3rem;
@@ -13,8 +13,15 @@ export const Container = styled.div`
 export const SubContainerLeft = styled.div`
     width: 25%;
     display: flex;
-    justify-content: flex-start;
+    justify-content: flex-end;
+    h3 {
+        font-family: 'UnifrakturCook', cursive;
+        color: ${props => props.light ? 'white' : 'black'};
+        cursor: pointer;
+        transition: all 0.1s ease-out;
+    }
 `;
+
 
 export const SubContainerMiddle = styled.div`
     height: 100%;
@@ -88,6 +95,7 @@ export const SubContainerRight = styled.div`
     color: ${props => props.light ? 'white' : 'black'};
 
     a {
+        margin-top: 0.3rem;
         margin-right: 3.5rem;
         transition: all 0.25s ease;
     }
