@@ -46,7 +46,7 @@ export const Nav = ({ light }) => {
     };
 
     return (
-        <S.Container>
+        <S.Container light={light}>
             <S.SubContainerLeft
                 light={light}
                 onMouseEnter={onMouseEnterHandler}

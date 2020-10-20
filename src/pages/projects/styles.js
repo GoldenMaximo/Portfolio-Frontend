@@ -60,7 +60,7 @@ export const Details = styled.div`
     @media(max-width: 768px) {
         width: 100%;
         padding: 2rem;
-        padding-bottom: 3rem;
+        padding-bottom: 4rem;
     }
 `;
 
@@ -70,6 +70,10 @@ export const Description = styled.div`
     justify-content: flex-start;
     align-items: flex-start !important;
     text-align: justify;
+
+    p {
+        width: 100%;
+    }
 `;
 
 export const ProjectImages = styled.div`

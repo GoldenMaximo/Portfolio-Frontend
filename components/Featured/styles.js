@@ -170,6 +170,10 @@ export const AllProjects = styled.div`
     }
 
     @media(max-width: 768px) {
-        padding: 3rem;
+        padding: 6rem;
+
+        a {
+            text-shadow: 0 0 20px white;
+        }
     }
 `;
