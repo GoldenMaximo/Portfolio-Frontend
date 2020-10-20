@@ -26,6 +26,10 @@ export const SubContainerLeft = styled.div`
         cursor: pointer;
         transition: all 0.1s ease-out;
     }
+
+    h3:hover {
+        color: white;
+    }
 `;
 
 
@@ -51,7 +55,7 @@ export const SubContainerMiddle = styled.div`
 
     a:after {
         opacity: 0;
-        background-color: ${props => props.light ? 'white' : 'black'};
+        background-color: white;
         content: " ";
         display: block;
         height: 1px;
@@ -110,11 +114,12 @@ export const SubContainerRight = styled.div`
     a:hover {
         opacity: 0.9;
         cursor: pointer;
+        color: white;
     }
 
     a:after {
         opacity: 0;
-        background-color: ${props => props.light ? 'white' : 'black'};
+        background-color: white;
         content: " ";
         display: block;
         height: 1px;
