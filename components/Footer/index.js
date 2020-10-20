@@ -13,7 +13,13 @@ const currentYear = new Date().getUTCFullYear();
 // heh John Oliver
 
 export const Footer = () => {
-    const copyToClipBoard = () => {
+    const mailClickHandler = () => {
+        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+            window.location = `
+            mailto:gfmaximo97@gmail.com?subject=Dev Position Oportunity / Business Inquiry&body=Hi, I'm X from X. I just saw your portfolio and would like to know if you're interested in X.
+            `;
+            return;
+        }
         navigator.clipboard.writeText('gfmaximo97@gmail.com');
         toast.dark('📋 Copied to cliboard!');
     };
@@ -42,7 +48,7 @@ export const Footer = () => {
                     </S.clickable>
                     <S.clickable>
                         <S.highLightIcon dropShadow iconColor="#D14836">
-                            <a data-tip="Click to Copy" onClick={copyToClipBoard}>
+                            <a data-tip="Click to Copy" onClick={mailClickHandler}>
                                 <FaEnvelopeSquare width="1.4em" />
                                 <p>gfmaximo97@gmail.com</p>
                             </a>
