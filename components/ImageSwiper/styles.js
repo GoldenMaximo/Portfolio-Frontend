@@ -54,6 +54,6 @@ export const FlexAlignment = styled.div`
     }
 
     img {
-        width: 100%;
+        width: ${props => props.isMobile ? '60%' : '100%'};
     }
 `;

@@ -19,7 +19,7 @@ export const ImageSwiper = ({ project, onClose, initialSlide }) => (
                     project.images.map((imageObj, i) => {
                         return (
                             <SwiperSlide key={i}>
-                                <S.FlexAlignment>
+                                <S.FlexAlignment isMobile={imageObj.isMobile}>
                                     <img src={imageObj.imageUrl} />
                                     <p>{imageObj.imageName}</p>
                                 </S.FlexAlignment>

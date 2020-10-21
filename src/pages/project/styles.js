@@ -90,8 +90,10 @@ const sharedImageStyles = css`
 `;
 
 export const MainImage = styled.img`
-    width: 100%;
+    width: ${props => props.isMobile ? '35%' : '100%'};
     margin-bottom: 1rem;
+
+    align-self: center;
 
     ${sharedImageStyles}
 `;
@@ -99,6 +101,8 @@ export const MainImage = styled.img`
 export const BottomImages = styled.img`
     width: 31%;
     margin-right: 1%;
+
+    align-self: center;
 
     ${sharedImageStyles}
 `;
