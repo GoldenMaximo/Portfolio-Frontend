@@ -6,12 +6,6 @@ import { IoMdSearch } from 'react-icons/io';
 import gsap from 'gsap';
 import { TextPlugin } from 'gsap/dist/TextPlugin';
 import { useRouter } from 'next/router';
-
-// import dynamic from 'next/dynamic';
-
-// Since it's not something imediately needed on page load,
-//  loading it after ALL components were loaded shaves off 50kb on the initial loading.
-// const ReactTooltip = dynamic(() => import('react-tooltip'));
 import ReactTooltip from 'react-tooltip';
 
 gsap.registerPlugin(TextPlugin);

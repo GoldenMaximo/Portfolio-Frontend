@@ -8,12 +8,7 @@ import { FaTags } from 'react-icons/fa';
 import { SiGithub } from 'react-icons/si';
 import gsap from 'gsap';
 import * as DS from '../../../components/default-styled-components';
-
-import dynamic from 'next/dynamic';
-
-// Since it's not something imediately needed on page load,
-//  loading it after ALL components were loaded shaves off 50kb on the initial loading.
-const DynamicTooltip = dynamic(() => import('react-tooltip'));
+import ReactTooltip from 'react-tooltip';
 
 export default function Project({ project }) {
     const [openSwiper, setOpenSwiper] = useState(false);
@@ -87,7 +82,7 @@ export default function Project({ project }) {
     return (
         <>
             <Nav />
-            <DynamicTooltip uuid="tooltip" type="light" />
+            <ReactTooltip uuid="tooltip" type="light" />
             {
                 openSwiper && (
                     <ImageSwiper
