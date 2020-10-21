@@ -9,6 +9,9 @@ const Home = ({ projects }) => {
     useEffect(() => {
         // fail-safe in case user navigates back from an open image swiper without closing it first
         document.body.style.overflow = 'auto';
+
+        // Finish animation
+        document.body.classList.remove('fadeOut');
     }, []);
 
     const scrollDown = () => {
@@ -22,7 +25,7 @@ const Home = ({ projects }) => {
 
     return (
         <>
-            <Nav light />
+            <Nav home />
             <Layout title={'Gustavo Máximo\'s Projects'}>
                 <Intro onClick={scrollDown} />
                 <Featured ref={featuredRef} projects={projects}/>

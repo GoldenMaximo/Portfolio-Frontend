@@ -9,7 +9,7 @@ export const Container = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    background-color: ${props => props.light ? 'transparent' : '#1c1f20'};
+    background-color: ${props => props.home ? 'transparent' : '#1c1f20'};
 
     @media(max-width: 768px) {
         height: 3rem;
@@ -22,7 +22,7 @@ export const SubContainerLeft = styled.div`
     justify-content: flex-end;
     h3 {
         font-family: 'UnifrakturCook', cursive;
-        color: ${props => props.light ? 'white' : '#e8e6e3'};
+        color: ${props => props.home ? 'white' : '#e8e6e3'};
         cursor: pointer;
         transition: all 0.1s ease-out;
     }
@@ -41,7 +41,7 @@ export const SubContainerMiddle = styled.div`
     justify-content: center;
 
     a {
-        color: ${props => props.light ? 'white' : '#e8e6e3'};
+        color: ${props => props.home ? 'white' : '#e8e6e3'};
         text-decoration: none;
         transition: all 0.25s ease;
         padding: 0.6rem;
@@ -103,7 +103,7 @@ export const SubContainerRight = styled.div`
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    color: ${props => props.light ? 'white' : '#e8e6e3'};
+    color: ${props => props.home ? 'white' : '#e8e6e3'};
 
     a {
         margin-top: 0.4rem;

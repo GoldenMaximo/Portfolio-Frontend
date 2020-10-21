@@ -43,16 +43,6 @@ export const BackgroundFilter = styled.div`
     }
 `;
 
-export const StyledSection = styled.div`
-    width: 100%;
-    min-height: 120vh;
-    height: fit-content;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-`;
-
 export const Title = styled.div`
     padding: 6rem;
 
@@ -155,6 +145,9 @@ export const AllProjects = styled.div`
     flex: 1;
     align-items: center;
     padding: 3rem;
+    cursor: pointer;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
 
     h3 {
         display: contents;
@@ -165,14 +158,14 @@ export const AllProjects = styled.div`
         color: #e8e6e3;
     }
 
-    a:hover {
+    h3:hover {
         text-shadow: 0 0 20px white;
     }
 
     @media(max-width: 768px) {
         padding: 6rem;
 
-        a {
+        h3 {
             text-shadow: 0 0 20px white;
         }
     }

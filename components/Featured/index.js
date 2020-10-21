@@ -5,6 +5,7 @@ import gsap from 'gsap';
 import * as S from './styles';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { useRouter } from 'next/router';
+import * as DS from '../default-styled-components';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -60,6 +61,14 @@ export const Featured = React.forwardRef(({ projects }, projectsContainerRef) =>
         ));
     }, [projects.length]);
 
+    const navigateWithTransition = path => {
+        document.body.classList.add('fadeOut');
+
+        setTimeout(() => {
+            router.push(path);
+        }, 500);
+    };
+
     const projectCardClickHandler = (event, slug) => {
         gsap.to(event.currentTarget, {
             duration: 0.5,
@@ -68,16 +77,15 @@ export const Featured = React.forwardRef(({ projects }, projectsContainerRef) =>
             y: -100
         });
 
-        document.body.classList.add('fadeOut');
+        navigateWithTransition(`/projects/${slug}`);
+    };
 
-        setTimeout(() => {
-            document.body.classList.remove('fadeOut');
-            router.push(`/projects/${slug}`);
-        }, 500);
+    const allProjectsClickHandler = () => {
+        navigateWithTransition('/projects/');
     };
 
     return (
-        <S.StyledSection>
+        <DS.Container>
             <S.Background>
                 <S.BackgroundFilter />
             </S.Background>
@@ -102,12 +110,10 @@ export const Featured = React.forwardRef(({ projects }, projectsContainerRef) =>
                     })
                 }
             </S.ProjectsContainer>
-            <S.AllProjects>
-                <a target="_blank" rel="noopener noreferrer" href="https://graphql.org/">
-                    <h3>ALL PROJECTS →</h3>
-                </a>
+            <S.AllProjects onClick={allProjectsClickHandler}>
+                <h3>ALL PROJECTS →</h3>
             </S.AllProjects>
-        </S.StyledSection>
+        </DS.Container>
     );
 });
 

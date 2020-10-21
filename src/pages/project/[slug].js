@@ -7,6 +7,7 @@ import { MdLaunch } from 'react-icons/md';
 import { FaTags } from 'react-icons/fa';
 import { SiGithub } from 'react-icons/si';
 import gsap from 'gsap';
+import * as DS from '../../../components/default-styled-components';
 
 import dynamic from 'next/dynamic';
 
@@ -24,8 +25,9 @@ export default function Project({ project }) {
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        document.body.classList.remove('fadeOut');
 
-        // TODO: future feature: instead of going back on android - close swiper
+        // TODO: instead of going back on android - close swiper
         // window.onpopstate = e => {
         //     console.log('poppity pop: ', e);
         //     e.preventDefault();
@@ -97,7 +99,7 @@ export default function Project({ project }) {
             }
             <Layout title={project.title}>
                 <S.StyledSection>
-                    <S.Title ref={titleRef}>{project.title.toUpperCase()}</S.Title>
+                    <DS.Title ref={titleRef}>{project.title.toUpperCase()}</DS.Title>
                     <S.ProjectContainer>
                         <S.ProjectImages ref={projectImagesRef}>
                             {
