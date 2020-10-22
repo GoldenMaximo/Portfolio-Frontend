@@ -5,7 +5,7 @@ export const Tags = styled.div`
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    text-shadow: 0px 0px 20px #00000080;
+    text-shadow: 0px 0px 20px #ffffff80;
     z-index: 1;
 `;
 

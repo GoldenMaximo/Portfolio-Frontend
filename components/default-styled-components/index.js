@@ -10,7 +10,7 @@ export const Title = styled.h1`
     text-align: center;
     letter-spacing: 0.8rem;
 
-    text-shadow: ${props => props.shadow ? '0px 0px 20px #00000080' : ''};
+    text-shadow: ${props => props.shadow ? '0px 0px 20px #ffffff80' : ''};
 `;
 
 export const Container = styled.div`
