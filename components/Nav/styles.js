@@ -20,6 +20,9 @@ export const SubContainerLeft = styled.div`
     width: 25%;
     display: flex;
     justify-content: flex-end;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+
     h3 {
         font-family: 'UnifrakturCook', cursive;
         color: ${props => props.home ? 'white' : '#e8e6e3'};

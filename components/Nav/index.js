@@ -7,14 +7,20 @@ import gsap from 'gsap';
 import { TextPlugin } from 'gsap/dist/TextPlugin';
 import { useRouter } from 'next/router';
 import ReactTooltip from 'react-tooltip';
+import { isMobile as isMobileCheck } from '../../util/isMobile';
 
 gsap.registerPlugin(TextPlugin);
 
 export const Nav = ({ home }) => {
     const name = useRef(null);
+    const [isMobile, setIsMobile] = useState(false);
     const [message, setMessage] = useState('This button goes to the Home page, you\'re alerady here so it doesn\'t do anything I guess');
     const [alternateDesc, setAlternateDesc] = useState(false);
     const router = useRouter();
+
+    useEffect(() => {
+        setIsMobile(isMobileCheck());
+    }, []);
 
     useEffect(() => {
         // Alternates messages on the GM logo
@@ -74,7 +80,9 @@ export const Nav = ({ home }) => {
 
     return (
         <>
-            <ReactTooltip uuid="tooltip" type="light" />
+            {!isMobile && (
+                <ReactTooltip uuid="tooltip" type="light" />
+            )}
             <S.Container home={home}>
                 <S.SubContainerLeft
                     home={home}

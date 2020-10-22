@@ -4,6 +4,7 @@ import { FaWhatsappSquare, FaEnvelopeSquare, FaGithubSquare, FaLinkedin } from '
 import { SiReact, SiNodeDotJs, SiGraphql, SiNextDotJs, SiMongodb } from 'react-icons/si';
 import { toast, ToastContainer } from 'react-toastify';
 import ReactToolip from 'react-tooltip';
+import { isMobile as isMobileCheck } from '../../util/isMobile';
 
 const currentYear = new Date().getUTCFullYear();
 // heh John Oliver
@@ -11,11 +12,8 @@ const currentYear = new Date().getUTCFullYear();
 export const Footer = () => {
     const [isMobile, setIsMobile] = useState(false);
 
-
     useEffect(() => {
-        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-            return setIsMobile(true);
-        }
+        setIsMobile(isMobileCheck());
     }, []);
 
     const mailClickHandler = () => {

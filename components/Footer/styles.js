@@ -93,6 +93,8 @@ export const subContainerMiddle = styled.div`
 
     @media(max-width: 768px) {
         width: 100%;
+
+        padding-bottom: 0rem;
     }
 `;
 
@@ -114,6 +116,11 @@ export const subContainerRight = styled.div`
 
     @media(max-width: 768px) {
         width: 100%;
+
+        svg {
+            height: 4rem;
+            width: 4rem;
+        }
     }
 `;
 
@@ -149,12 +156,9 @@ export const highLightIcon = styled.div`
 
 export const subContainerLeft = styled.div`
 
-    height: 100%;
+    ${sharedSubContainerStyles}
+
     width: 25%;
-    padding-left: 2rem;
-    padding-top: 1rem;
-    padding-right: 2rem;
-    padding-bottom: 1rem;
 
     h3 {
         margin: 0;
@@ -206,6 +210,8 @@ export const subContainerLeft = styled.div`
 
     @media(max-width: 768px) {
         width: 100%;
+
+        padding-bottom: 0rem;
     }
 `;
 
