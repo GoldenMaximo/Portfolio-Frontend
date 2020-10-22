@@ -9,6 +9,8 @@ export const Title = styled.h1`
     font-family: 'nunito';
     text-align: center;
     letter-spacing: 0.8rem;
+
+    text-shadow: ${props => props.shadow ? '0px 0px 20px #00000080' : ''};
 `;
 
 export const Container = styled.div`
@@ -19,4 +21,6 @@ export const Container = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
+
+    background-color: ${props => props.bgColor ? props.bgColor : ''};
 `;

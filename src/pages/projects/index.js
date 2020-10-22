@@ -1,14 +1,17 @@
 import PropTypes from 'prop-types';
-import { Fragment, useEffect } from 'react';
-import { Layout, Nav, Footer } from '../../../components';
+import { Fragment, useEffect, useRef, useState } from 'react';
+import { Layout, Nav, Footer, ConnectingDots } from '../../../components';
 import GraphQL from '../../../services/graphql';
 import * as S from './styles';
 import * as DS from '../../../components/default-styled-components';
 import { useRouter } from 'next/router';
 import gsap from 'gsap';
+import ReactTooltip from 'react-tooltip';
 
 const Projects = ({ projects }) => {
     const router = useRouter();
+    const containerRef = useRef();
+    const [containerHeight, setContainerHeight] = useState(0);
 
     useEffect(() => {
         // fail-safe in case user navigates from an open image swiper without closing it first
@@ -17,6 +20,8 @@ const Projects = ({ projects }) => {
         // Finish animation and reset page position
         window.scrollTo(0, 0);
         document.body.classList.remove('fadeOut');
+
+        setContainerHeight(containerRef.current.offsetHeight);
     }, []);
 
     const featuredTags = [
@@ -48,9 +53,13 @@ const Projects = ({ projects }) => {
     return (
         <>
             <Nav />
+            <ReactTooltip uuid="tooltip" type="dark" />
             <Layout title={'Gustavo Máximo\'s Projects'}>
-                <DS.Container>
-                    <DS.Title>PROJECTS</DS.Title>
+                <DS.Container bgColor='#759398' ref={containerRef}>
+
+                    <ConnectingDots height={containerHeight} />
+
+                    <DS.Title shadow>PROJECTS</DS.Title>
                     <S.Tags>
                         {featuredTags && featuredTags.map((element, i) => {
                             return (
@@ -64,12 +73,22 @@ const Projects = ({ projects }) => {
                     <S.ProjectsGallery>
                         {
                             projects.map(project => {
+                                const formatedTechStack = project.techStack.join(' / ');
+                                let ellipsedTechStack;
+                                if (formatedTechStack.length > 24) {
+                                    ellipsedTechStack = `${formatedTechStack.substring(0, 21).trim()}...`;
+                                }
+                                const formatedTitle = (project.title.length > 24) ? `${project.title.substring(0, 21).trim()}...` : project.title;
+
                                 return (
                                     <S.ProjectThumb onClick={event => projectCardClickHandler(event, project.slug)} key={project.slug}>
-                                        <S.StyledImage src={project.thumbUrl} mobileImg={project.isMobile}/>
-                                        <S.ProjectTitle>
-                                            {project.title}
-                                        </S.ProjectTitle>
+                                        <S.ProjectInfo>
+                                            <h3 data-tip={project.title.length > 24 ? project.title : ''}> {formatedTitle} </h3>
+                                            <p data-tip={formatedTechStack}> {ellipsedTechStack ? ellipsedTechStack : formatedTechStack} </p>
+                                        </S.ProjectInfo>
+                                        <S.ProjectImage>
+                                            <S.StyledImage src={project.thumbUrl} mobileImg={project.isMobile}/>
+                                        </S.ProjectImage>
                                     </S.ProjectThumb>
                                 );
                             })
@@ -86,14 +105,15 @@ export async function getStaticProps() {
     const graphqlQuery = {
         query: `
             {
-                projects(page: 1) {
+                projects {
                     totalProjects,
                     projects {
                         _id,
                         slug,
                         title,
+                        isMobile,
                         thumbUrl,
-                        isMobile
+                        techStack,
                     }
                 }
             }
