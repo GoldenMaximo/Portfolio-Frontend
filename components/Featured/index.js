@@ -101,7 +101,7 @@ export const Featured = React.forwardRef(({ projects }, projectsContainerRef) =>
                         }
                         return (
                             <S.ProjectThumb onClick={event => projectCardClickHandler(event, project.slug)} key={project.slug} ref={elemRefs[i]}>
-                                <S.StyledImage src={project.thumbUrl} mobileImg={project.isMobile}/>
+                                <S.StyledImage src={project.thumbUrl}/>
                                 <S.ProjectTitle>
                                     {project.title}
                                 </S.ProjectTitle>

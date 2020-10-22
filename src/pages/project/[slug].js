@@ -107,7 +107,7 @@ export default function Project({ project }) {
                                                 src={imageObj.imageUrl}
                                                 key={i}
                                                 ref={imagesRefs[i]}
-                                                isMobile={imageObj.isMobile}
+                                                isMobile={project.isMobile}
                                             />
                                         );
                                     }
@@ -118,7 +118,7 @@ export default function Project({ project }) {
                                             src={imageObj.imageUrl}
                                             key={i}
                                             ref={imagesRefs[i]}
-                                            isMobile={imageObj.isMobile}
+                                            isMobile={project.isMobile}
                                         />
                                     );
                                 })

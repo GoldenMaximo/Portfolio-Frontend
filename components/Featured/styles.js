@@ -135,8 +135,6 @@ export const ProjectThumb = styled.div`
 export const StyledImage = styled.img`
     width: 95%;
     height: 75%;
-    padding-left: ${props => props.mobileImg ? '35%' : '0'};
-    padding-right: ${props => props.mobileImg ? '35%' : '0'};
     margin-top: 5%;
 `;
 
