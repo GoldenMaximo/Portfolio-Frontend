@@ -13,6 +13,7 @@ const Projects = ({ projects }) => {
     const router = useRouter();
     const containerRef = useRef();
     const [containerHeight, setContainerHeight] = useState(0);
+    const [shownProjects, setShownProjects] = useState(projects);
 
     useEffect(() => {
         // fail-safe in case user navigates from an open image swiper without closing it first
@@ -22,8 +23,13 @@ const Projects = ({ projects }) => {
         window.scrollTo(0, 0);
         document.body.classList.remove('fadeOut');
 
+        // Sets background animation container height
         setContainerHeight(containerRef.current.offsetHeight);
-    }, []);
+
+        // query params
+        if (!router.query.search) return;
+        execSearch(router.query.search);
+    }, [router.query]);
 
     const featuredTags = [
         'React',
@@ -31,6 +37,17 @@ const Projects = ({ projects }) => {
         'MongoDB',
         'GraphQL',
     ];
+
+    const execSearch = searchQuery => {
+        const upperCaseQuery = searchQuery.toUpperCase();
+        const result = [];
+        projects.map(e => {
+            if (e.techStack.join('').toUpperCase().includes(upperCaseQuery) || e.title.toUpperCase().includes(upperCaseQuery)) {
+                result.push(e);
+            }
+        });
+        setShownProjects(result);
+    };
 
     const projectCardClickHandler = (event, slug) => {
         gsap.to(event.currentTarget, {
@@ -64,8 +81,9 @@ const Projects = ({ projects }) => {
                         })}
                     </S.Tags>
                     <S.ProjectsGallery>
-                        {
-                            projects.map(project => {
+
+                        {shownProjects.length ? (
+                            shownProjects.map(project => {
                                 const formatedTechStack = project.techStack.join(' / ');
                                 let ellipsedTechStack;
                                 if (formatedTechStack.length > 24) {
@@ -85,7 +103,10 @@ const Projects = ({ projects }) => {
                                     </S.ProjectThumb>
                                 );
                             })
-                        }
+                        ) : (
+                            <h1>No projects found</h1>
+                        )}
+
                     </S.ProjectsGallery>
                 </DS.Container>
                 <Footer />

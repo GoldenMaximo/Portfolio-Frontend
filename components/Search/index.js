@@ -12,6 +12,7 @@ export const Search = ({ onClose }) => {
     const execSearch = event => {
         if (event.key !== 'Enter') return;
 
+        onClose();
         navigateWithTransition(router, `/projects?search=${searchTerm}`);
     };
 
