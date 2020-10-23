@@ -4,7 +4,7 @@ import { FaWhatsappSquare, FaEnvelopeSquare, FaGithubSquare, FaLinkedin } from '
 import { SiReact, SiNodeDotJs, SiGraphql, SiNextDotJs, SiMongodb } from 'react-icons/si';
 import { toast, ToastContainer } from 'react-toastify';
 import ReactToolip from 'react-tooltip';
-import { isMobile as isMobileCheck } from '../../util/isMobile';
+import { isMobileCheck } from '../../util/utilFuncs';
 
 const currentYear = new Date().getUTCFullYear();
 // heh John Oliver

@@ -6,6 +6,7 @@ import * as S from './styles';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { useRouter } from 'next/router';
 import * as DS from '../default-styled-components';
+import { navigateWithTransition } from '../../util/utilFuncs';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -61,14 +62,6 @@ export const Featured = React.forwardRef(({ projects }, projectsContainerRef) =>
         ));
     }, [projects.length]);
 
-    const navigateWithTransition = path => {
-        document.body.classList.add('fadeOut');
-
-        setTimeout(() => {
-            router.push(path);
-        }, 500);
-    };
-
     const projectCardClickHandler = (event, slug) => {
         gsap.to(event.currentTarget, {
             duration: 0.5,
@@ -77,11 +70,11 @@ export const Featured = React.forwardRef(({ projects }, projectsContainerRef) =>
             y: -100
         });
 
-        navigateWithTransition(`/projects/${slug}`);
+        navigateWithTransition(router, `/projects/${slug}`);
     };
 
     const allProjectsClickHandler = () => {
-        navigateWithTransition('/projects/');
+        navigateWithTransition(router, '/projects/');
     };
 
     return (

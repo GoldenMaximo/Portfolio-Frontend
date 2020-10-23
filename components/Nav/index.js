@@ -7,7 +7,8 @@ import gsap from 'gsap';
 import { TextPlugin } from 'gsap/dist/TextPlugin';
 import { useRouter } from 'next/router';
 import ReactTooltip from 'react-tooltip';
-import { isMobile as isMobileCheck } from '../../util/isMobile';
+import { isMobileCheck, navigateWithTransition } from '../../util/utilFuncs';
+
 
 gsap.registerPlugin(TextPlugin);
 
@@ -63,19 +64,12 @@ export const Nav = ({ home }) => {
             return;
         }
 
-        document.body.classList.add('fadeOut');
-
-        setTimeout(() => {
-            router.push('/');
-        }, 500);
+        navigateWithTransition(router, '/');
     };
 
     const projectsOnClickHandler = () => {
-        document.body.classList.add('fadeOut');
-
-        setTimeout(() => {
-            router.push('/projects');
-        }, 500);
+        if (router.pathname === '/projects') return;
+        navigateWithTransition(router, '/projects');
     };
 
     return (

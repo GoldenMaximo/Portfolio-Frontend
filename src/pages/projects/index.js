@@ -7,6 +7,7 @@ import * as DS from '../../../components/default-styled-components';
 import { useRouter } from 'next/router';
 import gsap from 'gsap';
 import ReactTooltip from 'react-tooltip';
+import { navigateWithTransition } from '../../../util/utilFuncs';
 
 const Projects = ({ projects }) => {
     const router = useRouter();
@@ -31,14 +32,6 @@ const Projects = ({ projects }) => {
         'GraphQL',
     ];
 
-    const navigateWithTransition = path => {
-        document.body.classList.add('fadeOut');
-
-        setTimeout(() => {
-            router.push(path);
-        }, 500);
-    };
-
     const projectCardClickHandler = (event, slug) => {
         gsap.to(event.currentTarget, {
             duration: 0.5,
@@ -47,7 +40,7 @@ const Projects = ({ projects }) => {
             y: -100
         });
 
-        navigateWithTransition(`/projects/${slug}`);
+        navigateWithTransition(router, `/projects/${slug}`);
     };
 
     return (
