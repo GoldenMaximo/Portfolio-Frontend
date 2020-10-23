@@ -73,10 +73,10 @@ export default function Project({ project }) {
 
     useEffect(() => {
         if (openSwiper) {
-            document.body.style.overflow = 'hidden';
+            document.documentElement.style.overflowY = 'hidden';
             return;
         }
-        document.body.style.overflow = 'auto';
+        document.documentElement.style.overflowY = 'auto';
     }, [openSwiper]);
 
     return (

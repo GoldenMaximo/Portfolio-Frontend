@@ -13,26 +13,13 @@ export const ComponentContainer = styled.div`
     z-index: 1000;
 `;
 
-export const Backdrop = styled.div`
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    background-color: #00000080;
-    top: 0;
-    bottom: 0;
-`;
-
 export const SwiperContainer = styled.div`
     width: 80%;
     height: 80%;
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 3;
 
     @media(max-width: 768px) {
         width: 100%;

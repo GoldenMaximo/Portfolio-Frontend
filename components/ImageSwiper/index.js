@@ -2,12 +2,14 @@ import PropTypes from 'prop-types';
 import * as S from './styles';
 import SwiperCore, { Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import * as DS from '../default-styled-components';
 
 SwiperCore.use([Pagination]);
 
 export const ImageSwiper = ({ project, onClose, initialSlide }) => (
+    // TODO refactor: put window.scrollY into styledcomponents
     <S.ComponentContainer top={window.scrollY}>
-        <S.Backdrop onClick={onClose} />
+        <DS.Backdrop onClick={onClose} />
         <S.SwiperContainer>
             <Swiper
                 spaceBetween={50}

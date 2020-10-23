@@ -16,7 +16,7 @@ const Projects = ({ projects }) => {
 
     useEffect(() => {
         // fail-safe in case user navigates from an open image swiper without closing it first
-        document.body.style.overflow = 'auto';
+        document.documentElement.style.overflowY = 'auto';
 
         // Finish animation and reset page position
         window.scrollTo(0, 0);

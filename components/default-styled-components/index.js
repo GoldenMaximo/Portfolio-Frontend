@@ -24,3 +24,16 @@ export const Container = styled.div`
 
     background-color: ${props => props.bgColor ? props.bgColor : ''};
 `;
+
+export const Backdrop = styled.div`
+    height: ${() => document.body.scrollHeight}px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    background-color: ${props => props.dark ? '#000000f2' : '#00000080'};
+    top: 0;
+    bottom: 0;
+    z-index: 2;
+`;

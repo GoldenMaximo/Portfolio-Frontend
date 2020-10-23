@@ -8,7 +8,7 @@ const Home = ({ projects }) => {
 
     useEffect(() => {
         // fail-safe in case user navigates back from an open image swiper without closing it first
-        document.body.style.overflow = 'auto';
+        document.documentElement.style.overflowY = 'auto';
 
         // Finish animation
         document.body.classList.remove('fadeOut');
