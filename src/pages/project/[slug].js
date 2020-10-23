@@ -9,6 +9,8 @@ import { SiGithub } from 'react-icons/si';
 import gsap from 'gsap';
 import * as DS from '../../../components/default-styled-components';
 import ReactTooltip from 'react-tooltip';
+import { useRouter } from 'next/router';
+import { navigateWithTransition } from '../../../util/utilFuncs';
 
 export default function Project({ project }) {
     const [openSwiper, setOpenSwiper] = useState(false);
@@ -17,6 +19,7 @@ export default function Project({ project }) {
     const projectImagesRef = useRef(null);
     const imagesRefs = useMemo(() => Array(project.images.length).fill().map(() => createRef()), [project]);
     const detailsRefs = useMemo(() => Array(4).fill().map(() => createRef()), [project]);
+    const router = useRouter();
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -69,6 +72,8 @@ export default function Project({ project }) {
         setOpenSwiper(true);
         initialSlide.current = i;
     };
+
+    const tagClickHandler = event => navigateWithTransition(router, `/projects?search=${event.target.innerText}`);
 
 
     useEffect(() => {
@@ -151,7 +156,7 @@ export default function Project({ project }) {
                                         project.techStack.map((tech, i) => {
                                             return (
                                                 <Fragment key={i}>
-                                                    <a href='/'> {tech} </a>{i !== project.techStack.length-1 ? <span> / </span> : null}
+                                                    <S.Tag onClick={tagClickHandler}> {tech} </S.Tag>{i !== project.techStack.length-1 ? <span> / </span> : null}
                                                 </Fragment>
                                             );
                                         })

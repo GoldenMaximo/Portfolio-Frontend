@@ -13,7 +13,24 @@ const Projects = ({ projects }) => {
     const router = useRouter();
     const containerRef = useRef();
     const [containerHeight, setContainerHeight] = useState(0);
+
+    const formatFilterTags = arr => [...new Set(arr.map(e => e.techStack).flatMap(e => e))];
+
+    const execSearch = searchQuery => {
+        const upperCaseQuery = searchQuery.toUpperCase();
+        const result = [];
+        projects.map(e => {
+            if (e.techStack.join('').toUpperCase().includes(upperCaseQuery) || e.title.toUpperCase().includes(upperCaseQuery)) {
+                result.push(e);
+            }
+        });
+
+        setShownProjects(result);
+        setFilterTags(formatFilterTags(result));
+    };
+
     const [shownProjects, setShownProjects] = useState(projects);
+    const [filterTags, setFilterTags] = useState(formatFilterTags(projects));
 
     useEffect(() => {
         // fail-safe in case user navigates from an open image swiper without closing it first
@@ -27,27 +44,16 @@ const Projects = ({ projects }) => {
         setContainerHeight(containerRef.current.offsetHeight);
 
         // query params
-        if (!router.query.search) return;
+        if (!router.query.search) {
+            // failsafe, case: click projects on nav
+            // while previous state had a query
+            setShownProjects(projects);
+            setFilterTags(formatFilterTags(projects));
+            return;
+        }
+
         execSearch(router.query.search);
     }, [router.query]);
-
-    const featuredTags = [
-        'React',
-        'Node.js',
-        'MongoDB',
-        'GraphQL',
-    ];
-
-    const execSearch = searchQuery => {
-        const upperCaseQuery = searchQuery.toUpperCase();
-        const result = [];
-        projects.map(e => {
-            if (e.techStack.join('').toUpperCase().includes(upperCaseQuery) || e.title.toUpperCase().includes(upperCaseQuery)) {
-                result.push(e);
-            }
-        });
-        setShownProjects(result);
-    };
 
     const projectCardClickHandler = (event, slug) => {
         gsap.to(event.currentTarget, {
@@ -60,6 +66,8 @@ const Projects = ({ projects }) => {
         navigateWithTransition(router, `/projects/${slug}`);
     };
 
+    const tagClickHandler = event => navigateWithTransition(router, `/projects?search=${event.currentTarget.innerText}`);
+
     return (
         <>
             <Nav />
@@ -71,11 +79,11 @@ const Projects = ({ projects }) => {
 
                     <DS.Title shadow>PROJECTS</DS.Title>
                     <S.Tags>
-                        {featuredTags && featuredTags.map((element, i) => {
+                        {filterTags && filterTags.map((element, i) => {
                             return (
                                 <Fragment key={i}>
-                                    <S.TagButton>{element}</S.TagButton>
-                                    {i === featuredTags.length-1 ? '' : <S.TagDivider>/</S.TagDivider>}
+                                    <S.TagButton onClick={tagClickHandler}>{element}</S.TagButton>
+                                    {i === filterTags.length-1 ? '' : <S.TagDivider>/</S.TagDivider>}
                                 </Fragment>
                             );
                         })}

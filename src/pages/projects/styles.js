@@ -7,6 +7,8 @@ export const Tags = styled.div`
     align-items: center;
     text-shadow: 0px 0px 20px #ffffff80;
     z-index: 1;
+    flex-wrap: wrap;
+    width: 75%;
 `;
 
 export const TagButton = styled.p`

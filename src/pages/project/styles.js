@@ -106,3 +106,7 @@ export const BottomImages = styled.img`
 
     ${sharedImageStyles}
 `;
+
+export const Tag = styled.a`
+    cursor: pointer;
+`;

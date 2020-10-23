@@ -78,7 +78,7 @@ export const Nav = ({ home }) => {
     };
 
     const projectsOnClickHandler = () => {
-        if (router.pathname === '/projects') return;
+        if (router.pathname === '/projects' && !router.query) return;
         navigateWithTransition(router, '/projects');
     };
 
