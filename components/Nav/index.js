@@ -8,7 +8,7 @@ import { TextPlugin } from 'gsap/dist/TextPlugin';
 import { useRouter } from 'next/router';
 import ReactTooltip from 'react-tooltip';
 import { isMobileCheck, navigateWithTransition } from '../../util/utilFuncs';
-import * as DS from '../default-styled-components';
+import { Search } from '../Search';
 
 
 gsap.registerPlugin(TextPlugin);
@@ -89,12 +89,7 @@ export const Nav = ({ home }) => {
             )}
 
             {showSearch && (
-                <>
-                    <DS.Backdrop dark onClick={() => setShowSearch(false)} />
-                    <S.SearchForm top={window.scrollY}>
-                        <S.SearchInput autoFocus={true} />
-                    </S.SearchForm>
-                </>
+                <Search onClose={() => setShowSearch(false)} />
             )}
 
             <S.Container home={home}>
