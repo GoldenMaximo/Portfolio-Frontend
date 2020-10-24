@@ -40,9 +40,6 @@ const Projects = ({ projects }) => {
         window.scrollTo(0, 0);
         document.body.classList.remove('fadeOut');
 
-        // Sets background animation container height
-        setContainerHeight(containerRef.current.offsetHeight);
-
         // query params
         if (!router.query.search) {
             // failsafe, case: click projects on nav
@@ -54,6 +51,12 @@ const Projects = ({ projects }) => {
 
         execSearch(router.query.search);
     }, [router.query]);
+
+    useEffect(() => {
+        // Sets background animation (ConnectingDots) height
+        // based off of the projects container
+        setContainerHeight(containerRef.current.offsetHeight);
+    }, [shownProjects]);
 
     const projectCardClickHandler = (event, slug) => {
         gsap.to(event.currentTarget, {
