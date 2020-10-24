@@ -137,7 +137,7 @@ export default function Project({ project }) {
 
                             <div ref={detailsRefs[1]}>
                                 <MdLaunch />
-                                <p>Deployed at: <a href={project.deployedAt}>{project.deployedAt}</a> (might take a few seconds for the server to cold start)</p>
+                                <p>Deployed at: <a href={project.deployedAt}>{project.deployedAt}</a><br />(might take a few seconds for the server to cold start)</p>
                             </div>
 
                             <div ref={detailsRefs[2]}>
