@@ -14,28 +14,31 @@ export const StyledSection = styled.div`
     }
 
     a {
-        -webkit-user-select: none;
+        font-style: italic;
+        font-weight: bold;
+        text-shadow: 0 0 3px #000000;
+        background-color: rgb(255 255 255 / 0.5);
+        border: 1px solid rgb(0 0 0 / 0.3);
+        cursor: pointer;
+        z-index: 1;
+        padding: 1.2rem;
+        padding-top: 1.4rem;
+        padding-bottom: 1.4rem;
+        box-shadow: 0 0 20px 0px white, inset 0 0 20px 0px white;
         border-radius: 0;
         font-size: 0.875rem;
-        background-color: transparent;
-        border: 1px solid white;
-        box-sizing: border-box;
         color: white;
-        display: inline-block;
-        font-weight: 600;
-        height: 56px;
-        line-height: 56px;
         margin: 0;
         outline: 0;
-        padding: 0 16px;
         white-space: nowrap;
-        transition: color 0.15s ease, border 0.15s ease, background-color 0.15s ease;
+        transition: color 0.15s ease,border 0.15s ease,background-color 0.15s ease;
     }
 
     a:hover {
         border: 1px solid #1b1b1b;
-        background-color: #1b1b1b;
-        color: #ffffff;
+        background-color: #ffffff;
+        color: #000000;
         cursor: pointer;
+        text-shadow: 0 0 10px black;
     }
 `;
