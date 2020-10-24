@@ -10,11 +10,11 @@ export const Intro = ({ onClick }) => {
 
     const btnAnim = () => {
         gsap.fromTo(button.current, {
-            duration: 5,
             css: {
                 backgroundImage: 'linear-gradient(1080deg, rgb(159 69 9 / 85%), transparent)',
             }
         }, {
+            delay: 0.5,
             duration: 5,
             css: {
                 backgroundImage: 'linear-gradient(0deg, rgb(159 69 9 / 0%), transparent)',

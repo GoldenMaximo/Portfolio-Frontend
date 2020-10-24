@@ -2,9 +2,12 @@ import PropTypes from 'prop-types';
 import { useEffect, useRef } from 'react';
 import { Intro, Layout, Nav, Featured, Footer } from '../components';
 import GraphQL from '../services/graphql';
+import { navigateWithTransition } from '../util/utilFuncs';
+import { useRouter } from 'next/router';
 
 const Home = ({ projects }) => {
     const featuredRef = useRef(null);
+    const router = useRouter();
 
     useEffect(() => {
         // fail-safe in case user navigates back from an open image swiper without closing it first
@@ -14,20 +17,23 @@ const Home = ({ projects }) => {
         document.body.classList.remove('fadeOut');
     }, []);
 
-    const scrollDown = () => {
-        const topOfElement = featuredRef.current.offsetTop - (window.outerHeight / 5);
+    // TODO: think about something to do with this, it's good code.
+    // const scrollDown = () => {
+    //     const topOfElement = featuredRef.current.offsetTop - (window.outerHeight / 5);
 
-        window.scroll({
-            top: topOfElement,
-            behavior: 'smooth'
-        });
-    };
+    //     window.scroll({
+    //         top: topOfElement,
+    //         behavior: 'smooth'
+    //     });
+    // };
+
+    const introClickHandler = () => navigateWithTransition(router, '/projects');
 
     return (
         <>
             <Nav home />
             <Layout title={'Gustavo Máximo\'s Projects'}>
-                <Intro onClick={scrollDown} />
+                <Intro onClick={introClickHandler} />
                 <Featured ref={featuredRef} projects={projects}/>
                 <Footer />
             </Layout>
