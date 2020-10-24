@@ -1,26 +1,31 @@
 import styled from 'styled-components';
 
 export const Tags = styled.div`
+    color: whitesmoke;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    text-shadow: 0px 0px 20px #ffffff80;
+    text-shadow: 0px 0px 20px #00000080;
     z-index: 1;
     flex-wrap: wrap;
     width: 75%;
 `;
 
 export const TagButton = styled.p`
+    transition: all 0.4s cubic-bezier(.25,.8,.25,1);
+
     &:hover {
         cursor: pointer;
 
-        text-shadow: 0px 0px 10px #00000080;
+        text-shadow: 0px 0px 12px #000000;
     }
 `;
 
 export const TagDivider = styled.span`
     padding: 0.5rem;
+
+    cursor: default;
 `;
 
 export const ProjectsGallery = styled.div`
@@ -111,4 +116,32 @@ export const StyledImage = styled.img`
     object-fit: cover;
     width: 100%;
     max-height: 100%;
+`;
+
+export const ResetFiltersBtn = styled.button`
+    font-style: italic;
+    font-weight: bold;
+    text-shadow: 0 0 6px #ffffff80;
+    background-color: #ffffff33;
+    padding: 0.5rem;
+    border-radius: 0.2rem;
+    border: 1px solid #0000004d;
+    cursor: pointer;
+    z-index: 1;
+
+    transition: all 0.4s cubic-bezier(.25,.8,.25,1);
+
+    &:focus {
+        outline: none;
+    }
+
+    box-shadow: 0px 0px 20px 0px #ffffff1a;
+
+    &:hover {
+        box-shadow: 0px 0px 20px 0px #ffffff99, inset 0 0 20px 0px rgb(255 255 255 / 0.4);
+    }
+
+    &:active {
+        box-shadow: 0px 0px 20px 0px #ffffff1a, inset 0px 0px 20px #00000033;
+    }
 `;

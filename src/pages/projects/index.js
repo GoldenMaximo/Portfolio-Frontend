@@ -66,6 +66,8 @@ const Projects = ({ projects }) => {
         navigateWithTransition(router, `/projects/${slug}`);
     };
 
+    const resetFiltersClickHandler = () => navigateWithTransition(router, '/projects/');
+
     const tagClickHandler = event => navigateWithTransition(router, `/projects?search=${event.currentTarget.innerText}`);
 
     return (
@@ -77,7 +79,8 @@ const Projects = ({ projects }) => {
 
                     <ConnectingDots height={containerHeight} />
 
-                    <DS.Title shadow>PROJECTS</DS.Title>
+                    <DS.Title light shadow>PROJECTS</DS.Title>
+
                     <S.Tags>
                         {filterTags && filterTags.map((element, i) => {
                             return (
@@ -88,6 +91,11 @@ const Projects = ({ projects }) => {
                             );
                         })}
                     </S.Tags>
+
+                    {router.query.search && (
+                        <S.ResetFiltersBtn onClick={resetFiltersClickHandler}>Reset Filters</S.ResetFiltersBtn>
+                    )}
+
                     <S.ProjectsGallery>
 
                         {shownProjects.length ? (
