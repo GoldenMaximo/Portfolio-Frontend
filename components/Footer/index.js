@@ -5,12 +5,15 @@ import { SiReact, SiNodeDotJs, SiGraphql, SiNextDotJs, SiMongodb } from 'react-i
 import { toast, ToastContainer } from 'react-toastify';
 import ReactToolip from 'react-tooltip';
 import { isMobileCheck } from '../../util/utilFuncs';
+import ReCAPTCHA from 'react-google-recaptcha';
+
 
 const currentYear = new Date().getUTCFullYear();
 // heh John Oliver
 
 export const Footer = () => {
     const [isMobile, setIsMobile] = useState(false);
+    const [solvedCaptcha, setSolvedCaptcha] = useState(false);
 
     useEffect(() => {
         setIsMobile(isMobileCheck());
@@ -27,6 +30,13 @@ export const Footer = () => {
         toast.dark('📋 Copied to cliboard!');
     };
 
+    const captchaChangeHandler = key => {
+        if (key) {
+            return setSolvedCaptcha(true);
+        }
+        setSolvedCaptcha(false);
+    };
+
     return (
         <Fragment>
             <ToastContainer />
@@ -35,28 +45,36 @@ export const Footer = () => {
             <S.container>
                 <S.subContainerLeft>
                     <h3>Contact Info</h3>
-                    <S.clickable>
-                        <S.highLightIcon dropShadow iconColor="#25D366">
-                            <a target="_blank" rel="noopener noreferrer" href="https://wa.me/5511985383817">
-                                <FaWhatsappSquare width="1.4em" />
-                                <p>+55 (11) 98538-3817</p>
-                            </a>
-                        </S.highLightIcon>
-                        <S.highLightIcon>
-                            <a target="_blank" rel="noopener noreferrer" href="https://goldenmaximo.github.io/curriculum-vitae/">
-                                <S.ResumeIcon>
-                                    <h1>CV</h1>
-                                </S.ResumeIcon>
-                                <p>Curriculum Vitae</p>
-                            </a>
-                        </S.highLightIcon>
-                        <S.highLightIcon dropShadow iconColor="#D14836">
-                            <a data-tip={isMobile ? '' : 'Click to Copy'} onClick={mailClickHandler}>
-                                <FaEnvelopeSquare width="1.4em" />
-                                <p>gfmaximo97@gmail.com</p>
-                            </a>
-                        </S.highLightIcon>
-                    </S.clickable>
+                    {!solvedCaptcha ? (
+                        <ReCAPTCHA
+                            sitekey="6LcyBdsZAAAAADAK7H5pM1CLOTF0Dsy8Bch86woQ"
+                            onChange={captchaChangeHandler}
+                        />
+                    ) : (
+
+                        <S.clickable>
+                            <S.highLightIcon dropShadow iconColor="#25D366">
+                                <a target="_blank" rel="noopener noreferrer" href="https://wa.me/5511985383817">
+                                    <FaWhatsappSquare width="1.4em" />
+                                    <p>+55 (11) 98538-3817</p>
+                                </a>
+                            </S.highLightIcon>
+                            <S.highLightIcon>
+                                <a target="_blank" rel="noopener noreferrer" href="https://goldenmaximo.github.io/curriculum-vitae/">
+                                    <S.ResumeIcon>
+                                        <h1>CV</h1>
+                                    </S.ResumeIcon>
+                                    <p>Curriculum Vitae</p>
+                                </a>
+                            </S.highLightIcon>
+                            <S.highLightIcon dropShadow iconColor="#D14836">
+                                <a data-tip={isMobile ? '' : 'Click to Copy'} onClick={mailClickHandler}>
+                                    <FaEnvelopeSquare width="1.4em" />
+                                    <p>gfmaximo97@gmail.com</p>
+                                </a>
+                            </S.highLightIcon>
+                        </S.clickable>
+                    )}
                 </S.subContainerLeft>
 
                 <S.subContainerMiddle>
