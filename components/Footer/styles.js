@@ -224,13 +224,26 @@ export const copyrightContainer = styled.div`
     justify-content: center;
     align-items: center;
 
+    @media(max-width: 768px) {
+        width: 200%;
+    }
+
     p {
         color: #e8e6e3;
+
+        @media(max-width: 768px) {
+            position: unset;
+        }
     }
 
     span {
         color: rgb(255 255 255 / 0.22);
         position: absolute;
         right: 1rem;
+
+        @media(max-width: 768px) {
+            position: unset;
+            color: #e8e6e3;
+        }
     }
 `;

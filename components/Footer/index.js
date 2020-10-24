@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, useEffect, useRef, useState } from 'react';
 import * as S from './styles';
 import { FaWhatsappSquare, FaEnvelopeSquare, FaGithubSquare, FaLinkedin } from 'react-icons/fa';
 import { SiReact, SiNodeDotJs, SiGraphql, SiNextDotJs, SiMongodb } from 'react-icons/si';
@@ -6,18 +6,44 @@ import { toast, ToastContainer } from 'react-toastify';
 import ReactToolip from 'react-tooltip';
 import { isMobileCheck } from '../../util/utilFuncs';
 import ReCAPTCHA from 'react-google-recaptcha';
+import gsap, { Linear } from 'gsap';
 
 
 const currentYear = new Date().getUTCFullYear();
 // heh John Oliver
 
 export const Footer = () => {
+    const copyright = useRef(null);
+    const builtBy = useRef(null);
+    const copyrightContainer = useRef(null);
     const [isMobile, setIsMobile] = useState(false);
     const [solvedCaptcha, setSolvedCaptcha] = useState(false);
 
     useEffect(() => {
         setIsMobile(isMobileCheck());
     }, []);
+
+    useEffect(() => {
+        if (isMobile) {
+            const tl = gsap.timeline({ repeat: -1 });
+
+            tl.add(gsap.fromTo(copyright.current, {
+                x: (copyrightContainer.current.offsetWidth / 1.3)
+            }, {
+                duration: 6,
+                x: -(copyrightContainer.current.offsetWidth / 4),
+                ease: Linear.easeIn
+            }));
+
+            tl.add(gsap.fromTo(builtBy.current, {
+                x: (copyrightContainer.current.offsetWidth / 2)
+            }, {
+                duration: 6,
+                x: -(copyrightContainer.current.offsetWidth / 1.3),
+                ease: Linear.easeIn
+            }), '>-1');
+        }
+    }, [isMobile]);
 
     const mailClickHandler = () => {
         if(isMobile) {
@@ -116,9 +142,9 @@ export const Footer = () => {
                 </S.subContainerRight>
 
             </S.container>
-            <S.copyrightContainer>
-                <p>© {currentYear} Gustavo Máximo - All rights reserverd.</p>
-                <span>100% Designed and Developed by Gustavo Máximo</span>
+            <S.copyrightContainer ref={copyrightContainer}>
+                <p ref={copyright}>© {currentYear} Gustavo Máximo - All rights reserverd.</p>
+                <span ref={builtBy}>100% Designed and Developed by Gustavo Máximo</span>
             </S.copyrightContainer>
         </Fragment>
     );
