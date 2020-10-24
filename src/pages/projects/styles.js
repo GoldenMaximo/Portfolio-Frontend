@@ -92,6 +92,8 @@ export const ProjectThumb = styled.div`
     margin-right: 2rem;
     margin-left: 3rem;
     cursor: pointer;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
 
     &:hover {
         ${ProjectInfo} {
