@@ -227,4 +227,10 @@ export const copyrightContainer = styled.div`
     p {
         color: #e8e6e3;
     }
+
+    span {
+        color: rgb(255 255 255 / 0.22);
+        position: absolute;
+        right: 1rem;
+    }
 `;
