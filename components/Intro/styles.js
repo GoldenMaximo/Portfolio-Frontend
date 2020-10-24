@@ -31,7 +31,7 @@ export const StyledSection = styled.div`
         margin: 0;
         outline: 0;
         white-space: nowrap;
-        transition: color 0.15s ease,border 0.15s ease,background-color 0.15s ease;
+        transition: all 0.3s cubic-bezier(.25,.8,.25,1);
     }
 
     a:hover {
@@ -40,5 +40,6 @@ export const StyledSection = styled.div`
         color: #000000;
         cursor: pointer;
         text-shadow: 0 0 10px black;
+        box-shadow: 0 0 20px 12px #ffffff80, inset 0 0 20px 0px white;
     }
 `;
