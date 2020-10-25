@@ -82,6 +82,11 @@ export const Nav = ({ home }) => {
         navigateWithTransition(router, '/projects');
     };
 
+    const aboutOnClickHandler = () => {
+        if (router.pathname === '/about') return;
+        navigateWithTransition(router, '/about');
+    };
+
     return (
         <>
             {!isMobile && (
@@ -107,7 +112,7 @@ export const Nav = ({ home }) => {
                 </S.SubContainerLeft>
                 <S.SubContainerMiddle home={home}>
                     <a onClick={projectsOnClickHandler}>Projects</a>
-                    <a>About</a>
+                    <a onClick={aboutOnClickHandler}>About</a>
                 </S.SubContainerMiddle>
                 <S.SubContainerRight home={home}>
                     <a onClick={() => setShowSearch(true)}>

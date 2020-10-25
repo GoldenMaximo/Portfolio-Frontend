@@ -6,3 +6,5 @@ export { Footer } from './Footer';
 export { ImageSwiper } from './ImageSwiper';
 export { ConnectingDots } from './ConnectingDots';
 export { Search } from './Search';
+export { ScrollDownIcon } from './ScrollDownIcon';
+export { SkillOrb } from './SkillOrb';

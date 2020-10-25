@@ -78,6 +78,7 @@ export const ProjectImages = styled.div`
     }
 `;
 
+// TODO: refactor images into single default-styled-components
 const sharedImageStyles = css`
     opacity: 0;
     transition: all 0.3s cubic-bezier(.25,.8,.25,1);

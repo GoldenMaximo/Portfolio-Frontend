@@ -5,6 +5,7 @@ import GraphQL from '../services/graphql';
 import { navigateWithTransition } from '../util/utilFuncs';
 import { useRouter } from 'next/router';
 
+// TODO: refactor into src
 const Home = ({ projects }) => {
     const featuredRef = useRef(null);
     const router = useRouter();
