@@ -5,7 +5,6 @@ import * as S from './styles';
 import * as DS from '../../../components/default-styled-components';
 import gsap, { Power3 } from 'gsap';
 import ReactTooltip from 'react-tooltip';
-import Head from 'next/head';
 import { isMobileCheck } from '../../../util/utilFuncs';
 
 const About = () => {
@@ -109,9 +108,6 @@ const About = () => {
 
     return (
         <>
-            <Head>
-                <script src="/js/TagCanvas.js" />
-            </Head>
 
             <Nav />
             {/* TODO: refactor tooltip usage on components, instantiate once, then pass vars on type */}

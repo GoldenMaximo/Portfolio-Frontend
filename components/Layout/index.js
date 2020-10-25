@@ -13,6 +13,7 @@ export const Layout = ({ children, title }) => {
                 <meta property="og:type" content="profile:Gustavo Máximo" />
                 <meta property="og:locale" content="en_US" />
                 <link rel="icon" href="/favicon.ico" />
+                <script src="/js/TagCanvas.js" />
             </Head>
             <div className={styles.wrap}>
                 {children}
