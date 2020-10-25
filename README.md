@@ -30,7 +30,8 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
 <!-- Resources: -->
-<!-- https://stackoverflow.com/questions/61037728/next-js-getstaticprops-and-getstaticpaths-with-dynamic-routes-to-generate-stati
+<!--
+https://stackoverflow.com/questions/61037728/next-js-getstaticprops-and-getstaticpaths-with-dynamic-routes-to-generate-stati
 https://www.youtube.com/watch?v=vY_rnKBANnY
 https://github.com/vercel/next.js/issues/8617
 https://stackoverflow.com/questions/30648401/disable-mobile-chrome-43s-touch-to-search-feature-programmatically
@@ -39,5 +40,6 @@ https://stackoverflow.com/questions/54602013/component-definition-is-missing-dis
 https://stackoverflow.com/questions/53561913/react-forwarding-multiple-refs
 https://reactjs.org/docs/forwarding-refs.html
 https://codepen.io/LeonGr/pen/yginI
-
+https://codepen.io/TommiTikall/pen/xZwpGR
+https://www.goat1000.com/
  -->
