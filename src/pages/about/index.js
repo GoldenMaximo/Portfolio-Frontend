@@ -22,7 +22,7 @@ const About = () => {
     const [skillOrbContainerHeight, setSkillOrbContainerHeight] = useState(0);
 
     const handleScroll = () => {
-        if (isMobile && (window.scrollY > (skillOrbContainerRef.current.offsetTop - 450))) {
+        if (window.scrollY > (skillOrbContainerRef.current.offsetTop - 450)) {
             return setShowScrollAid(true);
         }
         setShowScrollAid(false);
@@ -32,6 +32,10 @@ const About = () => {
         if (isMobile) {
             window.addEventListener('scroll', handleScroll);
         }
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
     }, [isMobile]);
 
     useEffect(() => {
