@@ -144,7 +144,7 @@ const About = () => {
                             <DS.Title>Skills</DS.Title>
 
                             <p>
-                                My preffered front-end stack is&nbsp;
+                                My preferred front-end stack is&nbsp;
                                 <S.Highlight>React.js + Next.js + Styled-Components.</S.Highlight>
                             </p>
                             <p>
