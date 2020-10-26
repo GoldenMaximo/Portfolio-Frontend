@@ -5,7 +5,12 @@ import { useRef, useEffect } from 'react';
 export const ConnectingDots = ({ lineColor, height }) => {
     const canvasRef = useRef(null);
 
-    const funcster = (canvas, ctx) => {
+    useEffect(() => {
+        if(!height) return;
+        
+        const canvas = canvasRef.current;
+        const ctx = canvas.getContext('2d');
+
         canvas.width = window.innerWidth;
         canvas.height = height;
 
@@ -48,6 +53,7 @@ export const ConnectingDots = ({ lineColor, height }) => {
             }
 
             ctx.beginPath();
+            
             for (let i = 0, x = stars.length; i < x; i++) {
                 let starI = stars[i];
                 ctx.moveTo(starI.x,starI.y);
@@ -60,6 +66,7 @@ export const ConnectingDots = ({ lineColor, height }) => {
                     }
                 }
             }
+            
             ctx.lineWidth = 0.05;
             ctx.strokeStyle = lineColor ? lineColor : 'white';
             ctx.stroke();
@@ -92,10 +99,12 @@ export const ConnectingDots = ({ lineColor, height }) => {
             }
         }
 
-        canvas.addEventListener('mousemove', function(e){
+        function renderMouseMove(e){
             mouse.x = e.clientX;
             mouse.y = e.clientY;
-        });
+        }
+
+        canvas.addEventListener('mousemove', renderMouseMove);
 
         // Update and draw
 
@@ -106,13 +115,10 @@ export const ConnectingDots = ({ lineColor, height }) => {
         }
 
         tick();
-    };
-
-    useEffect(() => {
-        const canvas = canvasRef.current;
-        const ctx = canvas.getContext('2d');
-
-        funcster(canvas, ctx);
+        
+        return () => {
+            canvas.removeEventListener('mousemove', renderMouseMove);
+        };
     }, [height]);
 
     return (
