@@ -8,7 +8,7 @@ SwiperCore.use([Pagination]);
 
 export const ImageSwiper = ({ project, onClose, initialSlide }) => (
     // TODO refactor: put window.scrollY into styledcomponents
-    <S.ComponentContainer top={window.scrollY}>
+    <S.ComponentContainer>
         <DS.Backdrop onClick={onClose} />
         <S.SwiperContainer>
             <Swiper

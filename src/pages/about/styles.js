@@ -27,7 +27,6 @@ export const SkillSection = styled.div`
     min-height: 100vh;
 `;
 
-// TODO: refactor images into single default-styled-components 2
 export const Photo = styled.div`
     width: 50%;
     display: flex;

@@ -24,12 +24,6 @@ export default function Project({ project }) {
     useEffect(() => {
         window.scrollTo(0, 0);
         document.body.classList.remove('fadeOut');
-
-        // TODO: instead of going back on android - close swiper
-        // window.onpopstate = e => {
-        //     console.log('poppity pop: ', e);
-        //     e.preventDefault();
-        // };
     }, [project]);
 
     // GreenSock animations

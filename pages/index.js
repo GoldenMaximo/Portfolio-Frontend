@@ -18,16 +18,6 @@ const Home = ({ projects }) => {
         document.body.classList.remove('fadeOut');
     }, []);
 
-    // TODO: think about something to do with this, it's good code.
-    // const scrollDown = () => {
-    //     const topOfElement = featuredRef.current.offsetTop - (window.outerHeight / 5);
-
-    //     window.scroll({
-    //         top: topOfElement,
-    //         behavior: 'smooth'
-    //     });
-    // };
-
     const introClickHandler = () => navigateWithTransition(router, '/projects');
 
     return (

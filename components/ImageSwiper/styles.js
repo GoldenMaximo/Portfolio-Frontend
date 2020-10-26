@@ -8,7 +8,7 @@ export const ComponentContainer = styled.div`
     position: absolute;
     height: 100vh;
     width: 100%;
-    top: ${props => props.top ? props.top + 'px' : 0};
+    top: ${() => window.scrollY ? window.scrollY + 'px' : 0};
     bottom: 0;
     z-index: 1000;
 `;

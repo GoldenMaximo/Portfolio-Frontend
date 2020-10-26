@@ -122,7 +122,6 @@ const About = () => {
                             <img src='/images/Gustavo_Maximo_at_NASP.jpg' data-tip="Photo was taken at Natura NASP" />
                         </S.Photo>
                         <S.Description ref={descriptionRef}>
-                            {/* TODO: array with p's then fade in stagger one by one */}
                             <p>Howdy, my name is <strong>Gustavo Máximo.</strong></p>
                             <p>I&apos;m a JavaScript developer with <strong>3 years of experience</strong> coding both front and back-end.</p>
                             <p>I&apos;m currently located in Jundiaí, Brazil, but <strong>remote work has always been a part of my career.</strong></p>
