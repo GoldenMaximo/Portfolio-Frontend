@@ -174,11 +174,11 @@ const About = () => {
                               for POs and PMs to pinpoint the exact progress of the current sprint without needing extra technical knowledge.
                             </p>
                             <p>
-                                Despite my professional history I was never too fond of mobile development, I&apos;ve worked with&nbsp;
+                                Despite my professional history I was never too fond of mobile development, I&apos;ve worked on&nbsp;
                                 <S.Highlight>
                                     React Native
                                 </S.Highlight>
-                                &nbsp;on projects due to high-grade pay (everyone has their price). But personally I prefer Web App and PWA development.
+                                &nbsp;projects due to high-grade pay (everyone has their price). But personally I prefer Web App and PWA development.
                             </p>
                             <p>
                                 Evaluate me technically @:
