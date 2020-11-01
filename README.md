@@ -1,33 +1,80 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Portfolio - Front-End.
 
-## Getting Started
+> Fullstack Portfolio Project intended to showcase my projects and skills.
 
-First, run the development server:
+## [:fire: Vercel URL :fire:](https://gustavomaximo.dev/)
 
-```bash
-npm run dev
-# or
-yarn dev
+## Built With
+
+- [React.js](https://nodejs.org/en/) - JavaScript Framework
+- [Next.js](https://nextjs.org/) - React Framework
+- [Styled-Components](https://styled-components.com/) - CSS Componentization tool
+- [GSAP](https://greensock.com/gsap/) - Animation Framework
+- [PropTypes](https://reactjs.org/docs/typechecking-with-proptypes.html) - Poor man's TypeScript
+- [reCAPTCHA](https://developers.google.com/recaptcha/) - Anti-Spam tool
+- [react-icons](https://github.com/react-icons/react-icons#readme) - Best icon lib
+- [react-toastify](https://fkhadra.github.io/react-toastify/introduction) - Toast tool
+- [react-tooltip](https://github.com/wwayne/react-tooltip#readme) - Tooltip tool
+- [swiper](https://swiperjs.com/) - Touch slider
+- [TagCanvas](https://www.goat1000.com/tagcanvas.php) - Tags Sphere
+
+## Inspirations and resources
+
+- [TeamSESH's Merch Website](https://teamsesh.bigcartel.com/) - Overall design and layout idea
+- [Connecting Dots pen](https://codepen.io/LeonGr/pen/yginI) - Projects page background animation
+- [Simple arrow animation pen](https://codepen.io/LeonGr/pen/yginI) - About "scroll down" arrow animation
+
+## DEMO
+
+Bro just [check it out](https://gustavomaximo.dev).
+
+## Installation
+
+_Make sure to have [Git](http://git-scm.com/) and [Node.js](http://nodejs.org/) 10.0.0 (or higher) installed._
+
+1. Clone it or fork it.
+
+2. Once you have your local copy, install its dependencies using either Yarn:
+
+```
+yarn
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+or npm:
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+```
+npm install
+```
 
-## Learn More
+ (PNPM IS NOT SUPPORTED unfortunately)
 
-To learn more about Next.js, take a look at the following resources:
+## Running
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+After installed, you can start the application by running it with Yarn:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```
+yarn start
+```
 
-## Deploy on Vercel
+or npm:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+npm run start
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+_This will start the server at `localhost:3000`._
+
+## Meta
+
+Gustavo Máximo – gfmaximo97@gmail.com
+
+## Contributing
+
+Fork it then open a PR, I'll be sure to check it out.
+
+## License
+
+This repository is licensed under [MIT](https://opensource.org/licenses/MIT)
 
 <!-- Resources: -->
 <!--
