@@ -129,10 +129,12 @@ export default function Project({ project }) {
                                 <p>{project.description}</p>
                             </S.Description>
 
-                            <div ref={detailsRefs[1]}>
-                                <MdLaunch />
-                                <p>Deployed at: <a href={project.deployedAt}>{project.deployedAt}</a><br />(might take a few seconds for the server to cold start)</p>
-                            </div>
+                            {project.deployedAt && (
+                                <div ref={detailsRefs[1]}>
+                                    <MdLaunch />
+                                    <p>Deployed at: <a href={project.deployedAt}>{project.deployedAt}</a><br />(might take a few seconds for the server to cold start)</p>
+                                </div>
+                            )}
 
                             <div ref={detailsRefs[2]}>
                                 <SiGithub />
