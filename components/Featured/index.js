@@ -89,9 +89,10 @@ export const Featured = React.forwardRef(({ projects }, projectsContainerRef) =>
                 {
                     projects.map((project, i) => {
                         // Basically 1366x768 and similar resolutions, limiting the number of featured projects to maximum 6
-                        if (windowWidth > 915 && windowWidth < 1920 && i > 5) {
+                        if (windowWidth > 915 && windowWidth < 1920 && i > 4) {
                             return;
                         }
+                        if (i > 6) return;
                         return (
                             <S.ProjectThumb onClick={event => projectCardClickHandler(event, project.slug)} key={project.slug} ref={elemRefs[i]}>
                                 <S.StyledImage src={project.thumbUrl}/>
