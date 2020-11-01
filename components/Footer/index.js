@@ -133,8 +133,7 @@ export const Footer = () => {
                             </a>
                         </S.highLightIcon>
                         <S.highLightIcon iconColor="#0077B5" dropShadow>
-                            {/* TODO: Add linkedin link */}
-                            <a target="_blank" rel="noopener noreferrer" href="https://goldenmaximo.github.io/curriculum-vitae/">
+                            <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/gustavo-maximo-filho">
                                 <FaLinkedin />
                             </a>
                         </S.highLightIcon>
