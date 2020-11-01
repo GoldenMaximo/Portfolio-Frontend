@@ -7,9 +7,9 @@ export const Layout = ({ children, title }) => {
         <>
             <Head>
                 <title>{title}</title>
-                <meta name="description" content="Porfolio in the making. Cool projects on the way." />
+                <meta name="description" content="Check out my latest projects and get to know more about me." />
                 <meta property="og:title" content={title} />
-                <meta property="og:image" content="/ogimage.png" />
+                <meta property="og:image" content="/ogimage.jpg" prefix="og: http://ogp.me/ns#" />
                 <meta property="og:type" content="profile:Gustavo Máximo" />
                 <meta property="og:locale" content="en_US" />
                 <link rel="icon" href="/favicon.ico" />
