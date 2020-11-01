@@ -142,6 +142,8 @@ export const SkillDescription = styled.div`
 export const SkillOrbContainer = styled.div`
     width: 50%;
     display: flex;
+    align-items: center;
+    justify-content: center;
     min-height: 80vh;
     margin-top: 3rem;
     flex-direction: column;

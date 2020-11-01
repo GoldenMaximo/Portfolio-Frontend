@@ -1,8 +1,11 @@
 
 import { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { navigateWithTransition } from '../../util/utilFuncs';
+import { useRouter } from 'next/router';
 
 export const SkillOrb = ({ height, width }) => {
+    const router = useRouter();
 
     const skills = [
         'HTML',
@@ -22,7 +25,7 @@ export const SkillOrb = ({ height, width }) => {
         'Express.js',
         'JWT',
         'React.js',
-        'React-Native',
+        'React Native',
         'Expo',
         'Next.js',
         'Socket.IO',
@@ -38,7 +41,12 @@ export const SkillOrb = ({ height, width }) => {
         'SCRUM',
         'Firebase',
         'Heroku',
-        'GIMP'
+        'GIMP',
+        'Mocha',
+        'Chai',
+        'Sinon',
+        'TypeScript',
+        'Deno'
     ];
 
     useEffect(() => {
@@ -48,10 +56,19 @@ export const SkillOrb = ({ height, width }) => {
                 outlineColour: 'black',
                 textHeight: 20,
                 depth: 1,
+                minSpeed: 0.01,
+                clickToFront: 1000,
+                wheelZoom: false,
+                shuffleTags: true
             });
             window.TagCanvas.SetSpeed('orb-canvas', [0.02, -0.02]);
         }
     }, [width]);
+
+    const tagClickHandler = (event, tag) => {
+        event.preventDefault();
+        navigateWithTransition(router, `/projects?search=${tag}`);
+    };
 
     return (
         <canvas id="orb-canvas" height={height} width={width}>
@@ -59,7 +76,7 @@ export const SkillOrb = ({ height, width }) => {
                 {skills.length &&
             skills.map((item, key) => (
                 <li key={key}>
-                    <a onClick={e => e.preventDefault()}>{item}</a>
+                    <a onClick={event => tagClickHandler(event, item)}>{item}</a>
                 </li>
             ))}
             </ul>
