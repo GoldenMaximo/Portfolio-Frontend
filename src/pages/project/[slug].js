@@ -67,8 +67,7 @@ export default function Project({ project }) {
         initialSlide.current = i;
     };
 
-    const tagClickHandler = event => navigateWithTransition(router, `/projects?search=${event.target.innerText}`);
-
+    const tagClickHandler = event => navigateWithTransition(router, `/projects?search=${event.target.innerText.trim()}`);
 
     useEffect(() => {
         if (openSwiper) {
@@ -132,7 +131,7 @@ export default function Project({ project }) {
                             {project.deployedAt && (
                                 <div ref={detailsRefs[1]}>
                                     <MdLaunch />
-                                    <p>Deployed at: <a href={project.deployedAt}>{project.deployedAt}</a><br />(might take a few seconds for the server to cold start)</p>
+                                    <p>Deployed at: [&nbsp;<a href={project.deployedAt}>{project.deployedAt}</a>&nbsp;]<br />(might take a few seconds for the server to cold start)</p>
                                 </div>
                             )}
 
@@ -140,7 +139,7 @@ export default function Project({ project }) {
                                 <SiGithub />
                                 <p>Github URL{project.githubUrls.length > 1 ? 's:' : ':'} {
                                     project.githubUrls.map((url, i) => {
-                                        return <a key={i} href={url}>{url}</a>;
+                                        return <span key={i}>[&nbsp;<a href={url}>{url}</a>&nbsp;]</span>;
                                     })
                                 }</p>
                             </div>
@@ -152,7 +151,7 @@ export default function Project({ project }) {
                                         project.techStack.map((tech, i) => {
                                             return (
                                                 <Fragment key={i}>
-                                                    <S.Tag onClick={tagClickHandler}> {tech} </S.Tag>{i !== project.techStack.length-1 ? <span> / </span> : null}
+                                                    <S.Tag onClick={tagClickHandler}>&nbsp;{tech}&nbsp;</S.Tag>{i !== project.techStack.length-1 ? <span>/</span> : null}
                                                 </Fragment>
                                             );
                                         })

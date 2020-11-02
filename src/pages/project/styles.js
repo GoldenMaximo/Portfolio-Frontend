@@ -46,6 +46,15 @@ export const Details = styled.div`
         word-break: break-word;
     }
 
+    a:hover {
+        text-shadow: 0px 0px 20px rgb(255 255 255);
+        background-color: black;
+        color: white;
+        padding: 0.2rem;
+        margin-right: 0.2rem;
+        margin-left: 0.2rem;
+    }
+
     @media(max-width: 768px) {
         width: 100%;
         padding: 2rem;
