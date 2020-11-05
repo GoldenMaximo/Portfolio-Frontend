@@ -10,7 +10,7 @@ export const Background = styled.div`
     width: 200%;
     height: 200vh;
     visibility: visible;
-    background-color: #111111;
+    background-color: #ffffff;
     z-index: -1;
 `;
 
@@ -22,7 +22,8 @@ export const BackgroundFilter = styled.div`
     bottom: -50%;
     width: 200%;
     height: 200vh;
-    background: transparent url('/images/bg/noise-transparent.png') repeat 0 0;
+    background: transparent url('/images/bg/noise-transparent.png') 0 0 repeat;
+    background-color: black;
     background-repeat: repeat;
     animation: bg-animation .2s infinite;
     opacity: .9;
@@ -64,6 +65,15 @@ export const Title = styled.div`
     }
 `;
 
+export const Tags = styled.p`
+    display: none;
+    height: 20%;
+    width: 80%;
+    font-weight: 600;
+    color: #e8e8e8;
+    position: absolute;
+`;
+
 export const ProjectsContainer = styled.div`
     display: flex;
     flex-direction: row;
@@ -77,10 +87,19 @@ export const ProjectTitle = styled.p`
     color: #e8e8e8;
 `;
 
+export const StyledImage = styled.img`
+    width: 95%;
+    height: 75%;
+    margin-top: 5%;
+    border-radius: 3px;
+`;
+
 // color: #e8e6e3;
 // color: #131516;
 
 export const ProjectThumb = styled.div`
+    pointer-events: all;
+    transform-style: preserve-3d;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -89,29 +108,22 @@ export const ProjectThumb = styled.div`
     margin-left: 1rem;
     margin-right: 1rem;
     margin-top: 2rem;
-    border-radius: 3px;
+    border-radius: 6px;
+    background-color: rgb(78 120 160 / 10%);
 
     @media(max-width: 768px) {
         width: 100%;
         padding: 1rem;
     }
 
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 5px, rgb(0 0 0 / 39%) 0px 1px 20px 8px;
     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+`;
 
-    &:hover {
-        box-shadow: rgb(255 255 255 / 25%) 0px 14px 28px 20px, rgb(255 255 255 / 22%) 0px 2px 20px 10px;
-        background-color: white;
-    }
+export const ProjectThumbContainer = styled.div`
+    display: flex;
 
-    &:hover {
-        ${ProjectTitle} {
-            color: #131516;
-        }
-        animation: eh 0.5s ease infinite;
-    }
-
-    @keyframes eh {
+    @keyframes cursorAnimation {
         0%{
           cursor: url("/images/cursor/1.png"), auto;
         }
@@ -127,16 +139,51 @@ export const ProjectThumb = styled.div`
         100%{
           cursor: url("/images/cursor/5.png"), auto;
         }
-      }
+    }
+
+    &:hover {
+        animation: cursorAnimation 0.5s ease infinite;
+
+        ${ProjectThumb} {
+            box-shadow: rgb(255 255 255 / 25%) 0px 14px 28px 20px, rgb(255 255 255 / 22%) 0px 2px 20px 10px;
+            transform: rotateY(208deg) rotateX(148deg) !important;
+        }
+
+        ${ProjectTitle} {
+            transform: rotateY(215deg) rotateX(160deg) RotateZ(18deg) translate(-10px,130px) !important;
+            font-size: larger;
+            margin: 12px;
+            color: white;
+            text-shadow: 0 0 50px white;
+        }
+
+        ${StyledImage} {
+            transform: rotateY(185deg) rotateX(150deg) rotateZ(3deg) translate(0px,-135px) !important;
+            box-shadow: rgb(255 255 255 / 0.5) 0px 0px 32px;
+        }
+
+        ${Tags} {
+            display: block;
+            transform: rotateY(215deg) rotateX(160deg) RotateZ(18deg) translate(40px,85px) !important;
+        }
+
+        @media(max-width:768px) {
+            ${ProjectTitle} {
+                transform: rotateY(215deg) rotateX(160deg) RotateZ(18deg) translate(5px,100px) !important;
+            }
+
+            ${StyledImage} {
+                transform: rotateY(191deg) rotateX(150deg) rotateZ(6deg) translate(0px,-125px) !important;
+            }
+
+            ${Tags} {
+                transform: rotateY(215deg) rotateX(160deg) RotateZ(18deg) translate(25px,75px) !important;
+            }
+        }
+    }
 `;
 
 // box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-
-export const StyledImage = styled.img`
-    width: 95%;
-    height: 75%;
-    margin-top: 5%;
-`;
 
 export const AllProjects = styled.div`
     display: flex;

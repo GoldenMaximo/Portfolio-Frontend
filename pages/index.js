@@ -43,7 +43,8 @@ export async function getStaticProps() {
                         slug,
                         title,
                         thumbUrl,
-                        isMobile
+                        isMobile,
+                        techStack
                     }
                 }
             }

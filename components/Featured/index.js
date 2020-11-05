@@ -33,16 +33,12 @@ export const Featured = React.forwardRef(({ projects }, projectsContainerRef) =>
                     toggleActions: 'play none none reverse'
                 }
             });
-            gsap.fromTo(elemRefs.map(e => e.current), {
+            gsap.from(elemRefs.map(e => e.current), {
                 duration: 0.5,
                 opacity: 0,
                 x: 0,
-                y: -100
-            }, {
-                duration: 0.5,
-                opacity: 1,
-                x: 0,
-                y: 0,
+                y: -100,
+                pointerEvents: 'none',
                 stagger: {
                     amount: 0.5
                 },
@@ -93,13 +89,28 @@ export const Featured = React.forwardRef(({ projects }, projectsContainerRef) =>
                             return;
                         }
                         if (i > 6) return;
+
+                        project.techStack.length = 4;
+                        let formattedTechStack = project.techStack.join(' / ').trim();
+                        if (formattedTechStack.charAt(formattedTechStack.length-1) === '/') {
+                            formattedTechStack = formattedTechStack.substr(0, formattedTechStack.length - 1 ).trim();
+                        }
                         return (
-                            <S.ProjectThumb onClick={event => projectCardClickHandler(event, project.slug)} key={project.slug} ref={elemRefs[i]}>
-                                <S.StyledImage src={project.thumbUrl}/>
-                                <S.ProjectTitle>
-                                    {project.title}
-                                </S.ProjectTitle>
-                            </S.ProjectThumb>
+                            <S.ProjectThumbContainer key={project.slug}>
+                                <S.ProjectThumb
+                                //   onMouseMove={event => mousemoveHandler(event)}
+                                    onClick={event => projectCardClickHandler(event, project.slug)}
+                                    ref={elemRefs[i]}
+                                >
+                                    <S.StyledImage src={project.thumbUrl}/>
+                                    <S.ProjectTitle>
+                                        {project.title}
+                                    </S.ProjectTitle>
+                                    <S.Tags>
+                                        [&nbsp;{formattedTechStack}...&nbsp;]
+                                    </S.Tags>
+                                </S.ProjectThumb>
+                            </S.ProjectThumbContainer>
                         );
                     })
                 }
@@ -117,7 +128,8 @@ Featured.propTypes = {
     projects: PropTypes.arrayOf(PropTypes.shape({
         _id: PropTypes.string,
         thumbUrl: PropTypes.string,
-        isMobile: PropTypes.bool
+        isMobile: PropTypes.bool,
+        techStack: PropTypes.arrayOf(PropTypes.string)
     })),
 };
 
