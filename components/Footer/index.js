@@ -15,12 +15,51 @@ const currentYear = new Date().getUTCFullYear();
 export const Footer = () => {
     const copyright = useRef(null);
     const builtBy = useRef(null);
+    const svgIcons = useRef(null);
     const copyrightContainer = useRef(null);
+    const githubIcon = useRef(null);
+    const linkedinIcon = useRef(null);
     const [isMobile, setIsMobile] = useState(false);
     const [solvedCaptcha, setSolvedCaptcha] = useState(false);
 
     useEffect(() => {
         setIsMobile(isMobileCheck());
+    }, []);
+
+    useEffect(() => {
+        const timeline = gsap.timeline({
+            scrollTrigger: {
+                trigger: svgIcons.current,
+                start: 'bottom bottom',
+                toggleActions: 'play none none reverse'
+            }
+        });
+
+        timeline.add(gsap.fromTo([...svgIcons.current.children].map(e => [...e.children]).flat(), {
+            x: 0,
+            y: '-1rem',
+            rotateY: '540deg',
+            transformStyle: 'preserve-3d',
+            opacity: 0,
+        }, {
+            x: 0,
+            y: 0,
+            opacity: 1,
+            rotateY: '0deg',
+            transformStyle: 'preserve-3d',
+            duration: 0.5,
+            stagger: {
+                amount: 1
+            },
+        }));
+        timeline.add(gsap.from([githubIcon.current, linkedinIcon.current], {
+            opacity: 0,
+            duration: 0.5,
+            y: '-1rem',
+            stagger: {
+                amount: 0.250
+            }
+        }));
     }, []);
 
     useEffect(() => {
@@ -105,12 +144,12 @@ export const Footer = () => {
 
                 <S.subContainerMiddle>
                     <h3>Powered by</h3>
-                    <div>
+                    <div ref={svgIcons}>
                         <a target="_blank" rel="noopener noreferrer" href="https://reactjs.org/">
                             <SiReact color="#61DAFB" />
                         </a>
                         <a target="_blank" rel="noopener noreferrer" href="https://nextjs.org/">
-                            <SiNextDotJs color="#000000" />
+                            <SiNextDotJs color="#e8e6e3" />
                         </a>
                         <a target="_blank" rel="noopener noreferrer" href="https://nodejs.org/en/">
                             <SiNodeDotJs color="#339933" />
@@ -128,12 +167,12 @@ export const Footer = () => {
                     <h3>Social Media</h3>
                     <S.clickable>
                         <S.highLightIcon iconColor="#ffffff" dropShadow>
-                            <a target="_blank" rel="noopener noreferrer" href="https://github.com/GoldenMaximo">
+                            <a ref={githubIcon} target="_blank" rel="noopener noreferrer" href="https://github.com/GoldenMaximo">
                                 <FaGithubSquare />
                             </a>
                         </S.highLightIcon>
                         <S.highLightIcon iconColor="#0077B5" dropShadow>
-                            <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/gustavo-maximo-filho">
+                            <a ref={linkedinIcon} target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/gustavo-maximo-filho">
                                 <FaLinkedin />
                             </a>
                         </S.highLightIcon>
