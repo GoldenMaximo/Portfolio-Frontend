@@ -2,14 +2,15 @@ import  styled from 'styled-components';
 
 export const Container = styled.div`
     z-index: 2;
-    height: 2.8rem;
+    height: 3rem;
     width: 100%;
     position: fixed;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    background-color: ${props => props.home ? 'transparent' : '#1c1f20'};
+    background-color: ${props => props.home ? 'transparent' : 'rgb(28 31 32 / 0.80)'};
+    backdrop-filter: blur(1px);
 
     @media(max-width: 768px) {
         height: 3rem;
