@@ -54,6 +54,7 @@ export const SubContainerMiddle = styled.div`
         opacity: 0.9;
         cursor: pointer;
         color: white;
+        text-shadow: 0 0 20px white;
     }
 
     a:after {
@@ -118,6 +119,7 @@ export const SubContainerRight = styled.div`
         opacity: 0.9;
         cursor: pointer;
         color: white;
+        filter: drop-shadow(0px 0px 3px #ffffff);
     }
 
     a:after {
