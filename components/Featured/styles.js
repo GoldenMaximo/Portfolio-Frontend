@@ -181,6 +181,21 @@ export const ProjectThumbContainer = styled.div`
             }
         }
     }
+
+    &:active {
+        ${ProjectThumb} {
+            box-shadow: rgba(255, 255, 255, 0.25) 0px 0px 28px 20px, rgba(255, 255, 255, 0.22) 0px 2px 200px 10px;
+            transform: rotateY(208deg) rotateX(148deg) translate(-20px,150px) !important;
+        }
+    }
+`;
+
+export const PreventHoverOverlay = styled.div`
+    width: 100%;
+    min-height: 120vh;
+    z-index: 1;
+    position: absolute;
+    display: none;
 `;
 
 // box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);

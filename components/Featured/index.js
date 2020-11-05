@@ -13,6 +13,8 @@ gsap.registerPlugin(ScrollTrigger);
 export const Featured = React.forwardRef(({ projects }, projectsContainerRef) => {
     const [elemRefs, setElemRefs] = useState([]);
     const [windowWidth, setWindowWidth] = useState(0);
+    const preventHoverOverlay = useRef(null);
+    const allProjectsButton = useRef(null);
     const title = useRef(null);
     const router = useRouter();
 
@@ -38,7 +40,6 @@ export const Featured = React.forwardRef(({ projects }, projectsContainerRef) =>
                 opacity: 0,
                 x: 0,
                 y: -100,
-                pointerEvents: 'none',
                 stagger: {
                     amount: 0.5
                 },
@@ -48,6 +49,21 @@ export const Featured = React.forwardRef(({ projects }, projectsContainerRef) =>
                     start: 'top center',
                     toggleActions: 'play none none reverse'
                 }
+            });
+            gsap.from(preventHoverOverlay.current, {
+                display: 'block',
+                delay: 1.5,
+                scrollTrigger: {
+                    trigger: projectsContainerRef.current,
+                    start: 'top center',
+                    toggleActions: 'play none none reverse'
+                }
+            });
+            gsap.from(allProjectsButton.current, {
+                textShadow: '0px 0px 30px white',
+                repeat: -1,
+                delay: 0,
+                duration: 3.5
             });
         }
     }, [elemRefs.length]);
@@ -59,13 +75,6 @@ export const Featured = React.forwardRef(({ projects }, projectsContainerRef) =>
     }, [projects.length]);
 
     const projectCardClickHandler = (event, slug) => {
-        gsap.to(event.currentTarget, {
-            duration: 0.5,
-            opacity: 0,
-            x: 0,
-            y: -100
-        });
-
         navigateWithTransition(router, `/projects/${slug}`);
     };
 
@@ -75,6 +84,7 @@ export const Featured = React.forwardRef(({ projects }, projectsContainerRef) =>
 
     return (
         <DS.Container>
+            <S.PreventHoverOverlay ref={preventHoverOverlay} />
             <S.Background>
                 <S.BackgroundFilter />
             </S.Background>
@@ -115,7 +125,7 @@ export const Featured = React.forwardRef(({ projects }, projectsContainerRef) =>
                     })
                 }
             </S.ProjectsContainer>
-            <S.AllProjects onClick={allProjectsClickHandler}>
+            <S.AllProjects onClick={allProjectsClickHandler} ref={allProjectsButton}>
                 <h3>ALL PROJECTS →</h3>
             </S.AllProjects>
         </DS.Container>
