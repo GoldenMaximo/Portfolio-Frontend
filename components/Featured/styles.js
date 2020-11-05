@@ -145,7 +145,7 @@ export const ProjectThumbContainer = styled.div`
         animation: cursorAnimation 0.5s ease infinite;
 
         ${ProjectThumb} {
-            box-shadow: rgb(255 255 255 / 25%) 0px 14px 28px 20px, rgb(255 255 255 / 22%) 0px 2px 20px 10px;
+            box-shadow: rgba(255, 255, 255, 0.25) 0px 0px 28px 20px, rgba(255, 255, 255, 0.22) 0px 2px 200px 10px;
             transform: rotateY(208deg) rotateX(148deg) !important;
         }
 
@@ -159,7 +159,7 @@ export const ProjectThumbContainer = styled.div`
 
         ${StyledImage} {
             transform: rotateY(185deg) rotateX(150deg) rotateZ(3deg) translate(0px,-135px) !important;
-            box-shadow: rgb(255 255 255 / 0.5) 0px 0px 32px;
+            box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
         }
 
         ${Tags} {
@@ -195,6 +195,7 @@ export const AllProjects = styled.div`
     -webkit-tap-highlight-color: transparent;
 
     h3 {
+        transition: all 0.3s cubic-bezier(.25,.8,.25,1);
         display: contents;
         padding: 2rem;
         font-style: italic;
