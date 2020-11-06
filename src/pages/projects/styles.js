@@ -14,11 +14,12 @@ export const Tags = styled.div`
 
 export const TagButton = styled.p`
     transition: all 0.4s cubic-bezier(.25,.8,.25,1);
+    text-shadow: 0px 0px 12px rgb(0 0 0 / 0.5), 0px 0px 25px rgb(0 0 0 / 0.5);
 
     &:hover {
         cursor: pointer;
 
-        text-shadow: 0px 0px 12px #000000;
+        text-shadow: 0px 0px 12px #000000, 0px 0px 45px #000000;
     }
 `;
 
@@ -64,6 +65,7 @@ export const ProjectInfo = styled.div`
     padding: 16px;
     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
     box-sizing: border-box;
+    border-radius: 2px;
 
     h3 {
         font-size: 1em;
@@ -80,6 +82,17 @@ export const ProjectInfo = styled.div`
         font-family: -apple-system,BlinkMacSystemFont,Segoe UI;
         padding: 0;
     }
+`;
+
+export const ProjectImage = styled.div`
+    background: #fffbfa;
+    width: 252px;
+    height: 142px;
+    margin-right: 70px;
+    position: relative;
+    border-radius: 3px;
+    box-shadow: -12px 5px 4px rgba(0,0,0,0.1), -12px 5px 30px rgba(0,0,0,0.1);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 `;
 
 export const ProjectThumb = styled.div`
@@ -101,15 +114,11 @@ export const ProjectThumb = styled.div`
             box-shadow: -12px -12px 4px 0 rgba(0,0,0,.5);
             height: 232px;
         }
-    }
-`;
 
-export const ProjectImage = styled.div`
-    background: #fffbfa;
-    width: 252px;
-    height: 142px;
-    margin-right: 70px;
-    position: relative;
+        ${ProjectImage} {
+            box-shadow: -12px -12px 4px rgba(0,0,0,0.1), -12px -12px 30px rgba(0,0,0,0.1);
+        }
+    }
 `;
 
 // box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
@@ -121,15 +130,17 @@ export const StyledImage = styled.img`
 `;
 
 export const ResetFiltersBtn = styled.button`
+    color: whitesmoke;
     font-style: italic;
     font-weight: bold;
-    text-shadow: 0 0 6px #ffffff80;
-    background-color: #ffffff33;
+    text-shadow: 0 0 6px #00000080;
+    background-color: #ffffff00;
     padding: 0.5rem;
     border-radius: 0.2rem;
-    border: 1px solid #0000004d;
+    border: 1px solid rgb(255 255 255 / 0.5);
     cursor: pointer;
     z-index: 1;
+    backdrop-filter: blur(2px);
 
     transition: all 0.4s cubic-bezier(.25,.8,.25,1);
 
@@ -137,10 +148,10 @@ export const ResetFiltersBtn = styled.button`
         outline: none;
     }
 
-    box-shadow: 0px 0px 20px 0px #ffffff1a;
+    box-shadow: 0px 0px 20px 0px #0000001a;
 
     &:hover {
-        box-shadow: 0px 0px 20px 0px #ffffff99, inset 0 0 20px 0px rgb(255 255 255 / 0.4);
+        box-shadow: 0px 0px 12px 1px rgb(0 0 0 / 0.2), inset 0 0 90px 0px rgb(0 0 0 / 0.2);
     }
 
     &:active {
