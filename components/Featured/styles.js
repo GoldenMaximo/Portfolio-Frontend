@@ -117,7 +117,7 @@ export const ProjectThumb = styled.div`
     }
 
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 5px, rgb(0 0 0 / 39%) 0px 1px 20px 8px;
-    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    transition: all 0.5s cubic-bezier(.25,.8,.25,1);
 `;
 
 export const ProjectThumbContainer = styled.div`
@@ -182,11 +182,15 @@ export const ProjectThumbContainer = styled.div`
         }
     }
 
+    opacity: 1;
     &:active {
+        transition: all 0.1s ease;
         ${ProjectThumb} {
             box-shadow: rgba(255, 255, 255, 0.25) 0px 0px 28px 20px, rgba(255, 255, 255, 0.22) 0px 2px 200px 10px;
-            transform: rotateY(208deg) rotateX(148deg) translate(-20px,150px) !important;
+            transform: rotateY(208deg) rotateX(148deg) translate(-20px,100px) !important;
+            transition: all 0.1s ease;
         }
+        opacity: 0;
     }
 `;
 
@@ -210,7 +214,7 @@ export const AllProjects = styled.div`
     -webkit-tap-highlight-color: transparent;
 
     h3 {
-        transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+        transition: all 0.5s cubic-bezier(.25,.8,.25,1);
         display: contents;
         padding: 2rem;
         font-style: italic;
