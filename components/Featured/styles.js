@@ -184,13 +184,9 @@ export const ProjectThumbContainer = styled.div`
 
     opacity: 1;
     &:active {
-        transition: all 0.1s ease;
         ${ProjectThumb} {
-            box-shadow: rgba(255, 255, 255, 0.25) 0px 0px 28px 20px, rgba(255, 255, 255, 0.22) 0px 2px 200px 10px;
-            transform: rotateY(208deg) rotateX(148deg) translate(-20px,100px) !important;
-            transition: all 0.1s ease;
+            box-shadow: rgba(255, 255, 255, 1) 0px 0px 28px 20px, rgba(255, 255, 255, 1) 0px 2px 200px 10px;
         }
-        opacity: 0;
     }
 `;
 

@@ -106,12 +106,8 @@ export const Featured = React.forwardRef(({ projects }, projectsContainerRef) =>
                             formattedTechStack = formattedTechStack.substr(0, formattedTechStack.length - 1 ).trim();
                         }
                         return (
-                            <S.ProjectThumbContainer key={project.slug}>
-                                <S.ProjectThumb
-                                //   onMouseMove={event => mousemoveHandler(event)}
-                                    onClick={event => projectCardClickHandler(event, project.slug)}
-                                    ref={elemRefs[i]}
-                                >
+                            <S.ProjectThumbContainer key={project.slug} onClick={event => projectCardClickHandler(event, project.slug)}>
+                                <S.ProjectThumb ref={elemRefs[i]}>
                                     <S.StyledImage src={project.thumbUrl}/>
                                     <S.ProjectTitle>
                                         {project.title}
