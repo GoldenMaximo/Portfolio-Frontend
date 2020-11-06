@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import styles from './styles.module.css';
 import PropTypes from 'prop-types';
+import { CookiesNotice } from '../CookiesNotice';
 
 export const Layout = ({ children, title }) => {
     return (
@@ -18,6 +19,7 @@ export const Layout = ({ children, title }) => {
             <div className={styles.wrap}>
                 {children}
             </div>
+            <CookiesNotice />
         </>
     );
 };
