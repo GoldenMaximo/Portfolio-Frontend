@@ -7,16 +7,11 @@ export const StyledSection = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-image: url('/intro.jpg');
-
-    p {
-        color: white;
-    }
 
     a {
+        background-color: #00000080;
         border-radius: 0;
         font-size: 0.875rem;
-        background-color: transparent;
         border: 1px solid white;
         box-sizing: border-box;
         color: white;
@@ -47,5 +42,30 @@ export const StyledSection = styled.div`
 
     a:active {
         box-shadow: 0 0 20px 12px rgb(0 0 0 / 20%), inset 0 0 20px 16px hsl(0deg 0% 0%);
+    }
+`;
+
+export const NameContainer = styled.div`
+    background-color: hsl(0deg 0% 0% / 50%);
+    border: 1px solid white;
+    margin: 1rem;
+    backdrop-filter: blur(1px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+`;
+
+export const Name = styled.p`
+    color: #f3f3f3;
+    font-size: 6rem;
+    font-family: 'Poiret One', cursive;
+    text-shadow: 0px 0px 13px #ffffff;
+    transform: translate(0px, 0px);
+    opacity: 1;
+    margin: 0;
+
+    @media(max-width: 768px) {
+        font-size: 2.5rem;
     }
 `;

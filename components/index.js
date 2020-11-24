@@ -8,3 +8,4 @@ export { ConnectingDots } from './ConnectingDots';
 export { Search } from './Search';
 export { ScrollDownIcon } from './ScrollDownIcon';
 export { SkillOrb } from './SkillOrb';
+export { ParticleStream } from './ParticleStream';

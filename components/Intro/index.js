@@ -2,6 +2,7 @@ import { createRef, useEffect } from 'react';
 import gsap from 'gsap';
 import * as S from './styles';
 import PropTypes from 'prop-types';
+import { ParticleStream } from '../ParticleStream';
 
 
 export const Intro = ({ onClick }) => {
@@ -36,7 +37,10 @@ export const Intro = ({ onClick }) => {
 
     return (
         <S.StyledSection>
-            <p ref={title}>GUSTAVO MÁXIMO</p>
+            <ParticleStream />
+            <S.NameContainer>
+                <S.Name ref={title}>Gustavo Máximo</S.Name>
+            </S.NameContainer>
             <a ref={button} onClick={onClick}>Projects</a>
         </S.StyledSection>
     );
