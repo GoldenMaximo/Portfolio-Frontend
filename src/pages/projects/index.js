@@ -6,7 +6,6 @@ import * as S from './styles';
 import * as DS from '../../../components/default-styled-components';
 import { useRouter } from 'next/router';
 import gsap from 'gsap';
-import ReactTooltip from 'react-tooltip';
 import { navigateWithTransition } from '../../../util/utilFuncs';
 
 const Projects = ({ projects }) => {
@@ -76,7 +75,6 @@ const Projects = ({ projects }) => {
     return (
         <>
             <Nav />
-            <ReactTooltip uuid="tooltip" type="dark" />
             <Layout title={'Gustavo Máximo\'s Projects'}>
                 <DS.Container bgColor='#759398' ref={containerRef}>
 

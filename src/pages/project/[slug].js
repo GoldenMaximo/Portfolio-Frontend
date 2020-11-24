@@ -8,7 +8,6 @@ import { FaTags } from 'react-icons/fa';
 import { SiGithub } from 'react-icons/si';
 import gsap from 'gsap';
 import * as DS from '../../../components/default-styled-components';
-import ReactTooltip from 'react-tooltip';
 import { useRouter } from 'next/router';
 import { navigateWithTransition } from '../../../util/utilFuncs';
 
@@ -80,7 +79,6 @@ export default function Project({ project }) {
     return (
         <>
             <Nav />
-            <ReactTooltip uuid="tooltip" type="light" />
             {
                 openSwiper && (
                     <ImageSwiper

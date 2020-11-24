@@ -4,7 +4,6 @@ import { Layout, Nav, Footer, ScrollDownIcon, SkillOrb } from '../../../componen
 import * as S from './styles';
 import * as DS from '../../../components/default-styled-components';
 import gsap, { Power3 } from 'gsap';
-import ReactTooltip from 'react-tooltip';
 import { isMobileCheck } from '../../../util/utilFuncs';
 
 const About = () => {
@@ -114,8 +113,6 @@ const About = () => {
         <>
 
             <Nav />
-            {/* TODO: refactor tooltip usage on components, instantiate once, then pass vars on type */}
-            <ReactTooltip uuid="tooltip" type="light" />
             <Layout title='About Gustavo Máximo'>
 
                 <DS.Container>

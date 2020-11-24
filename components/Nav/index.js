@@ -7,23 +7,17 @@ import gsap from 'gsap';
 import { TextPlugin } from 'gsap/dist/TextPlugin';
 import { useRouter } from 'next/router';
 import ReactTooltip from 'react-tooltip';
-import { isMobileCheck, navigateWithTransition } from '../../util/utilFuncs';
+import { navigateWithTransition } from '../../util/utilFuncs';
 import { Search } from '../Search';
-
 
 gsap.registerPlugin(TextPlugin);
 
 export const Nav = ({ home }) => {
     const name = useRef(null);
     const [showSearch, setShowSearch] = useState(false);
-    const [isMobile, setIsMobile] = useState(false);
     const [message, setMessage] = useState('This button goes to the Home page, you\'re alerady here so it doesn\'t do anything I guess');
     const [alternateDesc, setAlternateDesc] = useState(false);
     const router = useRouter();
-
-    useEffect(() => {
-        setIsMobile(isMobileCheck());
-    }, []);
 
     useEffect(() => {
         // Alternates messages on the GM logo
@@ -89,10 +83,6 @@ export const Nav = ({ home }) => {
 
     return (
         <>
-            {!isMobile && (
-                <ReactTooltip uuid="tooltip" type="light" />
-            )}
-
             {showSearch && (
                 <Search onClose={() => setShowSearch(false)} />
             )}
@@ -103,7 +93,7 @@ export const Nav = ({ home }) => {
                     onClick={homeOnClickHandler}
                     onMouseEnter={homeOnMouseEnterHandler}
                     onMouseLeave={homeOnMouseLeaveHandler}
-                    data-tip={home ? message : ''}
+                    data-tip={home ? message : 'Go Back Home'}
                     key={alternateDesc ? message : message}
                 >
                     <h3 ref={name}>

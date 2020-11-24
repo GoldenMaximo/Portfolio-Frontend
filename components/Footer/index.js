@@ -3,14 +3,12 @@ import * as S from './styles';
 import { FaWhatsappSquare, FaEnvelopeSquare, FaGithubSquare, FaLinkedin } from 'react-icons/fa';
 import { SiReact, SiNodeDotJs, SiGraphql, SiNextDotJs, SiMongodb } from 'react-icons/si';
 import { toast, ToastContainer } from 'react-toastify';
-import ReactToolip from 'react-tooltip';
 import { isMobileCheck } from '../../util/utilFuncs';
 import ReCAPTCHA from 'react-google-recaptcha';
 import gsap, { Linear } from 'gsap';
 
 
 const currentYear = new Date().getUTCFullYear();
-// heh John Oliver
 
 export const Footer = () => {
     const copyright = useRef(null);
@@ -105,7 +103,6 @@ export const Footer = () => {
     return (
         <Fragment>
             <ToastContainer />
-            <ReactToolip uuid="tooltip" type="light" />
 
             <S.container>
                 <S.subContainerLeft>

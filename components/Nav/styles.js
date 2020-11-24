@@ -29,6 +29,7 @@ export const SubContainerLeft = styled.div`
         color: ${props => props.home ? 'white' : '#e8e6e3'};
         cursor: pointer;
         transition: all 0.1s ease-out;
+        box-shadow: 0 0 black, 0 0 black;
     }
 
     h3:hover {
