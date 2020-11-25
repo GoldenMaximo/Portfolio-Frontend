@@ -17,12 +17,15 @@
 - [react-tooltip](https://github.com/wwayne/react-tooltip#readme) - Tooltip tool
 - [swiper](https://swiperjs.com/) - Touch slider
 - [TagCanvas](https://www.goat1000.com/tagcanvas.php) - Tags Sphere
+- [THREE.js](https://threejs.org/) - 3D library
+- [THREE.BAS](https://github.com/zadvorsky/three.bas) - Buffer Animation System for THREE.js
 
 ## Inspirations and resources
 
 - [TeamSESH's Merch Website](https://teamsesh.bigcartel.com/) - Overall design and layout idea
-- [Connecting Dots pen](https://codepen.io/LeonGr/pen/yginI) - Projects page background animation
+- [Connecting Dots pen](https://codepen.io/LeonGr/pen/yginI) - Projects page background animation (Thanks to [Joseph](https://github.com/josepholiveira) for helping me make it work with React)
 - [Simple arrow animation pen](https://codepen.io/LeonGr/pen/yginI) - About "scroll down" arrow animation
+- [Particle Stream pen](https://codepen.io/zadvorsky/pen/qOYqGv) - Intro animation base (Massive thanks to [Zadvornykh](https://github.com/zadvorsky/) - Check him out!)
 
 ## DEMO
 
