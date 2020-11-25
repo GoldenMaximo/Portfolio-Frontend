@@ -52,10 +52,12 @@ const sharedSubContainerStyles = css`
     align-items: center;
 
     height: 100%;
-    padding-left: 2rem;
-    padding-top: 1rem;
-    padding-right: 2rem;
-    padding-bottom: 1rem;
+    padding: 0.5rem 2rem;
+    padding-bottom: 0;
+
+    @media(max-width: 768px) {
+        padding: 1rem 2rem;
+    }
 `;
 
 export const subContainerMiddle = styled.div`
