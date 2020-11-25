@@ -128,7 +128,7 @@ const About = () => {
                             <p>I&apos;m currently located in Jundiaí, Brazil, but <strong>remote work has always been a part of my career.</strong></p>
                             <p>I like to solve difficult problems and flex logic like it&apos;s a muscle. No pain no gain.</p>
                             <p>I&apos;ve worked on projects ranging from ERPs to full-blown mobile and web applications. <strong>B2B, B2C and C2C.</strong></p>
-                            <p>My prefered method of working is <strong>Agile & SCRUM.</strong> But I&apos;m well familiarized with Kanban and Waterfall.</p>
+                            <p>My preferred method of working is <strong>Agile & SCRUM.</strong> But I&apos;m well familiarized with Kanban and Waterfall.</p>
                         </S.Description>
                     </S.Section>
 
