@@ -10,6 +10,7 @@ export const StyledSection = styled.div`
 `;
 
 export const NameContainer = styled.div`
+    pointer-events: none;
     background-color: #00000080;
     border: 1px solid white;
     margin: 1rem;
