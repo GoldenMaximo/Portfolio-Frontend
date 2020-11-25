@@ -6,42 +6,25 @@ import { ParticleStream } from '../ParticleStream';
 
 
 export const Intro = ({ onClick }) => {
-    const title = createRef();
-    const button = createRef();
-
-    const btnAnim = () => {
-        gsap.fromTo(button.current, {
-            css: {
-                backgroundImage: 'linear-gradient(1080deg, rgb(159 69 9 / 85%), transparent)',
-            }
-        }, {
-            delay: 0.5,
-            duration: 5,
-            css: {
-                backgroundImage: 'linear-gradient(0deg, rgb(159 69 9 / 0%), transparent)',
-            }
-        });
-    };
+    const name = createRef();
 
     useEffect(() => {
-        gsap.from(title.current, {
+        gsap.from(name.current, {
             delay: 0.2,
             duration: 1,
             opacity: 0,
             x: 0,
             y: -50
         });
-
-        btnAnim();
     }, []);
 
     return (
         <S.StyledSection>
             <ParticleStream />
             <S.NameContainer>
-                <S.Name ref={title}>Gustavo Máximo</S.Name>
+                <S.Name ref={name}>Gustavo Máximo</S.Name>
             </S.NameContainer>
-            <a ref={button} onClick={onClick}>Projects</a>
+            <S.Discover onClick={onClick}>Discover</S.Discover>
         </S.StyledSection>
     );
 };
