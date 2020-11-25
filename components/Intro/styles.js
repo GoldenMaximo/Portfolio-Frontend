@@ -19,6 +19,7 @@ export const NameContainer = styled.div`
     align-items: center;
     justify-content: center;
     padding: 1.5rem;
+    z-index: 1;
 `;
 
 export const Name = styled.p`
@@ -45,6 +46,7 @@ export const Discover = styled.a`
     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
     box-shadow: 0 0 20px 12px rgb(255 255 255 / 0.05), inset 0 0 20px 0px hsl(0 0% 100% / 0.1);
     backdrop-filter: blur(2px);
+    z-index: 1;
 
     @media(max-width: 768px) {
         box-shadow: 0 0 20px 12px rgb(255 255 255 / 0.1), inset 0 0 20px 0px hsl(0 0% 100% / 0.2);
