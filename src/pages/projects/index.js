@@ -6,12 +6,14 @@ import * as S from './styles';
 import * as DS from '../../../components/default-styled-components';
 import { useRouter } from 'next/router';
 import gsap from 'gsap';
+import { FaTags } from 'react-icons/fa';
 import { navigateWithTransition } from '../../../util/utilFuncs';
 
 const Projects = ({ projects }) => {
     const router = useRouter();
     const containerRef = useRef();
     const [containerHeight, setContainerHeight] = useState(0);
+    const [showAllTags, setShowAllTags] = useState(false);
 
     const formatFilterTags = arr => [...new Set(arr.map(e => e.techStack).flatMap(e => e))];
 
@@ -72,6 +74,13 @@ const Projects = ({ projects }) => {
 
     const tagClickHandler = event => navigateWithTransition(router, `/projects?search=${event.currentTarget.innerText}`);
 
+    const showTagsHandler = () => {
+        if (showAllTags) {
+            return setShowAllTags(false);
+        }
+        setShowAllTags(true);
+    };
+
     return (
         <>
             <Nav />
@@ -82,8 +91,17 @@ const Projects = ({ projects }) => {
 
                     <DS.Title light shadow>PROJECTS</DS.Title>
 
+                    <S.TagsTitleContainer>
+                        <S.TagsTitle>Filter{router.query.search && 'ed'} Tags&nbsp;</S.TagsTitle>
+                        <FaTags />
+                    </S.TagsTitleContainer>
+
                     <S.Tags>
                         {filterTags && filterTags.map((element, i) => {
+                            if (!router.query.search && !showAllTags) {
+                                if (i > 11) return;
+                                if (i > 10) return <p key={i}>...</p>;
+                            }
                             return (
                                 <Fragment key={i}>
                                     <S.TagButton onClick={tagClickHandler}>{element}</S.TagButton>
@@ -93,8 +111,10 @@ const Projects = ({ projects }) => {
                         })}
                     </S.Tags>
 
-                    {router.query.search && (
-                        <S.ResetFiltersBtn onClick={resetFiltersClickHandler}>Reset Filters</S.ResetFiltersBtn>
+                    {router.query.search ? (
+                        <S.FiltersBtn onClick={resetFiltersClickHandler}>Reset Filters</S.FiltersBtn>
+                    ) : (
+                        <S.FiltersBtn onClick={showTagsHandler}>Show {showAllTags ? 'less' : 'more'}</S.FiltersBtn>
                     )}
 
                     <S.ProjectsGallery>

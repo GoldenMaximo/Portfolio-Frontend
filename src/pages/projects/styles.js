@@ -14,12 +14,12 @@ export const Tags = styled.div`
 
 export const TagButton = styled.p`
     transition: all 0.4s cubic-bezier(.25,.8,.25,1);
-    text-shadow: 0px 0px 12px rgb(0 0 0 / 0.5), 0px 0px 25px rgb(0 0 0 / 0.5);
+    text-shadow: 0px 0px 1px rgb(0 0 0 / 0.5), 0px 0px 20px rgb(0 0 0 / 0.5);
 
     &:hover {
         cursor: pointer;
 
-        text-shadow: 0px 0px 12px #000000, 0px 0px 45px #000000;
+        text-shadow: 0px 0px 12px #ffffff80, 0px 0px 45px #ffffff80;
     }
 `;
 
@@ -129,7 +129,7 @@ export const StyledImage = styled.img`
     max-height: 100%;
 `;
 
-export const ResetFiltersBtn = styled.button`
+export const FiltersBtn = styled.button`
     color: whitesmoke;
     font-style: italic;
     font-weight: bold;
@@ -151,10 +151,25 @@ export const ResetFiltersBtn = styled.button`
     box-shadow: 0px 0px 20px 0px #0000001a;
 
     &:hover {
-        box-shadow: 0px 0px 12px 1px rgb(0 0 0 / 0.2), inset 0 0 90px 0px rgb(0 0 0 / 0.2);
+        box-shadow: 0 0 20px 0px #ffffff1a, inset 0 0 8px 0px #ffffff33;
     }
 
     &:active {
         box-shadow: 0px 0px 20px 0px #ffffff1a, inset 0px 0px 20px #00000033;
     }
+`;
+
+export const TagsTitleContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    color: whitesmoke;
+    border-bottom: 1px solid whitesmoke;
+`;
+
+export const TagsTitle = styled.h3`
+    text-shadow: 0px 0px 1px #00000080;
+    color: whitesmoke;
+    margin: 0;
 `;
