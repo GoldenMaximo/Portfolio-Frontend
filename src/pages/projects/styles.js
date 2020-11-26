@@ -13,6 +13,7 @@ export const Tags = styled.div`
 `;
 
 export const TagButton = styled.p`
+    pointer-events: all;
     transition: all 0.4s cubic-bezier(.25,.8,.25,1);
     text-shadow: 0px 0px 1px rgb(0 0 0 / 0.5), 0px 0px 20px rgb(0 0 0 / 0.5);
 
@@ -31,13 +32,13 @@ export const TagDivider = styled.span`
 
 export const ProjectsGallery = styled.div`
     display: flex;
-    width: 75%;
+    width: 100%;
     flex-wrap: wrap;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     margin-bottom: 4rem;
-    margin-top: 2rem;
+    margin-top: 3rem;
 
     @media(max-width: 768px) {
         width: 100%;
@@ -97,16 +98,17 @@ export const ProjectImage = styled.div`
 
 export const ProjectThumb = styled.div`
     position: relative;
-    min-height: 16rem;
+    margin-bottom: 6.5rem;
     background: none;
     width: 16rem;
-    height: 16rem;
+    height: fit-content;
     margin-top: 1rem;
     margin-right: 2rem;
     margin-left: 3rem;
     cursor: pointer;
     outline: none;
     -webkit-tap-highlight-color: transparent;
+    pointer-events: all;
 
     &:hover {
         ${ProjectInfo} {
@@ -130,6 +132,7 @@ export const StyledImage = styled.img`
 `;
 
 export const FiltersBtn = styled.button`
+    pointer-events: all;
     color: whitesmoke;
     font-style: italic;
     font-weight: bold;
@@ -172,4 +175,20 @@ export const TagsTitle = styled.h3`
     text-shadow: 0px 0px 1px #00000080;
     color: whitesmoke;
     margin: 0;
+`;
+
+export const ProjectsContainer = styled.div`
+    pointer-events: none;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.1), inset 0 1px 15px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 80%;
+    border: 1px solid rgb(245 245 245 / 0.5);
+    backdrop-filter: blur(2px);
+    margin-bottom: 4rem;
+    margin-top: 6rem;
+    border-radius: 0.5rem;
+    background-color: rgb(0 0 0 / 10%);
 `;

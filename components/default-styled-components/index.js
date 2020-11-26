@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const Title = styled.h1`
-    margin-top: 8rem;
-    margin-bottom: 5rem;
+    margin-top: ${({ marginTop }) => marginTop ? marginTop : '8rem'};
+    margin-bottom: ${({ marginBottom }) => marginBottom ? marginBottom : '5rem'};
     margin-left: 1rem;
     margin-right: 1rem;
     font-size: 2em;

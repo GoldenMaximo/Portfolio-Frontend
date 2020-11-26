@@ -161,6 +161,7 @@ export const subContainerLeft = styled.div`
 
     ${sharedSubContainerStyles}
 
+    padding-bottom: 0.5rem;
     width: 25%;
 
     h3 {
