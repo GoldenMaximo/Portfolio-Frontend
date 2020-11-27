@@ -186,7 +186,7 @@ export const ProjectsContainer = styled.div`
     justify-content: flex-start;
     width: 80%;
     border: 1px solid rgb(245 245 245 / 0.5);
-    backdrop-filter: blur(2px);
+    backdrop-filter: ${({ isMobile }) => isMobile ? 'none' : 'blur(2px)'};
     margin-bottom: 4rem;
     margin-top: 6rem;
     border-radius: 0.5rem;

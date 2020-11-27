@@ -100,7 +100,7 @@ const Projects = ({ projects }) => {
 
                     <ProjectsBgAnimation height={containerHeight} />
 
-                    <S.ProjectsContainer>
+                    <S.ProjectsContainer isMobile={isMobile}>
 
                         <DS.Title
                             light
