@@ -273,7 +273,7 @@ export const ParticleStream = () => {
 
 
     /////////////////////////////
-    // buffer animation system
+    // buffer animation system - Credits to https://github.com/zadvorsky/
     /////////////////////////////
 
     var BAS = {};
