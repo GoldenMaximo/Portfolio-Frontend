@@ -179,7 +179,7 @@ export const Footer = () => {
             </S.container>
             <S.copyrightContainer ref={copyrightContainer}>
                 <p ref={copyright}>© {currentYear} Gustavo Máximo - All rights reserverd.</p>
-                <span ref={builtBy}>100% Designed and Developed by Gustavo Máximo</span>
+                <span ref={builtBy}>&nbsp;Designed and Developed by Gustavo Máximo</span>
             </S.copyrightContainer>
         </Fragment>
     );
