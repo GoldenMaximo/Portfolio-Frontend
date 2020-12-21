@@ -138,6 +138,3 @@ Featured.propTypes = {
         techStack: PropTypes.arrayOf(PropTypes.string)
     })),
 };
-
-// This gets called on every request
-// This shit not working because its not a page
