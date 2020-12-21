@@ -3,8 +3,8 @@ import { useRef, useEffect, useState } from 'react';
 import { Layout, Nav, Footer, ScrollDownIcon, SkillOrb } from '../../../components';
 import * as S from './styles';
 import * as DS from '../../../components/default-styled-components';
-import gsap, { Power3 } from 'gsap';
 import { isMobileCheck } from '../../../util/utilFuncs';
+import initAnimations from './animations';
 
 const About = () => {
     const [isMobile, setIsMobile] = useState(false);
@@ -47,59 +47,7 @@ const About = () => {
         // Checks if it's mobile
         setIsMobile(isMobileCheck());
 
-        // Animations
-        gsap.fromTo([
-            titleRef.current,
-            photoRef.current,
-            ...descriptionRef.current.children,
-        ], {
-            opacity: 0,
-            x: 0,
-            y: -100
-        }, {
-            duration: 1,
-            opacity: 1,
-            x: 0,
-            y: 0,
-            stagger: {
-                amount: 0.5
-            },
-            delay: 0.5,
-            scrollTrigger: {
-                trigger: descSectionRef.current,
-                toggleActions: 'play reverse play reverse'
-            }
-        });
-
-        gsap.from(scrollDownIconRef.current, {
-            display: 'none',
-            delay: 0,
-            ease: Power3.easeIn,
-            scrollTrigger: {
-                trigger: titleRef.current,
-                toggleActions: 'play reverse reverse reverse'
-            }
-        });
-
-        gsap.fromTo([...skillDescriptionRef.current.children], {
-            opacity: 0,
-            x: 0,
-            y: -100
-        }, {
-            duration: 1,
-            opacity: 1,
-            x: 0,
-            y: 0,
-            stagger: {
-                amount: 0.5
-            },
-            delay: 0.5,
-            scrollTrigger: {
-                trigger: skillDescriptionRef.current,
-                start: 'top center',
-                toggleActions: 'play reverse play reverse'
-            }
-        });
+        initAnimations({ titleRef, photoRef, descriptionRef, descSectionRef, scrollDownIconRef, skillDescriptionRef });
     }, []);
 
     useEffect(() => {

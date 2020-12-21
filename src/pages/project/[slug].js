@@ -6,10 +6,10 @@ import PropTypes from 'prop-types';
 import { MdLaunch } from 'react-icons/md';
 import { FaTags } from 'react-icons/fa';
 import { SiGithub } from 'react-icons/si';
-import gsap from 'gsap';
 import * as DS from '../../../components/default-styled-components';
 import { useRouter } from 'next/router';
 import { navigateWithTransition } from '../../../util/utilFuncs';
+import initAnimations from './animations';
 
 export default function Project({ project }) {
     const [openSwiper, setOpenSwiper] = useState(false);
@@ -25,40 +25,8 @@ export default function Project({ project }) {
         document.body.classList.remove('fadeOut');
     }, [project]);
 
-    // GreenSock animations
     useEffect(() => {
-        gsap.from(titleRef.current, {
-            delay: 0.250,
-            duration: 0.5,
-            opacity: 0,
-            x: 0,
-            y: -100
-        });
-        gsap.fromTo(imagesRefs.map(e => e.current), {
-            duration: 0.5,
-            opacity: 0,
-            x: 0,
-            y: -100,
-        }, {
-            delay: 0.5,
-            duration: 0.5,
-            opacity: 1,
-            x: 0,
-            y: 0,
-            stagger: {
-                amount: 0.5
-            }
-        });
-        gsap.from(detailsRefs.map(e => e.current), {
-            delay: 1.2,
-            duration: 0.5,
-            opacity: 0,
-            x: 0,
-            y: -100,
-            stagger: {
-                amount: 0.5
-            }
-        });
+        initAnimations({ titleRef, imagesRefs, detailsRefs });
     }, [imagesRefs.length]);
 
     const imageOnClickHandler = i => {
