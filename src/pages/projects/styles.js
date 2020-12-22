@@ -97,6 +97,7 @@ export const ProjectImage = styled.div`
 `;
 
 export const ProjectThumb = styled.div`
+    opacity: 0;
     position: relative;
     margin-bottom: 6.5rem;
     background: none;

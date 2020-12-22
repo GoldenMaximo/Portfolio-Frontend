@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Fragment, useEffect, useRef, useState } from 'react';
+import { Fragment, useEffect, useMemo, useRef, createRef, useState } from 'react';
 import { Layout, Nav, Footer, ProjectsBgAnimation } from '../../../components';
 import GraphQL from '../../../services/graphql';
 import * as S from './styles';
@@ -8,10 +8,12 @@ import { useRouter } from 'next/router';
 import gsap from 'gsap';
 import { FaTags } from 'react-icons/fa';
 import { navigateWithTransition, isMobileCheck } from '../../../util/utilFuncs';
+import initAnimations from './animations';
 
 const Projects = ({ projects }) => {
     const router = useRouter();
     const containerRef = useRef();
+    const projectsGalleryRef = useRef();
     const [containerHeight, setContainerHeight] = useState(0);
     const [showAllTags, setShowAllTags] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
@@ -33,6 +35,7 @@ const Projects = ({ projects }) => {
     };
 
     const [shownProjects, setShownProjects] = useState(projects);
+    const projectCardsRefs = useMemo(() => Array(shownProjects.length).fill().map(() => createRef()), [shownProjects]);
     const [filterTags, setFilterTags] = useState(formatFilterTags(projects));
 
     useEffect(() => {
@@ -62,6 +65,9 @@ const Projects = ({ projects }) => {
 
         // Sets isMobile to define the limit of the shown tags
         setIsMobile(isMobileCheck());
+
+        // Green Sock animations
+        initAnimations({ projectCardsRefs, projectsGalleryRef });
     }, [shownProjects]);
 
     useEffect(() => {
@@ -137,10 +143,10 @@ const Projects = ({ projects }) => {
                             <S.FiltersBtn onClick={showTagsHandler}>Show {showAllTags ? 'less' : 'more'}</S.FiltersBtn>
                         )}
 
-                        <S.ProjectsGallery>
+                        <S.ProjectsGallery ref={projectsGalleryRef}>
 
                             {shownProjects.length ? (
-                                shownProjects.map(project => {
+                                shownProjects.map((project, i) => {
                                     const formatedTechStack = project.techStack.join(' / ');
                                     let ellipsedTechStack;
                                     if (formatedTechStack.length > 24) {
@@ -149,7 +155,7 @@ const Projects = ({ projects }) => {
                                     const formatedTitle = (project.title.length > 24) ? `${project.title.substring(0, 21).trim()}...` : project.title;
 
                                     return (
-                                        <S.ProjectThumb onClick={event => projectCardClickHandler(event, project.slug)} key={project.slug}>
+                                        <S.ProjectThumb onClick={event => projectCardClickHandler(event, project.slug)} key={project.slug} ref={projectCardsRefs[i]}>
                                             <S.ProjectInfo>
                                                 <h3 data-tip={project.title.length > 24 ? project.title : ''}> {formatedTitle} </h3>
                                                 <p data-tip={formatedTechStack}> {ellipsedTechStack ? ellipsedTechStack : formatedTechStack} </p>
