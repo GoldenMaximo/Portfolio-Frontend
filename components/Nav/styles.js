@@ -1,4 +1,4 @@
-import  styled from 'styled-components';
+import styled from 'styled-components';
 
 export const Container = styled.div`
     z-index: 2;
@@ -10,7 +10,6 @@ export const Container = styled.div`
     align-items: center;
     justify-content: space-between;
     background-color: ${props => props.home ? 'transparent' : 'rgb(28 31 32 / 0.80)'};
-    backdrop-filter: blur(1px);
 
     @media(max-width: 768px) {
         height: 3rem;
