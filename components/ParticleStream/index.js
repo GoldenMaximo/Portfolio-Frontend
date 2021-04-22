@@ -3,6 +3,12 @@ import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import * as S from './styles';
 
+/////////////////////////////
+// This animation is a remodeled code from https://codepen.io/zadvorsky/pen/qOYqGv
+// Slightly modified suit my needs and adapted to React.js
+// Credits to https://github.com/zadvorsky/
+/////////////////////////////
+
 export const ParticleStream = () => {
     const containerRef = useRef(null);
 
@@ -12,7 +18,7 @@ export const ParticleStream = () => {
 
     var mScene;
 
-    var mParticleCount = 100000; // <-- change this number!
+    var mParticleCount = 100000;
     var mParticleSystem;
 
     var mTime = 0.0;
@@ -273,7 +279,7 @@ export const ParticleStream = () => {
 
 
     /////////////////////////////
-    // buffer animation system - Credits to https://github.com/zadvorsky/
+    // Buffer animation system - Credits to https://github.com/zadvorsky/
     /////////////////////////////
 
     var BAS = {};
@@ -310,12 +316,6 @@ export const ParticleStream = () => {
         var prefabIndexCount = this.prefabGeometry.faces.length * 3;
         var prefabVertexCount = this.prefabVertexCount = this.prefabGeometry.vertices.length;
         var prefabIndices = [];
-
-        //console.log('prefabCount', this.prefabCount);
-        //console.log('prefabFaceCount', prefabFaceCount);
-        //console.log('prefabIndexCount', prefabIndexCount);
-        //console.log('prefabVertexCount', prefabVertexCount);
-        //console.log('triangles', prefabFaceCount * this.prefabCount);
 
         for (var h = 0; h < prefabFaceCount; h++) {
             var face = this.prefabGeometry.faces[h];

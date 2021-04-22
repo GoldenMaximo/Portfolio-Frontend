@@ -91,12 +91,12 @@ export const SubContainerMiddle = styled.div`
             margin-left: 0%;
         }
         75% {
-            margin-right: 0%
+            margin-right: 0%;
             margin-left: 50%;
         }
         100% {
             opacity: 0;
-            margin-right: 0%
+            margin-right: 0%;
             margin-left: 100%;
         }
     }
