@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { useEffect, useRef } from 'react';
-import { Intro, Layout, Nav, Featured, Footer } from '../../../components';
+import { Intro, Layout, Nav, Footer } from '../../../components';
+import { FeaturedProjects } from './components/FeaturedProjects';
 import GraphQL from '../../../services/graphql';
 
 const Home = ({ projects }) => {
@@ -28,7 +29,7 @@ const Home = ({ projects }) => {
             <Nav home />
             <Layout title={'Gustavo Máximo\'s Projects'}>
                 <Intro onClick={scrollDown} />
-                <Featured ref={featuredRef} projects={projects} />
+                <FeaturedProjects ref={featuredRef} projects={projects} />
                 <Footer />
             </Layout>
         </>

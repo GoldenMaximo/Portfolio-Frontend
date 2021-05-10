@@ -26,7 +26,7 @@ export default function Project({ project }) {
     }, [project]);
 
     useEffect(() => {
-        initAnimations({ titleRef, imagesRefs, detailsRefs });
+        initAnimations(titleRef, imagesRefs, detailsRefs);
     }, [imagesRefs.length]);
 
     const imageOnClickHandler = i => {

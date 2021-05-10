@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { Fragment, useEffect, useMemo, useRef, createRef, useState } from 'react';
-import { Layout, Nav, Footer, ProjectsBgAnimation } from '../../../components';
+import { Layout, Nav, Footer, TSParticlesWrapper } from '../../../components';
 import GraphQL from '../../../services/graphql';
 import * as S from './styles';
 import * as DS from '../../../components/default-styled-components';
@@ -25,7 +25,10 @@ const Projects = ({ projects }) => {
         const upperCaseQuery = searchQuery.toUpperCase();
         const result = [];
         projects.map(e => {
-            if (e.techStack.join('').toUpperCase().includes(upperCaseQuery) || e.title.toUpperCase().includes(upperCaseQuery)) {
+            if (
+                e.techStack.join('').toUpperCase().includes(upperCaseQuery) ||
+                e.title.toUpperCase().includes(upperCaseQuery)
+            ) {
                 result.push(e);
             }
         });
@@ -35,7 +38,13 @@ const Projects = ({ projects }) => {
     };
 
     const [shownProjects, setShownProjects] = useState(projects);
-    const projectCardsRefs = useMemo(() => Array(shownProjects.length).fill().map(() => createRef()), [shownProjects]);
+    const projectCardsRefs = useMemo(
+        () =>
+            Array(shownProjects.length)
+                .fill()
+                .map(() => createRef()),
+        [shownProjects]
+    );
     const [filterTags, setFilterTags] = useState(formatFilterTags(projects));
 
     useEffect(() => {
@@ -59,7 +68,7 @@ const Projects = ({ projects }) => {
     }, [router.query]);
 
     useEffect(() => {
-        // Sets background animation (ProjectsBgAnimation) height
+        // Sets background animation (TSParticlesWrapper) height
         // based off of the projects container
         setContainerHeight(containerRef.current.offsetHeight);
 
@@ -81,7 +90,7 @@ const Projects = ({ projects }) => {
             duration: 0.5,
             opacity: 0,
             x: 0,
-            y: -100
+            y: -100,
         });
 
         navigateWithTransition(router, `/projects/${slug}`);
@@ -89,7 +98,8 @@ const Projects = ({ projects }) => {
 
     const resetFiltersClickHandler = () => navigateWithTransition(router, '/projects/');
 
-    const tagClickHandler = event => navigateWithTransition(router, `/projects?search=${event.currentTarget.innerText}`);
+    const tagClickHandler = event =>
+        navigateWithTransition(router, `/projects?search=${event.currentTarget.innerText}`);
 
     const showTagsHandler = () => {
         if (showAllTags) {
@@ -101,67 +111,100 @@ const Projects = ({ projects }) => {
     return (
         <>
             <Nav />
-            <Layout title={'Gustavo Máximo\'s Projects'}>
-                <DS.Container bgColor='#759398' ref={containerRef}>
-
-                    <ProjectsBgAnimation height={containerHeight} />
+            <Layout title={'Gustavo Máximo’s Projects'}>
+                <DS.Container bgColor="#759398" ref={containerRef}>
+                    <TSParticlesWrapper height={containerHeight} style={2} />
 
                     <S.ProjectsContainer isMobile={isMobile}>
-
-                        <DS.Title
-                            light
-                            shadow
-                            marginTop="5rem"
-                            marginBottom="4rem"
-                        >
-                                PROJECTS
+                        <DS.Title light shadow marginTop="5rem" marginBottom="4rem">
+                            PROJECTS
                         </DS.Title>
 
                         <S.TagsTitleContainer>
-                            <S.TagsTitle>Filter{router.query.search && 'ed'} Tags&nbsp;</S.TagsTitle>
+                            <S.TagsTitle>
+                                Filter{router.query.search && 'ed'} Tags&nbsp;
+                            </S.TagsTitle>
                             <FaTags />
                         </S.TagsTitleContainer>
 
                         <S.Tags>
-                            {filterTags && filterTags.map((element, i) => {
-                                if (!router.query.search && !showAllTags) {
-                                    if (i > (tagLimit + 1)) return;
-                                    if (i > tagLimit) return <p key={i}>...</p>;
-                                }
-                                return (
-                                    <Fragment key={i}>
-                                        <S.TagButton onClick={tagClickHandler}>{element}</S.TagButton>
-                                        {i === filterTags.length-1 ? '' : <S.TagDivider>/</S.TagDivider>}
-                                    </Fragment>
-                                );
-                            })}
+                            {filterTags &&
+                                filterTags.map((element, i) => {
+                                    if (!router.query.search && !showAllTags) {
+                                        if (i > tagLimit + 1) return;
+                                        if (i > tagLimit) return <p key={i}>...</p>;
+                                    }
+                                    return (
+                                        <Fragment key={i}>
+                                            <S.TagButton onClick={tagClickHandler}>
+                                                {element}
+                                            </S.TagButton>
+                                            {i === filterTags.length - 1 ? (
+                                                ''
+                                            ) : (
+                                                <S.TagDivider>/</S.TagDivider>
+                                            )}
+                                        </Fragment>
+                                    );
+                                })}
                         </S.Tags>
 
                         {router.query.search ? (
-                            <S.FiltersBtn onClick={resetFiltersClickHandler}>Reset Filters</S.FiltersBtn>
+                            <S.FiltersBtn onClick={resetFiltersClickHandler}>
+                                Reset Filters
+                            </S.FiltersBtn>
                         ) : (
-                            <S.FiltersBtn onClick={showTagsHandler}>Show {showAllTags ? 'less' : 'more'}</S.FiltersBtn>
+                            <S.FiltersBtn onClick={showTagsHandler}>
+                                Show {showAllTags ? 'less' : 'more'}
+                            </S.FiltersBtn>
                         )}
 
                         <S.ProjectsGallery ref={projectsGalleryRef}>
-
                             {shownProjects.length ? (
                                 shownProjects.map((project, i) => {
                                     const formatedTechStack = project.techStack.join(' / ');
                                     let ellipsedTechStack;
                                     if (formatedTechStack.length > 24) {
-                                        ellipsedTechStack = `${formatedTechStack.substring(0, 21).trim()}...`;
+                                        ellipsedTechStack = `${formatedTechStack
+                                            .substring(0, 21)
+                                            .trim()}...`;
                                     }
-                                    const formatedTitle = (project.title.length > 24) ? `${project.title.substring(0, 21).trim()}...` : project.title;
+                                    const formatedTitle =
+                                        project.title.length > 24
+                                            ? `${project.title.substring(0, 21).trim()}...`
+                                            : project.title;
 
                                     return (
-                                        <S.ProjectThumb onClick={event => projectCardClickHandler(event, project.slug)} key={project.slug} ref={projectCardsRefs[i]}>
+                                        <S.ProjectThumb
+                                            onClick={event =>
+                                                projectCardClickHandler(event, project.slug)
+                                            }
+                                            key={project.slug}
+                                            ref={projectCardsRefs[i]}
+                                        >
                                             <S.ProjectInfo>
-                                                <h3 data-tip={project.title.length > 24 ? project.title : ''}> {formatedTitle} </h3>
-                                                <p data-tip={formatedTechStack}> {ellipsedTechStack ? ellipsedTechStack : formatedTechStack} </p>
+                                                <h3
+                                                    data-tip={
+                                                        project.title.length > 24
+                                                            ? project.title
+                                                            : ''
+                                                    }
+                                                >
+                                                    {' '}
+                                                    {formatedTitle}{' '}
+                                                </h3>
+                                                <p data-tip={formatedTechStack}>
+                                                    {' '}
+                                                    {ellipsedTechStack
+                                                        ? ellipsedTechStack
+                                                        : formatedTechStack}{' '}
+                                                </p>
                                             </S.ProjectInfo>
                                             <S.ProjectImage>
-                                                <S.StyledImage src={project.thumbUrl} mobileImg={project.isMobile}/>
+                                                <S.StyledImage
+                                                    src={project.thumbUrl}
+                                                    mobileImg={project.isMobile}
+                                                />
                                             </S.ProjectImage>
                                         </S.ProjectThumb>
                                     );
@@ -169,7 +212,6 @@ const Projects = ({ projects }) => {
                             ) : (
                                 <h1>No projects found</h1>
                             )}
-
                         </S.ProjectsGallery>
                     </S.ProjectsContainer>
                 </DS.Container>
@@ -195,7 +237,7 @@ export async function getStaticProps() {
                     }
                 }
             }
-        `
+        `,
     };
 
     const data = await GraphQL(graphqlQuery);
@@ -204,12 +246,14 @@ export async function getStaticProps() {
 }
 
 Projects.propTypes = {
-    projects: PropTypes.arrayOf(PropTypes.shape({
-        _id: PropTypes.string,
-        title: PropTypes.string,
-        thumbUrl: PropTypes.string,
-        isMobile: PropTypes.bool
-    })),
+    projects: PropTypes.arrayOf(
+        PropTypes.shape({
+            _id: PropTypes.string,
+            title: PropTypes.string,
+            thumbUrl: PropTypes.string,
+            isMobile: PropTypes.bool,
+        })
+    ),
 };
 
 export default Projects;
