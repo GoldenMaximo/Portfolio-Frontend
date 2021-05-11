@@ -16,7 +16,7 @@ export const Nav = ({ home }) => {
     const name = useRef(null);
     const [showSearch, setShowSearch] = useState(false);
     const [message, setMessage] = useState(
-        "This button goes to the Home page, you're alerady here so it doesn't do anything I guess"
+        "This button goes to the Home page, you're already here so it doesn't do anything I guess"
     );
     const [alternateDesc, setAlternateDesc] = useState(false);
     const router = useRouter();
