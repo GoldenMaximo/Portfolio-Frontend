@@ -22,7 +22,7 @@ import * as S from './styles';
  * - Projects Page Background = 2
  */
 
-const randomId = `PJSContainer-${Math.floor(Math.random() * 99 + 1)}`;
+const randomId = `TSParticle-Container-${Math.floor(Math.random() * 99 + 1)}`;
 
 export const TSParticlesWrapper = ({ height = 0, style = 0, id = randomId, techStack = [] }) => {
     const [renderCanvas, setRenderCanvas] = useState(false);
@@ -103,10 +103,7 @@ export const TSParticlesWrapper = ({ height = 0, style = 0, id = randomId, techS
                 id,
                 style ? configStyles[style] : await fetchIcons()
             );
-            if (particlesInstance) {
-                particlesInstance.canvas.element.parentElement.style.height = '100%';
-                particlesInstance.refresh();
-            }
+            if (particlesInstance) particlesInstance.refresh();
         }
         return;
     };
@@ -114,7 +111,11 @@ export const TSParticlesWrapper = ({ height = 0, style = 0, id = randomId, techS
     return (
         renderCanvas && (
             <S.ParticlesContainer height={height + (style && 20)}>
-                <Particles id={id} init={onInit} />
+                {/* If the animation is the Featured Projects Card background (style === 0),
+                 to start the component it will use the init function.
+                  Otherwise if it's (style > 0), it will use the options prop to start */}
+                {/* This is due to a bug with the lib I'm not willing to look into right now */}
+                <Particles id={id} init={!style && onInit} options={style && configStyles[style]} />
             </S.ParticlesContainer>
         )
     );

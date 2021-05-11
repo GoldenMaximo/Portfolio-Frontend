@@ -6,4 +6,8 @@ export const ParticlesContainer = styled.div`
     height: ${({ height }) => (height ? `${height}px` : '100%')};
     transition: none !important;
     transform: rotate(180deg);
+
+    div {
+        height: 100%;
+    }
 `;
