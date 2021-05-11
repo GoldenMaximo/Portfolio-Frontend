@@ -17,18 +17,16 @@ export const ImageSwiper = ({ project, onClose, initialSlide }) => (
                 pagination={{ clickable: false }}
                 initialSlide={initialSlide.current}
             >
-                {
-                    project.images.map((imageObj, i) => {
-                        return (
-                            <SwiperSlide key={i}>
-                                <S.FlexAlignment isMobile={project.isMobile}>
-                                    <img src={imageObj.imageUrl} />
-                                    <p>{imageObj.imageName}</p>
-                                </S.FlexAlignment>
-                            </SwiperSlide>
-                        );
-                    })
-                }
+                {project.images.map((imageObj, i) => {
+                    return (
+                        <SwiperSlide key={i}>
+                            <S.FlexAlignment isMobile={project.isMobile}>
+                                <img src={imageObj.imageUrl} />
+                                <p>{imageObj.imageName}</p>
+                            </S.FlexAlignment>
+                        </SwiperSlide>
+                    );
+                })}
             </Swiper>
         </S.SwiperContainer>
     </S.ComponentContainer>
@@ -41,10 +39,12 @@ ImageSwiper.propTypes = {
         title: PropTypes.string,
         description: PropTypes.string,
         techStack: PropTypes.arrayOf(PropTypes.string),
-        images: PropTypes.arrayOf(PropTypes.shape({
-            imageName: PropTypes.string,
-            imageUrl: PropTypes.string
-        })),
+        images: PropTypes.arrayOf(
+            PropTypes.shape({
+                imageName: PropTypes.string,
+                imageUrl: PropTypes.string,
+            })
+        ),
         githubUrls: PropTypes.arrayOf(PropTypes.string),
         isMobile: PropTypes.bool,
         deployedAt: PropTypes.string,
@@ -52,6 +52,6 @@ ImageSwiper.propTypes = {
     isOpen: PropTypes.bool,
     onClose: PropTypes.func,
     initialSlide: PropTypes.shape({
-        current: PropTypes.number
-    })
+        current: PropTypes.number,
+    }),
 };

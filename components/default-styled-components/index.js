@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const Title = styled.h1`
-    margin-top: ${({ marginTop }) => marginTop ? marginTop : '8rem'};
-    margin-bottom: ${({ marginBottom }) => marginBottom ? marginBottom : '5rem'};
+    margin-top: ${({ marginTop }) => (marginTop ? marginTop : '8rem')};
+    margin-bottom: ${({ marginBottom }) => (marginBottom ? marginBottom : '5rem')};
     margin-left: 1rem;
     margin-right: 1rem;
     font-size: 2em;
@@ -10,8 +10,8 @@ export const Title = styled.h1`
     text-align: center;
     letter-spacing: 0.8rem;
 
-    color: ${props => props.light ? 'whitesmoke' : 'black'};
-    text-shadow: ${props => props.shadow ? '0px 0px 20px #ffffff99' : ''};
+    color: ${props => (props.light ? 'whitesmoke' : 'black')};
+    text-shadow: ${props => (props.shadow ? '0px 0px 20px #ffffff99' : '')};
 `;
 
 export const Container = styled.div`
@@ -23,7 +23,7 @@ export const Container = styled.div`
     align-items: center;
     justify-content: flex-start;
 
-    background-color: ${props => props.bgColor ? props.bgColor : ''};
+    background-color: ${props => (props.bgColor ? props.bgColor : '')};
 `;
 
 export const Backdrop = styled.div`
@@ -33,7 +33,7 @@ export const Backdrop = styled.div`
     align-items: center;
     justify-content: center;
     position: absolute;
-    background-color: ${props => props.dark ? '#000000f2' : '#00000080'};
+    background-color: ${props => (props.dark ? '#000000f2' : '#00000080')};
     top: 0;
     bottom: 0;
     z-index: 2;

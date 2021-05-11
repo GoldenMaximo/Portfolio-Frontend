@@ -9,9 +9,9 @@ export const Container = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    background-color: ${props => props.home ? 'transparent' : 'rgb(28 31 32 / 0.80)'};
+    background-color: ${props => (props.home ? 'transparent' : 'rgb(28 31 32 / 0.80)')};
 
-    @media(max-width: 768px) {
+    @media (max-width: 768px) {
         height: 3rem;
     }
 `;
@@ -25,7 +25,7 @@ export const SubContainerLeft = styled.div`
 
     h3 {
         font-family: 'UnifrakturCook', cursive;
-        color: ${props => props.home ? 'white' : '#e8e6e3'};
+        color: ${props => (props.home ? 'white' : '#e8e6e3')};
         cursor: pointer;
         transition: all 0.1s ease-out;
         box-shadow: 0 0 black, 0 0 black;
@@ -36,7 +36,6 @@ export const SubContainerLeft = styled.div`
     }
 `;
 
-
 export const SubContainerMiddle = styled.div`
     height: 100%;
     width: 50%;
@@ -45,10 +44,11 @@ export const SubContainerMiddle = styled.div`
     justify-content: center;
 
     a {
-        color: ${props => props.home ? 'white' : '#e8e6e3'};
+        color: ${props => (props.home ? 'white' : '#e8e6e3')};
         text-decoration: none;
         transition: all 0.25s ease;
         padding: 0.6rem;
+        text-shadow: -1px 1px 0 #000, 1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000;
     }
 
     a:hover {
@@ -61,7 +61,7 @@ export const SubContainerMiddle = styled.div`
     a:after {
         opacity: 0;
         background-color: white;
-        content: " ";
+        content: ' ';
         display: block;
         height: 1px;
         transition: all 0.25s ease;
@@ -108,7 +108,7 @@ export const SubContainerRight = styled.div`
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    color: ${props => props.home ? 'white' : '#e8e6e3'};
+    color: ${props => (props.home ? 'white' : '#e8e6e3')};
 
     a {
         margin-top: 0.4rem;
@@ -126,7 +126,7 @@ export const SubContainerRight = styled.div`
     a:after {
         opacity: 0;
         background-color: white;
-        content: " ";
+        content: ' ';
         display: block;
         height: 1px;
         transition: all 0.25s ease;

@@ -20,6 +20,6 @@ export const SearchInput = styled.input`
 export const SearchContainer = styled.div`
     position: absolute;
     width: 100%;
-    margin-top: ${props => props.top + (window.innerHeight / 8)}px;
+    margin-top: ${props => props.top + window.innerHeight / 8}px;
     z-index: 3;
 `;

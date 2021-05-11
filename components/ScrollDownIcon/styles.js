@@ -2,15 +2,15 @@ import styled, { css } from 'styled-components';
 
 export const Container = styled.div`
     p {
-        position: absolute
+        position: absolute;
     }
 `;
 
 const arrow = css`
     opacity: 0;
     position: absolute;
-        left: 50%;
-        top: 95%;
+    left: 50%;
+    top: 95%;
     transform-origin: 50% 50%;
     transform: translate3d(-50%, -50%, 0);
 
@@ -20,8 +20,8 @@ const arrow = css`
         display: block;
         height: 3px;
         position: absolute;
-            top: 0;
-            left: 0;
+        top: 0;
+        left: 0;
         width: 30px;
 
         transform: rotate(45deg) translateX(-23%);
@@ -34,14 +34,13 @@ const arrow = css`
         display: block;
         height: 3px;
         position: absolute;
-            top: 0;
-            left: 0;
+        top: 0;
+        left: 0;
         width: 30px;
 
         transform: rotate(-45deg) translateX(23%);
         transform-origin: top right;
     }
-
 
     @keyframes arrow-movement {
         0% {

@@ -15,7 +15,9 @@ gsap.registerPlugin(TextPlugin);
 export const Nav = ({ home }) => {
     const name = useRef(null);
     const [showSearch, setShowSearch] = useState(false);
-    const [message, setMessage] = useState('This button goes to the Home page, you\'re alerady here so it doesn\'t do anything I guess');
+    const [message, setMessage] = useState(
+        "This button goes to the Home page, you're alerady here so it doesn't do anything I guess"
+    );
     const [alternateDesc, setAlternateDesc] = useState(false);
     const router = useRouter();
 
@@ -33,25 +35,29 @@ export const Nav = ({ home }) => {
     }, [showSearch]);
 
     const homeOnMouseEnterHandler = () => {
-        gsap.fromTo(name.current, {
-            opacity: 0
-        }, {
-            opacity: 1,
-            text: {
-                value: 'Gustavo Máximo',
-                speed: 3
+        gsap.fromTo(
+            name.current,
+            {
+                opacity: 0,
             },
-            x: 45
-        });
+            {
+                opacity: 1,
+                text: {
+                    value: 'Gustavo Máximo',
+                    speed: 3,
+                },
+                x: 45,
+            }
+        );
     };
 
     const homeOnMouseLeaveHandler = () => {
         gsap.to(name.current, {
             text: {
                 value: 'GM',
-                speed: 3
+                speed: 3,
             },
-            x: 0
+            x: 0,
         });
     };
 
@@ -63,7 +69,7 @@ export const Nav = ({ home }) => {
                 return;
             }
 
-            setMessage('Dude why are you clicking? I just said it doesn\'t do anything');
+            setMessage("Dude why are you clicking? I just said it doesn't do anything");
             setAlternateDesc(true);
             return;
         }
@@ -83,9 +89,7 @@ export const Nav = ({ home }) => {
 
     return (
         <>
-            {showSearch && (
-                <Search onClose={() => setShowSearch(false)} />
-            )}
+            {showSearch && <Search onClose={() => setShowSearch(false)} />}
 
             <S.Container home={home}>
                 <S.SubContainerLeft
@@ -96,9 +100,7 @@ export const Nav = ({ home }) => {
                     data-tip={home ? message : 'Go Back Home'}
                     key={alternateDesc ? message : message}
                 >
-                    <h3 ref={name}>
-                        GM
-                    </h3>
+                    <h3 ref={name}>GM</h3>
                 </S.SubContainerLeft>
                 <S.SubContainerMiddle home={home}>
                     <a onClick={projectsOnClickHandler}>Projects</a>

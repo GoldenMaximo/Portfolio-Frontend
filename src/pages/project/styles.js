@@ -16,7 +16,7 @@ export const ProjectContainer = styled.div`
     padding-left: 8rem;
     padding-right: 8rem;
 
-    @media(max-width: 768px) {
+    @media (max-width: 768px) {
         padding-left: 1rem;
         padding-right: 1rem;
         flex-direction: column;
@@ -55,7 +55,7 @@ export const Details = styled.div`
         margin-left: 0.2rem;
     }
 
-    @media(max-width: 768px) {
+    @media (max-width: 768px) {
         width: 100%;
         padding: 2rem;
         padding-bottom: 4rem;
@@ -82,7 +82,7 @@ export const ProjectImages = styled.div`
     flex-wrap: wrap;
     justify-content: center;
 
-    @media(max-width: 768px) {
+    @media (max-width: 768px) {
         width: 100%;
     }
 `;
@@ -90,17 +90,17 @@ export const ProjectImages = styled.div`
 // TODO: refactor images into single default-styled-components
 const sharedImageStyles = css`
     opacity: 0;
-    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 
     &:hover {
-        box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
         cursor: pointer;
     }
 `;
 
 export const MainImage = styled.img`
-    width: ${props => props.isMobile ? '35%' : '100%'};
+    width: ${props => (props.isMobile ? '35%' : '100%')};
     margin-bottom: 1rem;
 
     align-self: center;

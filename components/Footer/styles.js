@@ -10,7 +10,7 @@ export const container = styled.div`
     width: 100%;
     background-color: #1c1f20;
 
-    @media(max-width: 768px) {
+    @media (max-width: 768px) {
         flex-direction: column;
     }
 `;
@@ -55,7 +55,7 @@ const sharedSubContainerStyles = css`
     padding: 0.5rem 2rem;
     padding-bottom: 0;
 
-    @media(max-width: 768px) {
+    @media (max-width: 768px) {
         padding: 1rem 2rem;
     }
 `;
@@ -73,7 +73,7 @@ export const subContainerMiddle = styled.div`
     div {
         margin: auto;
 
-        @media(max-width: 768px) {
+        @media (max-width: 768px) {
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
@@ -87,14 +87,16 @@ export const subContainerMiddle = styled.div`
         width: 4rem;
         height: 4rem;
         margin: 1rem;
-        transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+        /* TODO: Gotta find a way to use 0.5 ease only AFTER the coming down animation finishes
+        transition: all 0.5s ease; */
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 
         &:hover {
-            filter: drop-shadow(0 10px 9px rgba(0,0,0,1));
+            filter: drop-shadow(0 10px 9px rgba(0, 0, 0, 1));
         }
     }
 
-    @media(max-width: 768px) {
+    @media (max-width: 768px) {
         width: 100%;
 
         padding-bottom: 0rem;
@@ -117,7 +119,7 @@ export const subContainerRight = styled.div`
         width: 5rem;
     }
 
-    @media(max-width: 768px) {
+    @media (max-width: 768px) {
         width: 100%;
 
         svg {
@@ -146,19 +148,20 @@ export const highLightIcon = styled.div`
 
     &:hover {
         svg {
-            color: ${props => props.iconColor ? props.iconColor : '#e8e6e3'};
-            filter: ${props => props.dropShadow ? 'drop-shadow(0 2px 15px rgba(0,0,0,1))' : ''};
+            /* TODO: Gotta find a way to use 0.5 ease only AFTER the coming down animation finishes */
+            transition: all 0.5s ease;
+            color: ${props => (props.iconColor ? props.iconColor : '#e8e6e3')};
+            filter: ${props => (props.dropShadow ? 'drop-shadow(0 2px 15px rgba(0,0,0,1))' : '')};
         }
 
         ${ResumeIcon} {
-            background-color: #FF9800;
+            background-color: #ff9800;
             box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 28px, rgba(0, 0, 0, 0.22) 0px 0px 10px;
         }
     }
 `;
 
 export const subContainerLeft = styled.div`
-
     ${sharedSubContainerStyles}
 
     padding-bottom: 0.5rem;
@@ -177,7 +180,7 @@ export const subContainerLeft = styled.div`
         justify-content: space-between;
     }
 
-    @media(max-width: 1366px) {
+    @media (max-width: 1366px) {
         p {
             display: none;
         }
@@ -212,7 +215,7 @@ export const subContainerLeft = styled.div`
         }
     }
 
-    @media(max-width: 768px) {
+    @media (max-width: 768px) {
         width: 100%;
 
         padding-bottom: 0rem;
@@ -228,14 +231,14 @@ export const copyrightContainer = styled.div`
     justify-content: center;
     align-items: center;
 
-    @media(max-width: 768px) {
+    @media (max-width: 768px) {
         width: 200%;
     }
 
     p {
         color: #e8e6e3;
 
-        @media(max-width: 768px) {
+        @media (max-width: 768px) {
             position: unset;
         }
     }
@@ -245,7 +248,7 @@ export const copyrightContainer = styled.div`
         position: absolute;
         right: 1rem;
 
-        @media(max-width: 768px) {
+        @media (max-width: 768px) {
             position: unset;
             color: #e8e6e3;
         }

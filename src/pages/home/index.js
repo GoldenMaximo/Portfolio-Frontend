@@ -27,7 +27,7 @@ const Home = ({ projects }) => {
     return (
         <>
             <Nav home />
-            <Layout title={'Gustavo Máximo\'s Projects'}>
+            <Layout title={"Gustavo Máximo's Projects"}>
                 <Intro onClick={scrollDown} />
                 <FeaturedProjects ref={featuredRef} projects={projects} />
                 <Footer />

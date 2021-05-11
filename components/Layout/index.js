@@ -8,7 +8,10 @@ export const Layout = ({ children, title }) => {
         <>
             <Head>
                 <title>{title}</title>
-                <meta name="description" content="Check out my latest projects and get to know more about me." />
+                <meta
+                    name="description"
+                    content="Check out my latest projects and get to know more about me."
+                />
                 <meta property="og:title" content={title} />
                 <meta property="og:image" content="/ogimage.jpg" prefix="og: http://ogp.me/ns#" />
                 <meta property="og:type" content="profile:Gustavo Máximo" />
@@ -16,9 +19,7 @@ export const Layout = ({ children, title }) => {
                 <link rel="icon" href="/favicon.ico" />
                 <script src="/js/TagCanvas.js" />
             </Head>
-            <div className={styles.wrap}>
-                {children}
-            </div>
+            <div className={styles.wrap}>{children}</div>
             <CookiesNotice />
         </>
     );
@@ -26,5 +27,5 @@ export const Layout = ({ children, title }) => {
 
 Layout.propTypes = {
     children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.element), PropTypes.element]),
-    title: PropTypes.string.isRequired
+    title: PropTypes.string.isRequired,
 };

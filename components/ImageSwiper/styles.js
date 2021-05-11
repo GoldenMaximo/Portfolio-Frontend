@@ -1,4 +1,3 @@
-
 import styled from 'styled-components';
 
 export const ComponentContainer = styled.div`
@@ -8,7 +7,7 @@ export const ComponentContainer = styled.div`
     position: absolute;
     height: 100vh;
     width: 100%;
-    top: ${() => window.scrollY ? window.scrollY + 'px' : 0};
+    top: ${() => (window.scrollY ? window.scrollY + 'px' : 0)};
     bottom: 0;
     z-index: 1000;
 `;
@@ -21,7 +20,7 @@ export const SwiperContainer = styled.div`
     justify-content: center;
     z-index: 3;
 
-    @media(max-width: 768px) {
+    @media (max-width: 768px) {
         width: 100%;
         height: fit-content;
     }
@@ -42,7 +41,7 @@ export const FlexAlignment = styled.div`
     }
 
     img {
-        width: ${props => props.isMobile ? '60%' : '100%'};
-        margin: ${props => props.isMobile ? '0 auto' : ''};
+        width: ${props => (props.isMobile ? '60%' : '100%')};
+        margin: ${props => (props.isMobile ? '0 auto' : '')};
     }
 `;

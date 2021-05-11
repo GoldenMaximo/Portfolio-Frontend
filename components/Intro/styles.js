@@ -31,7 +31,7 @@ export const Name = styled.p`
     opacity: 1;
     margin: 0;
 
-    @media(max-width: 768px) {
+    @media (max-width: 768px) {
         font-size: 2.5rem;
     }
 `;
@@ -43,12 +43,12 @@ export const Discover = styled.a`
     color: white;
     margin: 0;
     padding: 1rem 1.2rem;
-    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     box-shadow: 0 0 20px 12px rgb(255 255 255 / 0.05), inset 0 0 20px 0px hsl(0 0% 100% / 0.1);
     backdrop-filter: blur(2px);
     z-index: 1;
 
-    @media(max-width: 768px) {
+    @media (max-width: 768px) {
         box-shadow: 0 0 20px 12px rgb(255 255 255 / 0.1), inset 0 0 20px 0px hsl(0 0% 100% / 0.2);
     }
 

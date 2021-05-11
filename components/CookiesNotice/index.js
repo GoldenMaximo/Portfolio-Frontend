@@ -20,9 +20,11 @@ export const CookiesNotice = () => {
         <>
             {!consented && (
                 <S.Container>
-                    <p>{!isMobile && 'To ensure a good user experience, '}
+                    <p>
+                        {!isMobile && 'To ensure a good user experience, '}
                         {isMobile ? 'T' : 't'}
-                    his website makes use of functional cookies.</p>
+                        his website makes use of functional cookies.
+                    </p>
                     <button onClick={okClickHandler}>Ok</button>
                 </S.Container>
             )}

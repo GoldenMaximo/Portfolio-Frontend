@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 // import dynamic from 'next/dynamic';
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
@@ -22,7 +23,7 @@ export const ParticleStream = () => {
     var mParticleSystem;
 
     var mTime = 0.0;
-    var mTimeStep = (1/60);
+    var mTimeStep = 1 / 60;
     var mDuration = 60;
 
     useEffect(() => {
@@ -43,13 +44,18 @@ export const ParticleStream = () => {
     }
 
     function initTHREE() {
-        mRenderer = new THREE.WebGLRenderer({antialias: true});
+        mRenderer = new THREE.WebGLRenderer({ antialias: true });
         mRenderer.setSize(window.innerWidth, window.innerHeight + 50);
 
         mContainer = containerRef.current;
         mContainer.appendChild(mRenderer.domElement);
 
-        mCamera = new THREE.PerspectiveCamera(90, window.innerWidth / window.innerHeight, 0.1, 6000);
+        mCamera = new THREE.PerspectiveCamera(
+            90,
+            window.innerWidth / window.innerHeight,
+            0.1,
+            6000
+        );
         mCamera.position.set(0, 1000, 0);
 
         mScene = new THREE.Scene();
@@ -62,7 +68,7 @@ export const ParticleStream = () => {
     }
 
     async function initControls() {
-        const { OrbitControls } = (await import('three/examples/jsm/controls/OrbitControls.js'));
+        const { OrbitControls } = await import('three/examples/jsm/controls/OrbitControls.js');
         mControls = new OrbitControls(mCamera, mRenderer.domElement);
         mControls.enableZoom = false;
         mControls.autoRotate = true;
@@ -90,7 +96,7 @@ export const ParticleStream = () => {
         var delay;
 
         for (i = 0, offset = 0; i < mParticleCount; i++) {
-            delay = i / mParticleCount * mDuration;
+            delay = (i / mParticleCount) * mDuration;
 
             for (j = 0; j < prefabGeometry.vertices.length; j++) {
                 aOffset.array[offset++] = delay;
@@ -194,7 +200,6 @@ export const ParticleStream = () => {
             }
         }
 
-
         var material = new BAS.PhongAnimationMaterial(
             // custom parameters & THREE.MeshPhongMaterial parameters
             {
@@ -202,12 +207,12 @@ export const ParticleStream = () => {
                 flatShading: true,
                 side: THREE.DoubleSide,
                 uniforms: {
-                    uTime: {type: 'f', value: 0},
-                    uDuration: {type: 'f', value: mDuration}
+                    uTime: { type: 'f', value: 0 },
+                    uDuration: { type: 'f', value: mDuration },
                 },
                 shaderFunctions: [
                     BAS.ShaderChunk['quaternion_rotation'],
-                    BAS.ShaderChunk['cubic_bezier']
+                    BAS.ShaderChunk['cubic_bezier'],
                 ],
                 shaderParameters: [
                     'uniform float uTime;',
@@ -217,26 +222,24 @@ export const ParticleStream = () => {
                     'attribute vec3 aControlPoint1;',
                     'attribute vec3 aControlPoint2;',
                     'attribute vec3 aEndPosition;',
-                    'attribute vec4 aAxisAngle;'
+                    'attribute vec4 aAxisAngle;',
                 ],
                 shaderVertexInit: [
                     'float tProgress = mod((uTime + aOffset), uDuration) / uDuration;',
 
                     'float angle = aAxisAngle.w * tProgress;',
-                    'vec4 tQuat = quatFromAxisAngle(aAxisAngle.xyz, angle);'
+                    'vec4 tQuat = quatFromAxisAngle(aAxisAngle.xyz, angle);',
                 ],
-                shaderTransformNormal: [
-                    'objectNormal = rotateVector(tQuat, objectNormal);'
-                ],
+                shaderTransformNormal: ['objectNormal = rotateVector(tQuat, objectNormal);'],
                 shaderTransformPosition: [
                     'transformed = rotateVector(tQuat, transformed);',
-                    'transformed += cubicBezier(aStartPosition, aControlPoint1, aControlPoint2, aEndPosition, tProgress);'
-                ]
+                    'transformed += cubicBezier(aStartPosition, aControlPoint1, aControlPoint2, aEndPosition, tProgress);',
+                ],
             },
             // THREE.MeshPhongMaterial uniforms
             {
                 specular: 0xff0000,
-                shininess: 20
+                shininess: 20,
             }
         );
 
@@ -277,7 +280,6 @@ export const ParticleStream = () => {
         mRenderer.setSize(window.innerWidth, window.innerHeight);
     }
 
-
     /////////////////////////////
     // Buffer animation system - Credits to https://github.com/zadvorsky/
     /////////////////////////////
@@ -286,18 +288,23 @@ export const ParticleStream = () => {
 
     BAS.ShaderChunk = {};
 
-    BAS.ShaderChunk['animation_time'] = 'float tDelay = aAnimation.x;\nfloat tDuration = aAnimation.y;\nfloat tTime = clamp(uTime - tDelay, 0.0, tDuration);\nfloat tProgress = ease(tTime, 0.0, 1.0, tDuration);\n';
+    BAS.ShaderChunk['animation_time'] =
+        'float tDelay = aAnimation.x;\nfloat tDuration = aAnimation.y;\nfloat tTime = clamp(uTime - tDelay, 0.0, tDuration);\nfloat tProgress = ease(tTime, 0.0, 1.0, tDuration);\n';
 
-    BAS.ShaderChunk['cubic_bezier'] = 'vec3 cubicBezier(vec3 p0, vec3 c0, vec3 c1, vec3 p1, float t)\n{\n    vec3 tp;\n    float tn = 1.0 - t;\n\n    tp.xyz = tn * tn * tn * p0.xyz + 3.0 * tn * tn * t * c0.xyz + 3.0 * tn * t * t * c1.xyz + t * t * t * p1.xyz;\n\n    return tp;\n}\n';
+    BAS.ShaderChunk['cubic_bezier'] =
+        'vec3 cubicBezier(vec3 p0, vec3 c0, vec3 c1, vec3 p1, float t)\n{\n    vec3 tp;\n    float tn = 1.0 - t;\n\n    tp.xyz = tn * tn * tn * p0.xyz + 3.0 * tn * tn * t * c0.xyz + 3.0 * tn * t * t * c1.xyz + t * t * t * p1.xyz;\n\n    return tp;\n}\n';
 
-    BAS.ShaderChunk['ease_in_cubic'] = 'float ease(float t, float b, float c, float d) {\n  return c*(t/=d)*t*t + b;\n}\n';
+    BAS.ShaderChunk['ease_in_cubic'] =
+        'float ease(float t, float b, float c, float d) {\n  return c*(t/=d)*t*t + b;\n}\n';
 
-    BAS.ShaderChunk['ease_in_quad'] = 'float ease(float t, float b, float c, float d) {\n  return c*(t/=d)*t + b;\n}\n';
+    BAS.ShaderChunk['ease_in_quad'] =
+        'float ease(float t, float b, float c, float d) {\n  return c*(t/=d)*t + b;\n}\n';
 
-    BAS.ShaderChunk['ease_out_cubic'] = 'float ease(float t, float b, float c, float d) {\n  return c*((t=t/d - 1.0)*t*t + 1.0) + b;\n}\n';
+    BAS.ShaderChunk['ease_out_cubic'] =
+        'float ease(float t, float b, float c, float d) {\n  return c*((t=t/d - 1.0)*t*t + 1.0) + b;\n}\n';
 
-    BAS.ShaderChunk['quaternion_rotation'] = 'vec3 rotateVector(vec4 q, vec3 v)\n{\n    return v + 2.0 * cross(q.xyz, cross(q.xyz, v) + q.w * v);\n}\n\nvec4 quatFromAxisAngle(vec3 axis, float angle)\n{\n    float halfAngle = angle * 0.5;\n    return vec4(axis.xyz * sin(halfAngle), cos(halfAngle));\n}\n';
-
+    BAS.ShaderChunk['quaternion_rotation'] =
+        'vec3 rotateVector(vec4 q, vec3 v)\n{\n    return v + 2.0 * cross(q.xyz, cross(q.xyz, v) + q.w * v);\n}\n\nvec4 quatFromAxisAngle(vec3 axis, float angle)\n{\n    float halfAngle = angle * 0.5;\n    return vec4(axis.xyz * sin(halfAngle), cos(halfAngle));\n}\n';
 
     BAS.PrefabBufferGeometry = function (prefab, count) {
         THREE.BufferGeometry.call(this);
@@ -314,7 +321,7 @@ export const ParticleStream = () => {
     BAS.PrefabBufferGeometry.prototype.bufferDefaults = function () {
         var prefabFaceCount = this.prefabGeometry.faces.length;
         var prefabIndexCount = this.prefabGeometry.faces.length * 3;
-        var prefabVertexCount = this.prefabVertexCount = this.prefabGeometry.vertices.length;
+        var prefabVertexCount = (this.prefabVertexCount = this.prefabGeometry.vertices.length);
         var prefabIndices = [];
 
         for (var h = 0; h < prefabFaceCount; h++) {
@@ -332,7 +339,7 @@ export const ParticleStream = () => {
             for (var j = 0; j < prefabVertexCount; j++, offset += 3) {
                 var prefabVertex = this.prefabGeometry.vertices[j];
 
-                positionBuffer[offset    ] = prefabVertex.x;
+                positionBuffer[offset] = prefabVertex.x;
                 positionBuffer[offset + 1] = prefabVertex.y;
                 positionBuffer[offset + 2] = prefabVertex.z;
             }
@@ -344,9 +351,9 @@ export const ParticleStream = () => {
     };
 
     // todo test
-    BAS.PrefabBufferGeometry.prototype.bufferUvs = function() {
+    BAS.PrefabBufferGeometry.prototype.bufferUvs = function () {
         var prefabFaceCount = this.prefabGeometry.faces.length;
-        var prefabVertexCount = this.prefabVertexCount = this.prefabGeometry.vertices.length;
+        var prefabVertexCount = (this.prefabVertexCount = this.prefabGeometry.vertices.length);
         var prefabUvs = [];
 
         for (var h = 0; h < prefabFaceCount; h++) {
@@ -371,26 +378,29 @@ export const ParticleStream = () => {
     };
 
     /**
- * based on BufferGeometry.computeVertexNormals
- * calculate vertex normals for a prefab, and repeat the data in the normal buffer
- */
+     * based on BufferGeometry.computeVertexNormals
+     * calculate vertex normals for a prefab, and repeat the data in the normal buffer
+     */
     BAS.PrefabBufferGeometry.prototype.computeVertexNormals = function () {
         var index = this.index;
         var attributes = this.attributes;
         var positions = attributes.position.array;
 
         if (attributes.normal === undefined) {
-            this.setAttribute('normal', new THREE.BufferAttribute(new Float32Array(positions.length), 3));
+            this.setAttribute(
+                'normal',
+                new THREE.BufferAttribute(new Float32Array(positions.length), 3)
+            );
         }
 
         var normals = attributes.normal.array;
 
-        var vA, vB, vC,
-
+        var vA,
+            vB,
+            vC,
             pA = new THREE.Vector3(),
             pB = new THREE.Vector3(),
             pC = new THREE.Vector3(),
-
             cb = new THREE.Vector3(),
             ab = new THREE.Vector3();
 
@@ -495,7 +505,7 @@ export const ParticleStream = () => {
         this.geometry.attributes[name].needsUpdate = true;
     };
 
-    BAS.BaseAnimationMaterial = function(parameters) {
+    BAS.BaseAnimationMaterial = function (parameters) {
         THREE.ShaderMaterial.call(this);
 
         this.shaderFunctions = [];
@@ -510,28 +520,27 @@ export const ParticleStream = () => {
     BAS.BaseAnimationMaterial.prototype.constructor = BAS.BaseAnimationMaterial;
 
     // abstract
-    BAS.BaseAnimationMaterial.prototype._concatVertexShader = function() {
+    BAS.BaseAnimationMaterial.prototype._concatVertexShader = function () {
         return '';
     };
 
-    BAS.BaseAnimationMaterial.prototype._concatFunctions = function() {
+    BAS.BaseAnimationMaterial.prototype._concatFunctions = function () {
         return this.shaderFunctions.join('\n');
     };
-    BAS.BaseAnimationMaterial.prototype._concatParameters = function() {
+    BAS.BaseAnimationMaterial.prototype._concatParameters = function () {
         return this.shaderParameters.join('\n');
     };
-    BAS.BaseAnimationMaterial.prototype._concatVertexInit = function() {
+    BAS.BaseAnimationMaterial.prototype._concatVertexInit = function () {
         return this.shaderVertexInit.join('\n');
     };
-    BAS.BaseAnimationMaterial.prototype._concatTransformNormal = function() {
+    BAS.BaseAnimationMaterial.prototype._concatTransformNormal = function () {
         return this.shaderTransformNormal.join('\n');
     };
-    BAS.BaseAnimationMaterial.prototype._concatTransformPosition = function() {
+    BAS.BaseAnimationMaterial.prototype._concatTransformPosition = function () {
         return this.shaderTransformPosition.join('\n');
     };
 
-
-    BAS.BaseAnimationMaterial.prototype.setUniformValues = function(values) {
+    BAS.BaseAnimationMaterial.prototype.setUniformValues = function (values) {
         for (var key in values) {
             if (key in this.uniforms) {
                 var uniform = this.uniforms[key];
@@ -539,23 +548,23 @@ export const ParticleStream = () => {
 
                 // todo add matrix uniform types
                 switch (uniform.type) {
-                case 'c': // color
-                    uniform.value.set(value);
-                    break;
-                case 'v2': // vectors
-                case 'v3':
-                case 'v4':
-                    uniform.value.copy(value);
-                    break;
-                case 'f': // float
-                case 't': // texture
-                    uniform.value = value;
+                    case 'c': // color
+                        uniform.value.set(value);
+                        break;
+                    case 'v2': // vectors
+                    case 'v3':
+                    case 'v4':
+                        uniform.value.copy(value);
+                        break;
+                    case 'f': // float
+                    case 't': // texture
+                        uniform.value = value;
                 }
             }
         }
     };
 
-    BAS.PhongAnimationMaterial = function(parameters, uniformValues) {
+    BAS.PhongAnimationMaterial = function (parameters, uniformValues) {
         BAS.BaseAnimationMaterial.call(this, parameters);
 
         var phongShader = THREE.ShaderLib['phong'];
@@ -574,8 +583,8 @@ export const ParticleStream = () => {
     BAS.PhongAnimationMaterial.prototype = Object.create(BAS.BaseAnimationMaterial.prototype);
     BAS.PhongAnimationMaterial.prototype.constructor = BAS.PhongAnimationMaterial;
 
-    BAS.PhongAnimationMaterial.prototype._concatVertexShader = function() {
-    // based on THREE.ShaderLib.phong
+    BAS.PhongAnimationMaterial.prototype._concatVertexShader = function () {
+        // based on THREE.ShaderLib.phong
         return [
             '#define PHONG',
 
@@ -587,17 +596,17 @@ export const ParticleStream = () => {
 
             '#endif',
 
-            THREE.ShaderChunk[ 'common' ],
-            THREE.ShaderChunk[ 'uv_pars_vertex' ],
-            THREE.ShaderChunk[ 'uv2_pars_vertex' ],
-            THREE.ShaderChunk[ 'displacementmap_pars_vertex' ],
-            THREE.ShaderChunk[ 'envmap_pars_vertex' ],
-            THREE.ShaderChunk[ 'lights_phong_pars_vertex' ],
-            THREE.ShaderChunk[ 'color_pars_vertex' ],
-            THREE.ShaderChunk[ 'morphtarget_pars_vertex' ],
-            THREE.ShaderChunk[ 'skinning_pars_vertex' ],
-            THREE.ShaderChunk[ 'shadowmap_pars_vertex' ],
-            THREE.ShaderChunk[ 'logdepthbuf_pars_vertex' ],
+            THREE.ShaderChunk['common'],
+            THREE.ShaderChunk['uv_pars_vertex'],
+            THREE.ShaderChunk['uv2_pars_vertex'],
+            THREE.ShaderChunk['displacementmap_pars_vertex'],
+            THREE.ShaderChunk['envmap_pars_vertex'],
+            THREE.ShaderChunk['lights_phong_pars_vertex'],
+            THREE.ShaderChunk['color_pars_vertex'],
+            THREE.ShaderChunk['morphtarget_pars_vertex'],
+            THREE.ShaderChunk['skinning_pars_vertex'],
+            THREE.ShaderChunk['shadowmap_pars_vertex'],
+            THREE.ShaderChunk['logdepthbuf_pars_vertex'],
 
             this._concatFunctions(),
 
@@ -607,17 +616,17 @@ export const ParticleStream = () => {
 
             this._concatVertexInit(),
 
-            THREE.ShaderChunk[ 'uv_vertex' ],
-            THREE.ShaderChunk[ 'uv2_vertex' ],
-            THREE.ShaderChunk[ 'color_vertex' ],
-            THREE.ShaderChunk[ 'beginnormal_vertex' ],
+            THREE.ShaderChunk['uv_vertex'],
+            THREE.ShaderChunk['uv2_vertex'],
+            THREE.ShaderChunk['color_vertex'],
+            THREE.ShaderChunk['beginnormal_vertex'],
 
             this._concatTransformNormal(),
 
-            THREE.ShaderChunk[ 'morphnormal_vertex' ],
-            THREE.ShaderChunk[ 'skinbase_vertex' ],
-            THREE.ShaderChunk[ 'skinnormal_vertex' ],
-            THREE.ShaderChunk[ 'defaultnormal_vertex' ],
+            THREE.ShaderChunk['morphnormal_vertex'],
+            THREE.ShaderChunk['skinbase_vertex'],
+            THREE.ShaderChunk['skinnormal_vertex'],
+            THREE.ShaderChunk['defaultnormal_vertex'],
 
             '#ifndef FLAT_SHADED', // Normal computed with derivatives when FLAT_SHADED
 
@@ -625,29 +634,26 @@ export const ParticleStream = () => {
 
             '#endif',
 
-            THREE.ShaderChunk[ 'begin_vertex' ],
+            THREE.ShaderChunk['begin_vertex'],
 
             this._concatTransformPosition(),
 
-            THREE.ShaderChunk[ 'displacementmap_vertex' ],
-            THREE.ShaderChunk[ 'morphtarget_vertex' ],
-            THREE.ShaderChunk[ 'skinning_vertex' ],
-            THREE.ShaderChunk[ 'project_vertex' ],
-            THREE.ShaderChunk[ 'logdepthbuf_vertex' ],
+            THREE.ShaderChunk['displacementmap_vertex'],
+            THREE.ShaderChunk['morphtarget_vertex'],
+            THREE.ShaderChunk['skinning_vertex'],
+            THREE.ShaderChunk['project_vertex'],
+            THREE.ShaderChunk['logdepthbuf_vertex'],
 
             '	vViewPosition = - mvPosition.xyz;',
 
-            THREE.ShaderChunk[ 'worldpos_vertex' ],
-            THREE.ShaderChunk[ 'envmap_vertex' ],
-            THREE.ShaderChunk[ 'lights_phong_vertex' ],
-            THREE.ShaderChunk[ 'shadowmap_vertex' ],
+            THREE.ShaderChunk['worldpos_vertex'],
+            THREE.ShaderChunk['envmap_vertex'],
+            THREE.ShaderChunk['lights_phong_vertex'],
+            THREE.ShaderChunk['shadowmap_vertex'],
 
-            '}'
-
-        ].join( '\n' );
+            '}',
+        ].join('\n');
     };
 
-    return (
-        <S.Container ref={containerRef} />
-    );
+    return <S.Container ref={containerRef} />;
 };

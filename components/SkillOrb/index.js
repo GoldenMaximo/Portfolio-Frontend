@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { navigateWithTransition } from '../../util/utilFuncs';
@@ -46,7 +45,7 @@ export const SkillOrb = ({ height, width }) => {
         'Chai',
         'Sinon',
         'TypeScript',
-        'Deno'
+        'Deno',
     ];
 
     useEffect(() => {
@@ -59,7 +58,7 @@ export const SkillOrb = ({ height, width }) => {
                 minSpeed: 0.01,
                 clickToFront: 1000,
                 wheelZoom: false,
-                shuffleTags: true
+                shuffleTags: true,
             });
             window.TagCanvas.SetSpeed('orb-canvas', [0.02, -0.02]);
         }
@@ -74,11 +73,11 @@ export const SkillOrb = ({ height, width }) => {
         <canvas id="orb-canvas" height={height} width={width}>
             <ul>
                 {skills.length &&
-            skills.map((item, key) => (
-                <li key={key}>
-                    <a onClick={event => tagClickHandler(event, item)}>{item}</a>
-                </li>
-            ))}
+                    skills.map((item, key) => (
+                        <li key={key}>
+                            <a onClick={event => tagClickHandler(event, item)}>{item}</a>
+                        </li>
+                    ))}
             </ul>
         </canvas>
     );

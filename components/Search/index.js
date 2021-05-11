@@ -20,12 +20,16 @@ export const Search = ({ onClose }) => {
         <>
             <DS.Backdrop dark onClick={onClose} />
             <S.SearchContainer top={window.scrollY}>
-                <S.SearchInput autoFocus={true} onChange={e => setSearchTerm(e.target.value)} onKeyPress={execSearch} />
+                <S.SearchInput
+                    autoFocus={true}
+                    onChange={e => setSearchTerm(e.target.value)}
+                    onKeyPress={execSearch}
+                />
             </S.SearchContainer>
         </>
     );
 };
 
 Search.propTypes = {
-    onClose: PropTypes.func
+    onClose: PropTypes.func,
 };

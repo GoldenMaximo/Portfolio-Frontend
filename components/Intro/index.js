@@ -4,7 +4,6 @@ import * as S from './styles';
 import PropTypes from 'prop-types';
 import { ParticleStream } from '../ParticleStream';
 
-
 export const Intro = ({ onClick }) => {
     const name = createRef();
 
@@ -14,7 +13,7 @@ export const Intro = ({ onClick }) => {
             duration: 1,
             opacity: 0,
             x: 0,
-            y: -50
+            y: -50,
         });
     }, []);
 
@@ -30,5 +29,5 @@ export const Intro = ({ onClick }) => {
 };
 
 Intro.propTypes = {
-    onClick: PropTypes.func
+    onClick: PropTypes.func,
 };

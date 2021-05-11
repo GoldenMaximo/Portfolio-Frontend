@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Fragment, useEffect, useMemo, useRef, createRef, useState } from 'react';
+import React, { Fragment, useEffect, useMemo, useRef, createRef, useState } from 'react';
 import { Layout, Nav, Footer, TSParticlesWrapper } from '../../../components';
 import GraphQL from '../../../services/graphql';
 import * as S from './styles';
@@ -80,9 +80,7 @@ const Projects = ({ projects }) => {
     }, [shownProjects]);
 
     useEffect(() => {
-        if (isMobile) {
-            setTagLimit(4);
-        }
+        if (isMobile) setTagLimit(4);
     }, [isMobile]);
 
     const projectCardClickHandler = (event, slug) => {
@@ -113,7 +111,7 @@ const Projects = ({ projects }) => {
             <Nav />
             <Layout title={'Gustavo Máximo’s Projects'}>
                 <DS.Container bgColor="#759398" ref={containerRef}>
-                    <TSParticlesWrapper height={containerHeight} style={2} />
+                    <TSParticlesWrapper height={containerHeight} style={2} id="projectsBg" />
 
                     <S.ProjectsContainer isMobile={isMobile}>
                         <DS.Title light shadow marginTop="5rem" marginBottom="4rem">

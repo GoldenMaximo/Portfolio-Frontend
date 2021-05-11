@@ -12,7 +12,7 @@ const About = () => {
     const photoRef = useRef(null);
     const descriptionRef = useRef(null);
     const descSectionRef = useRef(null);
-    const scrollDownIconRef= useRef(null);
+    const scrollDownIconRef = useRef(null);
     const skillOrbContainerRef = useRef(null);
     const scrollAidRef = useRef(null);
     const skillDescriptionRef = useRef(null);
@@ -21,7 +21,7 @@ const About = () => {
     const [skillOrbContainerHeight, setSkillOrbContainerHeight] = useState(0);
 
     const handleScroll = () => {
-        if (window.scrollY > (skillOrbContainerRef.current.offsetTop - 450)) {
+        if (window.scrollY > skillOrbContainerRef.current.offsetTop - 450) {
             return setShowScrollAid(true);
         }
         setShowScrollAid(false);
@@ -47,7 +47,14 @@ const About = () => {
         // Checks if it's mobile
         setIsMobile(isMobileCheck());
 
-        initAnimations({ titleRef, photoRef, descriptionRef, descSectionRef, scrollDownIconRef, skillDescriptionRef });
+        initAnimations({
+            titleRef,
+            photoRef,
+            descriptionRef,
+            descSectionRef,
+            scrollDownIconRef,
+            skillDescriptionRef,
+        });
     }, []);
 
     useEffect(() => {
@@ -59,30 +66,47 @@ const About = () => {
 
     return (
         <>
-
             <Nav />
-            <Layout title='About Gustavo Máximo'>
-
+            <Layout title="About Gustavo Máximo">
                 <DS.Container>
                     <DS.Title ref={titleRef}>About Me</DS.Title>
 
                     <S.Section ref={descSectionRef}>
                         <S.Photo ref={photoRef}>
-                            <img src='/images/Gustavo_Maximo_at_NASP.jpg' data-tip="Photo was taken at Natura NASP" />
+                            <img
+                                src="/images/Gustavo_Maximo_at_NASP.jpg"
+                                data-tip="Photo was taken at Natura NASP"
+                            />
                         </S.Photo>
                         <S.Description ref={descriptionRef}>
-                            <p>Howdy, my name is <strong>Gustavo Máximo.</strong></p>
-                            <p>I&apos;m a JavaScript developer with <strong>3 years of experience</strong> coding both front and back-end.</p>
-                            <p>I&apos;m currently located in Jundiaí, Brazil, but <strong>remote work has always been a part of my career.</strong></p>
-                            <p>I like to solve difficult problems and flex logic like it&apos;s a muscle. No pain no gain.</p>
-                            <p>I&apos;ve worked on projects ranging from ERPs to full-blown mobile and web applications. <strong>B2B, B2C and C2C.</strong></p>
-                            <p>My preferred method of working is <strong>Agile & SCRUM.</strong> But I&apos;m well familiarized with Kanban and Waterfall.</p>
+                            <p>
+                                Howdy, my name is <strong>Gustavo Máximo.</strong>
+                            </p>
+                            <p>
+                                I&apos;m a JavaScript developer with{' '}
+                                <strong>3 years of experience</strong> coding both front and
+                                back-end.
+                            </p>
+                            <p>
+                                I&apos;m currently located in Jundiaí, Brazil, but{' '}
+                                <strong>remote work has always been a part of my career.</strong>
+                            </p>
+                            <p>
+                                I like to solve difficult problems and flex logic like it&apos;s a
+                                muscle. No pain no gain.
+                            </p>
+                            <p>
+                                I&apos;ve worked on projects ranging from ERPs to full-blown mobile
+                                and web applications. <strong>B2B, B2C and C2C.</strong>
+                            </p>
+                            <p>
+                                My preferred method of working is <strong>Agile & SCRUM.</strong>{' '}
+                                But I&apos;m well familiarized with Kanban and Waterfall.
+                            </p>
                         </S.Description>
                     </S.Section>
 
-                    {!isMobile && (
-                        <ScrollDownIcon ref={scrollDownIconRef} />
-                    )}
+                    {!isMobile && <ScrollDownIcon ref={scrollDownIconRef} />}
 
                     <S.SkillSection>
                         <S.SkillDescription ref={skillDescriptionRef}>
@@ -94,71 +118,93 @@ const About = () => {
                             </p>
                             <p>
                                 On the back-end&nbsp;
-                                <S.Highlight>Node.js + Express.js + Mongoose + GraphQL.</S.Highlight>
+                                <S.Highlight>
+                                    Node.js + Express.js + Mongoose + GraphQL.
+                                </S.Highlight>
                             </p>
                             <p>
-                                These stacks are a culmination of best tools and practices
-                                I&apos;ve adopted from the places and projects I&apos;ve worked on.
+                                These stacks are a culmination of best tools and practices I&apos;ve
+                                adopted from the places and projects I&apos;ve worked on.
                             </p>
                             <p>
                                 I&apos;ve come to prefer and personally adopt&nbsp;
                                 <S.Highlight>
-                                    <a target="_blank" rel="noopener noreferrer" href="https://www.conventionalcommits.org/en/v1.0.0/">
+                                    <a
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        href="https://www.conventionalcommits.org/en/v1.0.0/"
+                                    >
                                         Semantic/Conventional Commits
                                     </a>
                                 </S.Highlight>
                                 &nbsp;together with&nbsp;
                                 <S.Highlight>
-                                    <a target="_blank" rel="noopener noreferrer" href="https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow">
+                                    <a
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        href="https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow"
+                                    >
                                         Gitflow Workflow
                                     </a>
                                 </S.Highlight>
-                                &nbsp;as
-                              my main form of collaborating on projects as it ensures steady,
-                               transparent teamwork and a has a clearer / easier to understand client presentation and trackability, making it possible
-                              for POs and PMs to pinpoint the exact progress of the current sprint without needing extra technical knowledge.
+                                &nbsp;as my main form of collaborating on projects as it ensures
+                                steady, transparent teamwork and a has a clearer / easier to
+                                understand client presentation and trackability, making it possible
+                                for POs and PMs to pinpoint the exact progress of the current sprint
+                                without needing extra technical knowledge.
                             </p>
                             <p>
-                                Despite my professional history I was never too fond of mobile development, I&apos;ve worked on&nbsp;
+                                Despite my professional history I was never too fond of mobile
+                                development, I&apos;ve worked on&nbsp;
+                                <S.Highlight>React Native</S.Highlight>
+                                &nbsp;projects due to high-grade pay (everyone has their price). But
+                                personally I prefer Web App and PWA development.
+                            </p>
+                            <p>Evaluate me technically @:</p>
+                            <p>
                                 <S.Highlight>
-                                    React Native
-                                </S.Highlight>
-                                &nbsp;projects due to high-grade pay (everyone has their price). But personally I prefer Web App and PWA development.
-                            </p>
-                            <p>
-                                Evaluate me technically @:
-                            </p>
-                            <p>
-                                <S.Highlight>
-                                    <a target="_blank" rel="noopener noreferrer" href="https://github.com/GoldenMaximo">
+                                    <a
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        href="https://github.com/GoldenMaximo"
+                                    >
                                         GitHub
                                     </a>
                                 </S.Highlight>
                                 &nbsp;/&nbsp;
                                 <S.Highlight>
-                                    <a target="_blank" rel="noopener noreferrer" href="https://leetcode.com/goldenmaximo/">
+                                    <a
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        href="https://leetcode.com/goldenmaximo/"
+                                    >
                                         LeetCode
                                     </a>
                                 </S.Highlight>
                                 &nbsp;/&nbsp;
                                 <S.Highlight>
-                                    <a target="_blank" rel="noopener noreferrer" href="https://www.codewars.com/users/GoldenMaximo/completed">
+                                    <a
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        href="https://www.codewars.com/users/GoldenMaximo/completed"
+                                    >
                                         CodeWars
                                     </a>
                                 </S.Highlight>
                             </p>
                         </S.SkillDescription>
                         <S.SkillOrbContainer ref={skillOrbContainerRef}>
-                            <SkillOrb height={skillOrbContainerHeight} width={skillOrbContainerWidth}/>
+                            <SkillOrb
+                                height={skillOrbContainerHeight}
+                                width={skillOrbContainerWidth}
+                            />
                             {showScrollAid && (
                                 <S.ScrollAid ref={scrollAidRef}>Touch to Scroll</S.ScrollAid>
                             )}
                         </S.SkillOrbContainer>
                     </S.SkillSection>
-
                 </DS.Container>
                 <Footer />
-
             </Layout>
         </>
     );

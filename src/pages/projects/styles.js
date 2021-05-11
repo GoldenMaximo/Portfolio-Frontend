@@ -14,7 +14,7 @@ export const Tags = styled.div`
 
 export const TagButton = styled.p`
     pointer-events: all;
-    transition: all 0.4s cubic-bezier(.25,.8,.25,1);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
     text-shadow: 0px 0px 1px rgb(0 0 0 / 0.5), 0px 0px 20px rgb(0 0 0 / 0.5);
 
     &:hover {
@@ -40,7 +40,7 @@ export const ProjectsGallery = styled.div`
     margin-bottom: 4rem;
     margin-top: 3rem;
 
-    @media(max-width: 768px) {
+    @media (max-width: 768px) {
         width: 100%;
     }
 `;
@@ -53,7 +53,7 @@ export const ProjectTitle = styled.p`
 
 export const ProjectInfo = styled.div`
     background: #2d3436;
-    box-shadow: -12px 5px 4px 0 rgba(0,0,0,.5);
+    box-shadow: -12px 5px 4px 0 rgba(0, 0, 0, 0.5);
     width: 252px;
     height: 142px;
     position: absolute;
@@ -64,7 +64,7 @@ export const ProjectInfo = styled.div`
     align-content: flex-end;
     justify-content: flex-start;
     padding: 16px;
-    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     box-sizing: border-box;
     border-radius: 2px;
 
@@ -80,7 +80,7 @@ export const ProjectInfo = styled.div`
         color: #fff;
         font-size: 1em;
         margin: 0;
-        font-family: -apple-system,BlinkMacSystemFont,Segoe UI;
+        font-family: -apple-system, BlinkMacSystemFont, Segoe UI;
         padding: 0;
     }
 `;
@@ -92,8 +92,8 @@ export const ProjectImage = styled.div`
     margin-right: 70px;
     position: relative;
     border-radius: 3px;
-    box-shadow: -12px 5px 4px rgba(0,0,0,0.1), -12px 5px 30px rgba(0,0,0,0.1);
-    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    box-shadow: -12px 5px 4px rgba(0, 0, 0, 0.1), -12px 5px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 `;
 
 export const ProjectThumb = styled.div`
@@ -114,12 +114,12 @@ export const ProjectThumb = styled.div`
     &:hover {
         ${ProjectInfo} {
             top: -20px;
-            box-shadow: -12px -12px 4px 0 rgba(0,0,0,.5);
+            box-shadow: -12px -12px 4px 0 rgba(0, 0, 0, 0.5);
             height: 232px;
         }
 
         ${ProjectImage} {
-            box-shadow: -12px -12px 4px rgba(0,0,0,0.1), -12px -12px 30px rgba(0,0,0,0.1);
+            box-shadow: -12px -12px 4px rgba(0, 0, 0, 0.1), -12px -12px 30px rgba(0, 0, 0, 0.1);
         }
     }
 `;
@@ -146,7 +146,7 @@ export const FiltersBtn = styled.button`
     z-index: 1;
     backdrop-filter: blur(2px);
 
-    transition: all 0.4s cubic-bezier(.25,.8,.25,1);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 
     &:focus {
         outline: none;
@@ -180,14 +180,15 @@ export const TagsTitle = styled.h3`
 
 export const ProjectsContainer = styled.div`
     pointer-events: none;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.1), inset 0 1px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.1),
+        inset 0 1px 15px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     width: 80%;
     border: 1px solid rgb(245 245 245 / 0.5);
-    backdrop-filter: ${({ isMobile }) => isMobile ? 'none' : 'blur(2px)'};
+    backdrop-filter: ${({ isMobile }) => (isMobile ? 'none' : 'blur(2px)')};
     margin-bottom: 4rem;
     margin-top: 6rem;
     border-radius: 0.5rem;
