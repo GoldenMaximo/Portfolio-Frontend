@@ -10,9 +10,9 @@
 - [Next.js](https://nextjs.org/) - React Framework
 - [Styled-Components](https://styled-components.com/) - CSS Componentization tool
 - [GSAP](https://greensock.com/gsap/) - Animation Framework
-- [PropTypes](https://reactjs.org/docs/typechecking-with-proptypes.html) - Poor man's TypeScript
-- [reCAPTCHA](https://developers.google.com/recaptcha/) - Anti-Spam tool
-- [react-icons](https://github.com/react-icons/react-icons#readme) - Best icon lib
+- [PropTypes](https://reactjs.org/docs/typechecking-with-proptypes.html) - Typechecking
+- [reCAPTCHA](https://developers.google.com/recaptcha/) - Anti-spam tool
+- [react-icons](https://github.com/react-icons/react-icons#readme) - Icon lib
 - [react-toastify](https://fkhadra.github.io/react-toastify/introduction) - Toast tool
 - [react-tooltip](https://github.com/wwayne/react-tooltip#readme) - Tooltip tool
 - [swiper](https://swiperjs.com/) - Touch slider
