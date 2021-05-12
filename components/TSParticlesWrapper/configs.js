@@ -197,8 +197,8 @@ export const featuredProjectsBgConfig = {
                 mode: [],
                 parallax: {
                     enable: true,
-                    force: 10,
-                    smooth: 30,
+                    force: 5,
+                    smooth: 5,
                 },
             },
             resize: false,
