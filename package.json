@@ -22,7 +22,7 @@
         "react-tsparticles": "^1.26.4",
         "sass": "^1.27.0",
         "styled-components": "^5.2.0",
-        "swiper": "^6.3.3",
+        "swiper": "^6.6.1",
         "three": "^0.122.0",
         "tsparticles": "^1.27.0"
     },
