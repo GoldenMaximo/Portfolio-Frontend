@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: gustavomaximo.dev
+Token: 8246ac870da90380974cc63f43074f48ad833e4ea1f612c915050679851a82a2
