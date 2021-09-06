@@ -6,8 +6,8 @@ export const translations = {
     CSS: 'css3',
     HTML: 'html5',
     'React.js': 'react',
-    'Node.js': 'node-dot-js',
-    'Next.js': 'next-dot-js',
+    'Node.js': 'nodedotjs',
+    'Next.js': 'nextdotjs',
     'Express.js': 'express',
 };
 
