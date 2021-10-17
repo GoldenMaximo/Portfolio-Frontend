@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useMemo } from 'react';
 import { TSParticlesWrapper } from '../../../../../../components';
 
 import * as S from './styles';
 
-export const Project = ({ project, onClick, elemRef, formattedTechStack }) => {
+export const Project = ({ project, onClick, elemRef }) => {
     const [showAnimation, setShowAnimation] = useState(false);
     const isMountedVal = useRef(1);
 
@@ -21,6 +21,13 @@ export const Project = ({ project, onClick, elemRef, formattedTechStack }) => {
             callback();
         }
     };
+
+    // E.g.: [ CSS / HTML / JS... ]
+    const formattedTechStack = useMemo(() => {
+        const a = project.techStack.join(' / ');
+        const b = a.substring(a.lastIndexOf('/'), 0).trim();
+        return `[ ${b}... ]`;
+    }, [project]);
 
     return (
         <S.ProjectThumbContainer
@@ -39,7 +46,7 @@ export const Project = ({ project, onClick, elemRef, formattedTechStack }) => {
                 )}
                 <S.StyledImage src={project.thumbUrl} />
                 <S.ProjectTitle>{project.title}</S.ProjectTitle>
-                <S.Tags>[&nbsp;{formattedTechStack}...&nbsp;]</S.Tags>
+                <S.Tags>{formattedTechStack}</S.Tags>
             </S.ProjectThumb>
         </S.ProjectThumbContainer>
     );
