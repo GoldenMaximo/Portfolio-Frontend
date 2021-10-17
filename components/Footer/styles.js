@@ -84,9 +84,9 @@ export const subContainerMiddle = styled.div`
     }
 
     svg {
-        width: 4rem;
-        height: 4rem;
-        margin: 1rem;
+        width: 3rem;
+        height: 3rem;
+        margin: 0.5rem 0.5em;
         /* TODO: Gotta find a way to use 0.5 ease only AFTER the coming down animation finishes
         transition: all 0.5s ease; */
         transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -115,17 +115,17 @@ export const subContainerRight = styled.div`
     }
 
     svg {
-        height: 5rem;
-        width: 5rem;
+        height: 3rem;
+        width: 3rem;
     }
 
     @media (max-width: 768px) {
         width: 100%;
 
-        svg {
-            height: 4rem;
-            width: 4rem;
-        }
+        /* svg {
+            height: 3rem;
+            width: 3rem;
+        } */
     }
 `;
 
@@ -167,6 +167,19 @@ export const subContainerLeft = styled.div`
     padding-bottom: 0.5rem;
     width: 25%;
 
+    div {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    svg {
+        margin-right: 1rem;
+        height: 3rem;
+        width: 3rem;
+        color: #e8e6e3;
+    }
+
     h3 {
         margin: 0;
         margin-bottom: 0.5rem;
@@ -202,8 +215,8 @@ export const subContainerLeft = styled.div`
         svg {
             margin-right: 0.5rem;
             margin-left: 0.5rem;
-            width: 4rem;
-            height: 4rem;
+            width: 3rem;
+            height: 3rem;
         }
 
         ${ResumeIcon} {
@@ -236,6 +249,7 @@ export const copyrightContainer = styled.div`
     }
 
     p {
+        margin: 0.7rem;
         color: #e8e6e3;
 
         @media (max-width: 768px) {
