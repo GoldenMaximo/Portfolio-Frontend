@@ -10,7 +10,7 @@
     },
     "dependencies": {
         "gsap": "^3.6.1",
-        "next": "^10.2.1",
+        "next": "^13.5.0",
         "particles.js": "^2.0.0",
         "prop-types": "^15.7.2",
         "react": "16.14.0",
